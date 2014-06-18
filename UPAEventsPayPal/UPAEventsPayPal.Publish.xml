@@ -1,0 +1,31 @@
+<publishData>
+  <publishTarget publishUrl="http://localhost/MartinLayooInc/">
+    <file relUrl="Default.aspx" publishTime="12/25/2007 2:47:24 AM" />
+    <file relUrl="bin/UPAEventsPayPal.pdb" publishTime="3/2/2008 4:47:12 PM" />
+    <file relUrl="Web.config" publishTime="2/14/2008 12:52:44 PM" />
+    <file relUrl="bin/UPAEventsPayPal.dll" publishTime="3/2/2008 4:47:12 PM" />
+  </publishTarget>
+  <publishTarget publishUrl="http://localhost/">
+    <file relUrl="Product.cs" publishTime="12/29/2007 11:04:51 AM" />
+    <file relUrl="Invoice.cs" publishTime="12/29/2007 11:06:10 AM" />
+    <file relUrl="PayPalHttpModule.cs" publishTime="12/29/2007 12:06:38 PM" />
+    <file relUrl="Default.aspx.designer.cs" publishTime="12/25/2007 2:47:25 AM" />
+    <file relUrl="URLBuilder.cs" publishTime="12/29/2007 12:18:01 PM" />
+    <file relUrl="PayPalHandler.cs" publishTime="12/29/2007 11:38:23 AM" />
+    <file relUrl="Default.aspx.cs" publishTime="12/25/2007 2:47:24 AM" />
+    <file relUrl="Web.config" publishTime="12/30/2007 5:18:51 AM" />
+    <file relUrl="Default.aspx" publishTime="12/25/2007 2:47:24 AM" />
+    <file relUrl="bin/UPAEventsPayPal.pdb" publishTime="12/30/2007 5:18:52 AM" />
+    <file relUrl="UPAEventsPayPal.csproj" publishTime="12/25/2007 6:44:14 PM" />
+    <file relUrl="bin/UPAEventsPayPal.dll" publishTime="12/30/2007 5:18:52 AM" />
+    <file relUrl="UPAEventsPayPal.csproj.user" publishTime="12/25/2007 6:44:14 PM" />
+    <file relUrl="InstantPaymentNotification.cs" publishTime="12/25/2007 5:27:07 PM" />
+    <file relUrl="Properties/AssemblyInfo.cs" publishTime="12/25/2007 2:47:24 AM" />
+  </publishTarget>
+  <publishTarget publishUrl="http://84.13.163.86/">
+    <file relUrl="Default.aspx" publishTime="12/25/2007 2:47:24 AM" />
+    <file relUrl="bin/UPAEventsPayPal.pdb" publishTime="12/30/2007 5:07:28 AM" />
+    <file relUrl="Web.config" publishTime="12/30/2007 5:07:27 AM" />
+    <file relUrl="bin/UPAEventsPayPal.dll" publishTime="12/30/2007 5:07:28 AM" />
+  </publishTarget>
+</publishData>

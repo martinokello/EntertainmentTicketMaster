@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    div.body-content div {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+    div#admin ul li {
+        border: gray solid 2px;
+    }
+    #body.home div:first-child ul li:first-child {
+        border: solid 1px #4F4F4F;
+    }
+
+    .alignVerticalImage {
+        vertical-align: central;
+        height: 95%;
+    }
+    li#UpdateEvents a:hover {
+        color: orange;
+    }
+</style>
+
+<div class="body-content">
+<div>
+    <h2>Site Administration</h2>
+    <p>
+        Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.freewebsitetemplates.com/about/terms">Terms of Use</a>. You can even remove all our links if you want to.
+    </p>
+    <h3>We Have More Templates for You</h3>
+
+    <div id="admin" style="color: white; float: left; width: 100%;">
+        <ul>
+            <li>
+                <a href="/Administration/AddEvent">Add an Event</a><br/>
+                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond1.jpg")" />
+            </li>
+            <li>
+                <a href="/Administration/EmailUsers">Send bulk email to users - campaign emails.</a><br/>
+                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" />
+            </li>
+
+            <li><a href="/Administration/GetPaidBooking">Check Users that have made successful Payments.</a><br/>
+                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond3.jpg")" /></li>
+            <li id="UpdateEvents"style="background-image:url('@Url.Content("~/images/Diamond2.jpg")'); color:orange;">
+                Update Events By Name:<br/><br/><br/>
+
+                @foreach (var evnt in ViewBag.Events)
+                {
+                    <a style="color: red;font-weight: bolder;" onmouseover="this.style.color = 'orange';" onmouseout="    this.style.color = 'red';" href="/Administration/UpdateEvent?eventId=@evnt.EventId">@evnt.EventName</a><br/>
+                }
+            </li>
+        </ul>
+
+    </div>
+</div>
+</div>

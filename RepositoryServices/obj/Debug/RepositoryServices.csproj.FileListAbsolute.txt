@@ -1,0 +1,15 @@
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\RepositoryServices.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\RepositoryServices.pdb
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Microsoft.Practices.Unity.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\TicketMasterDataAccess.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\EntityFramework.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\TicketMasterDataAccess.pdb
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Microsoft.Practices.Unity.xml
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\EntityFramework.xml
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.csprojResolveAssemblyReference.cache
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.dll
+C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.pdb

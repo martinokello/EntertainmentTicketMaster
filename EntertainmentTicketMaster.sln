@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntertainmentTicketMaster", "EntertainmentTicketMaster\EntertainmentTicketMaster.csproj", "{F30A3207-0172-48D6-9DFE-C1B4322040F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketMasterDataAccess", "TicketMasterDataAccess\TicketMasterDataAccess.csproj", "{199705D6-4F1C-4FDC-847F-BD12AD044F6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryServices", "RepositoryServices\RepositoryServices.csproj", "{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailServices", "EmailServices\EmailServices.csproj", "{F368223F-7903-481B-8D11-59390D44E2E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPAEventsPayPal", "UPAEventsPayPal\UPAEventsPayPal.csproj", "{59003D84-8F5C-447E-AE3E-A04848FBF28D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entertainment.Unit.Tests", "Entertainment.Unit.Tests\Entertainment.Unit.Tests.csproj", "{D4573FC3-5E76-47D2-86B3-34FCA53CA702}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F30A3207-0172-48D6-9DFE-C1B4322040F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30A3207-0172-48D6-9DFE-C1B4322040F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30A3207-0172-48D6-9DFE-C1B4322040F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30A3207-0172-48D6-9DFE-C1B4322040F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{199705D6-4F1C-4FDC-847F-BD12AD044F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{199705D6-4F1C-4FDC-847F-BD12AD044F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{199705D6-4F1C-4FDC-847F-BD12AD044F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{199705D6-4F1C-4FDC-847F-BD12AD044F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F368223F-7903-481B-8D11-59390D44E2E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F368223F-7903-481B-8D11-59390D44E2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F368223F-7903-481B-8D11-59390D44E2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F368223F-7903-481B-8D11-59390D44E2E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59003D84-8F5C-447E-AE3E-A04848FBF28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59003D84-8F5C-447E-AE3E-A04848FBF28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59003D84-8F5C-447E-AE3E-A04848FBF28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59003D84-8F5C-447E-AE3E-A04848FBF28D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4573FC3-5E76-47D2-86B3-34FCA53CA702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4573FC3-5E76-47D2-86B3-34FCA53CA702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4573FC3-5E76-47D2-86B3-34FCA53CA702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4573FC3-5E76-47D2-86B3-34FCA53CA702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

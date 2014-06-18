@@ -1,0 +1,8 @@
+C:\C#Projects\UPAEventsPayPal\obj\Release\ResolveAssemblyReference.cache
+C:\C#Projects\UPAEventsPayPal\obj\Release\UPAEventsPayPal.dll
+C:\C#Projects\UPAEventsPayPal\obj\Release\UPAEventsPayPal.pdb
+C:\C#Projects\UPAEventsPayPal\bin\UPAEventsPayPal.dll
+C:\C#Projects\UPAEventsPayPal\bin\UPAEventsPayPal.pdb
+C:\C#Projects\UPAEventsPayPal\obj\Debug\ResolveAssemblyReference.cache
+C:\C#Projects\UPAEventsPayPal\obj\Debug\UPAEventsPayPal.dll
+C:\C#Projects\UPAEventsPayPal\obj\Debug\UPAEventsPayPal.pdb

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="84626ecc63a84fed8c234eb364743b7a" Name="Diagram1">
+        <EntityTypeShape EntityType="TicketMasterModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TicketMasterModel.AspNetRole" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="TicketMasterModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="TicketMasterModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="TicketMasterModel.AspNetUser" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="TicketMasterModel.Event" Width="1.5" PointX="8.125" PointY="0.875" />
+        <EntityTypeShape EntityType="TicketMasterModel.Ticket" Width="1.5" PointX="10.375" PointY="1.125" />
+        <EntityTypeShape EntityType="TicketMasterModel.TicketMasterUser" Width="1.5" PointX="5.25" PointY="5.125" />
+        <AssociationConnector Association="TicketMasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
+        <AssociationConnector Association="TicketMasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="TicketMasterModel.FK_TicketMasterUsers_ASPNetUsers" />
+        <AssociationConnector Association="TicketMasterModel.FK_Ticket_Event" />
+        <AssociationConnector Association="TicketMasterModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="TicketMasterModel.Address" Width="1.5" PointX="7.5" PointY="4.875" />
+        <AssociationConnector Association="TicketMasterModel.FK_Address_TicketMasterUsers" />
+        <EntityTypeShape EntityType="TicketMasterModel.Booking" Width="1.5" PointX="12.625" PointY="0.875" />
+        <AssociationConnector Association="TicketMasterModel.FK_Booking_Ticket" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,5 @@
+bin\UPAEventsPayPal.dll
+bin\UPAEventsPayPal.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\UPAEventsPayPal.dll
+obj\Debug\UPAEventsPayPal.pdb

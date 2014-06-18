@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EntertainmentTicketMaster.Models.EventViewModel>
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #body.home div div:first-child ul li:first-child {
+        width: 238px;
+    }
+
+    #body.home div div:first-child ul li {
+        border-right: 1px solid #4f4f4f;
+        min-height: 287px;
+        padding: 0;
+        width: 239px;
+    }
+    div.body-content div, div.body-content {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+    .alignVerticalImage{vertical-align: central; height:95%;}
+    .form-control {
+        width: 250px;
+        float: left;
+    }
+
+    .control-label {
+        width: 150px;
+        text-align: right;
+        float: left;
+    }
+    a {color: #ae6662;}
+	
+div#eventsContent  ul li  p a img {
+    border-bottom: 1px solid #4F4F4F;
+}
+div#eventsContent ul li  p a img {
+    border-top: 1px solid #4F4F4F;
+}
+div#eventsContent ul li  p a img {
+    border-right: 1px solid #4F4F4F;
+}
+div#eventsContent ul li  p a img {
+    border-left: 1px solid #4F4F4F;
+}
+div#eventsContent img{margin-top:22%;}
+</style>
+@{
+    var index = 1;
+}
+<div class="body-content">
+    <div id="eventsContent">
+        <h2>Shows</h2>
+        <h3>We Have Free Templates for Everyone</h3>
+        
+        <ul style="float:left;">
+            <li style="border: gray solid 1px;">
+                <h3>Be Part of Our Community</h3>
+                Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.freewebsitetemplates.com/about/terms">Terms of Use</a>. You can even remove all our links if you want to.
+            </li>		
+		</ul>
+		<ul style="float:left; width:650px;">
+            @foreach(var evnt in Model){
+                <li style="border: gray solid 1px;">
+                    <p style="text-align: center; "><a style="color: #ae6662;" href="/Tickets/EventInfo/@evnt.EventId" onmouseover="this.style.color='orange';" onmouseout="this.style.color='#ae6662';">
+    @evnt.EventName<br />
+    <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond"+index+".jpg")" />
+</a></p>
+                    <p>@evnt.EventDescription</p>
+                </li>
+                index++;
+                if (index%5 == 0)
+                {
+                    index = 1;
+                }
+            }
+
+
+        </ul>
+    </div>
+</div>
+

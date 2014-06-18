@@ -1,0 +1,112 @@
+﻿@model EntertainmentTicketMaster.Models.EventViewModel
+@{
+    ViewBag.Title = "UpdateEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    div.body-content div, div.body-content {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+
+    .form-control {
+        width: 250px;
+        float: left;
+    }
+
+    .control-label {
+        width: 150px;
+        text-align: right;
+        float: left;
+    }
+    div.validation-summary-errors ul li {
+        color: #B94A48;
+    }
+	#body.home div div:first-child ul li{min-height:10px;width:100%;}
+	#body.home div:first-child ul li{float:none;}
+	div.validation-summary-errors ul li {color: #B94A48;}
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#eventDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+</script>
+<div class="body-content">
+    <div>
+        <h2>Update Event</h2>
+        <p>
+            Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.freewebsitetemplates.com/about/terms">Terms of Use</a>. You can even remove all our links if you want to.
+        </p>
+        <h3>We Have More Templates for You</h3>
+        <div style="color: white; float: left; width: 100%;">
+            @using (Html.BeginForm("UpdateEvent", "Administration", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Update Event.</h4>
+                <hr />
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EventName, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextBoxFor(p => p.EventName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.EventName, "*")
+
+                    <div>&nbsp;</div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Location, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextBoxFor(p => p.Location, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Location, "*")
+                    <div>&nbsp;</div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EventDescription, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextAreaFor(p => p.EventDescription, new { @cols = 100, @rows = 10 })
+                    @Html.ValidationMessageFor(m => m.EventDescription, "*")
+
+                    <div>&nbsp;</div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EventDate, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextBoxFor(p => p.EventDate, new { @class = "form-control", @id="eventDate" })
+                    @Html.ValidationMessageFor(m => m.EventDate, "*")
+                    <div>&nbsp;</div>
+                    @Html.LabelFor(m => m.EventTime, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextBoxFor(p => p.EventTime, new { @class = "form-control", @id = "eventTime" })
+                    @Html.ValidationMessageFor(m => m.EventTime, "*")
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextBoxFor(p => p.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Price, "*")
+                    <div>&nbsp;</div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NumberOfTickets, new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
+                    @Html.TextBoxFor(p => p.NumberOfTickets, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.NumberOfTickets, "*")
+                    <div>&nbsp;</div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Attach a File:", new { @class = "col-md-2 control-label" })<span style="float:left;">&nbsp;</span>
+                    <input type="file" name="Attachment" title="Browse to file you wish to attach" />
+                    <div>&nbsp;</div>
+                </div>
+                @Html.HiddenFor(p=> p.EventId);
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Update Event" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
