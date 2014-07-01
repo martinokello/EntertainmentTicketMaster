@@ -54,7 +54,7 @@
                         <td><a href="/Tickets/EventInfo/@ticket.EventId" onmouseover="this.style.color='orange';" onmouseout="this.style.color='#ae6662';">@ticket.Event.EventName</a></td>
                         <td>@(ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId)!= null?((DateTime)ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId).BookingDate).ToString("dd/MM/yyyy"): "Did not book")</td>
                         <td>@(ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId)!= null?ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId).NumberOfTickets: 0)</td>
-                        <td>@ticket.Price</td>
+                        <td>@ticket.Price.Value</td>
                         <td>@(ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId) == null?(decimal)0.00: ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId).NumberOfTickets.Value * ticket.Price.Value)</td>
                     </tr>
                 }

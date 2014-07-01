@@ -74,3 +74,9 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.csprojResolveAssemblyReference.cache
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.pdb
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.xml
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.xml
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.xml

@@ -20,7 +20,8 @@ namespace RepositoryServices.Services
 
         public RepositoryAdminServices()
         {
-            
+            _ticketMasterUserRepository = new TicketMasterUserRepository(new UnitOfWork());
+     
         }
         public RepositoryAdminServices(ITicketRepositorySegregator ticketRepository,IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator ticketMasterUserRepository,IBookingRepositorySegregator bookingRepository)
         {

@@ -29,7 +29,6 @@
             padding: 0;
             width: auto;
         }
-		div#layout{width:900px;}
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -39,6 +38,33 @@
                 } else {
                     $(this).children('a').remove('class', 'selected');
                 }
+            });
+
+            $('#SubmitEmail').click(function () {
+                debugger;
+                var email = $('#EmailAddress').val();
+                var username = '@Guid.NewGuid().ToString().Substring(0,10)';
+                var user = {
+                    UserName: username,
+                    Password: 'anonymous',
+                    Email: email,
+                    ConfirmPassword: 'anonymous'
+                };
+                var userDetails = JSON.stringify(user);
+
+                $.ajax({
+                    url: "/api/EmailList/",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: userDetails,
+                    success: function (data, textStatus, jqXHR) {
+                        alert(textStatus + data);
+                    },
+                    error: function (requestObject, error, errorThrow) {
+                        alert(error +': '+ errorThrow);
+                    }
+                });
+                return false;
             });
         });
     </script>
@@ -206,8 +232,8 @@
                     Praesent at urna ac urna congue convallis. Maecenas sed placerat turpis. Duis in dolor ut nibh molestie faucibus.
                 </p>
                 <form action="about.html">
-                    <input type="text" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Enter Email Address Here':this.value;" value="Enter Email Address Here">
-                    <input type="submit" value="">
+                    <input type="text" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Enter Email Address Here':this.value;" value="Enter Email Address Here" id="EmailAddress">
+                    <input type="submit" value="" id="SubmitEmail">
                 </form>
             </div>
             <p>

@@ -63,3 +63,9 @@ C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\Newto
 C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\obj\Debug\Entertainment.Unit.Tests.csprojResolveAssemblyReference.cache
 C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\obj\Debug\Entertainment.Unit.Tests.dll
 C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\obj\Debug\Entertainment.Unit.Tests.pdb
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Web.Http.dll
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Net.Http.Formatting.dll
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Web.Http.xml
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Net.Http.Formatting.xml
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Web.Http.WebHost.dll
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Web.Http.WebHost.xml
