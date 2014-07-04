@@ -80,3 +80,5 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.xml
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Twitter.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Twitter.pdb

@@ -69,3 +69,5 @@ C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\Syste
 C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Web.Http.WebHost.dll
 C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\System.Web.Http.WebHost.xml
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\Twitter.dll
+C:\C#Projects\EntertainmentTicketMaster\Entertainment.Unit.Tests\bin\Debug\Twitter.pdb

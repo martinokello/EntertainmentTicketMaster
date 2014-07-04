@@ -203,6 +203,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\EmailListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1070,6 +1071,7 @@
     <Content Include="Views\Administration\GetPaidBooking.cshtml" />
     <Content Include="Views\Tickets\GetUserAddress.cshtml" />
     <Content Include="Views\Tickets\EventComingSoon.cshtml" />
+    <Content Include="Views\Shared\_PartialTwitter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1093,6 +1095,10 @@
     <ProjectReference Include="..\TicketMasterDataAccess\TicketMasterDataAccess.csproj">
       <Project>{199705d6-4f1c-4fdc-847f-bd12ad044f6d}</Project>
       <Name>TicketMasterDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Twitter\Twitter.csproj">
+      <Project>{3bfe2a6b-0496-4f70-9e5a-5678f1977e5f}</Project>
+      <Name>Twitter</Name>
     </ProjectReference>
     <ProjectReference Include="..\UPAEventsPayPal\UPAEventsPayPal.csproj">
       <Project>{59003d84-8f5c-447e-ae3e-a04848fbf28d}</Project>

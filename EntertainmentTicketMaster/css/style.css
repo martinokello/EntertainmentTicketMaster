@@ -1270,7 +1270,7 @@ p a:hover {
 #footer {
 	background:url(../images/bg-footer.png) repeat-x left bottom;
 	clear:both;
-	height:217px;
+	min-height:217px;
 	margin:47px 0 0;
 }
 #footer div {
@@ -1306,7 +1306,7 @@ p a:hover {
 	border-left:1px solid #4f4f4f;
 	float:left;
 	margin-bottom:30px;
-	min-height:146px;
+	min-height:200px;
 	padding:0 0 0 10px;
 	width:302px;
 }
