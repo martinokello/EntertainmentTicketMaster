@@ -102,6 +102,7 @@
       <DependentUpon>TicketMaster.tt</DependentUpon>
     </Compile>
     <Compile Include="Dto\BookingTicketInfo.cs" />
+    <Compile Include="Dto\GroupedBooking.cs" />
     <Compile Include="Factories\DBContextFactory.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Abstracts\AbstractTicketRepository.cs" />

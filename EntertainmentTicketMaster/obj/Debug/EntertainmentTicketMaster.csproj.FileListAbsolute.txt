@@ -1,3 +1,4 @@
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.csprojResolveAssemblyReference.cache
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EntertainmentTicketMaster.dll.config
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EntertainmentTicketMaster.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EntertainmentTicketMaster.pdb
@@ -26,7 +27,10 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Newtonsoft.Json.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Owin.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\RepositoryServices.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Helpers.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Mvc.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Optimization.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Razor.dll
@@ -34,6 +38,7 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.WebPages.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.WebPages.Razor.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\TicketMasterDataAccess.dll
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Twitter.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Unity.Mvc5.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\UPAEventsPayPal.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\WebActivatorEx.dll
@@ -41,6 +46,7 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\WebGrease.
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EmailServices.pdb
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\RepositoryServices.pdb
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\TicketMasterDataAccess.pdb
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Twitter.pdb
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\UPAEventsPayPal.pdb
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.ServiceLocation.pdb
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.ServiceLocation.xml
@@ -48,6 +54,9 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.Configuration.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.Mvc.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.xml
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.xml
+C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Helpers.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Mvc.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Optimization.xml
@@ -71,14 +80,5 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Owin.Security.Google.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Owin.Security.Twitter.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.csprojResolveAssemblyReference.cache
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.pdb
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.dll
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.dll
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.dll
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.xml
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.xml
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.WebHost.xml
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Twitter.dll
-C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Twitter.pdb

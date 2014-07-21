@@ -237,6 +237,10 @@ namespace EntertainmentTicketMaster.Controllers
             return View(model);
         }
 
-   
+        public ActionResult BookingsStatistics()
+        {
+            var model = _repositoryTicketServices.GetBookingsByEvent();
+            return View(model);
+        }
 	}
 }

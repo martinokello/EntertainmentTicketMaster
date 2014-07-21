@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -84,7 +85,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                         UserId = userId,
                         TicketId = ticket.TicketId,
                         IsVerifiedPayment = false,
-                        Ticket = ticket
+                        Ticket = ticket,
                     };
 
                     Add(booking);
@@ -122,6 +123,29 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 };
 
             return tickets.ToArray();
+        }
+
+        public virtual GroupedBooking[] GetBookingsByEvent()
+        {
+            var DBContext = DBContextFactory.GetDbContextInstance();
+
+            var eventGroups = from b in DBContext.Bookings
+                join t in DBContext.Tickets on b.EventId equals t.EventId
+                orderby b.Ticket.Event.EventName
+                group t by b
+                into gr
+                select
+                    new GroupedBooking
+                    {
+                        EventId = (int)gr.Key.EventId,
+                        EventName = gr.Key.Ticket.Event.EventName,
+                        NumberOfBookings = gr.Count(),
+                        TotalAmount = (decimal) (gr.Key.NumberOfTickets*gr.Key.Ticket.Price),
+                        BookingDate = (DateTime)gr.Key.BookingDate
+                    };
+            return eventGroups.ToArray();
+
+
         }
     }
     public interface IBookingRepositorySegregator

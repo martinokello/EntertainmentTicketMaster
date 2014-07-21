@@ -79,10 +79,10 @@
                     contentType: "application/json",
                     data: userDetails,
                     success: function (data, textStatus, jqXHR) {
-                        alert(textStatus + data);
+                        alert(textStatus +': '+ data);
                     },
-                    error: function (requestObject, error, errorThrow) {
-                        alert(error +': '+ errorThrow);
+                    error: function (jqXHR, error, errorThrown) {
+                        alert(error +': '+ errorThrown);
                     }
                 });
                 return false;

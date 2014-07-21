@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketMasterDataAccess.ConcreteRepositories;
 using TicketMasterDataAccess.DataAccess;
+using TicketMasterDataAccess.Dto;
 using TicketMasterDataAccess.Interfaces;
 using TicketMasterDataAccess.UnitOfWork;
 using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
@@ -131,6 +132,11 @@ namespace RepositoryServices.Services
         public void UpdateBooking(Booking booking)
         {
             _bookingRepository.Update(booking);
+        }
+
+        public GroupedBooking[] GetBookingsByEvent()
+        {
+            return _bookingRepository.GetBookingsByEvent();
         }
     }
 

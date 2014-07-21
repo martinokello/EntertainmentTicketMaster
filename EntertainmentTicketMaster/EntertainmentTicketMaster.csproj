@@ -1072,6 +1072,7 @@
     <Content Include="Views\Tickets\GetUserAddress.cshtml" />
     <Content Include="Views\Tickets\EventComingSoon.cshtml" />
     <Content Include="Views\Shared\_PartialTwitter.cshtml" />
+    <Content Include="Views\Administration\BookingsStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

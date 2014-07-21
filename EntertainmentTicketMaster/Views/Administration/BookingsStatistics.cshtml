@@ -1,0 +1,94 @@
+﻿@model IEnumerable<TicketMasterDataAccess.Dto.GroupedBooking>
+
+@{
+    ViewBag.Title = "BookingsStatistics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var totalCollected = new decimal(0);
+}
+<style type="text/css">
+    div.body-content div, div.body-content {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+
+    .form-control {
+        width: 250px;
+        float: left;
+    }
+
+    .control-label {
+        width: 150px;
+        text-align: right;
+        float: left;
+    }
+
+    table, th, td, tr {
+        border: gray solid 2px;
+        padding: 5px;
+    }
+
+    th, td {
+        background-color: #fceecb;
+        color: #882d2d;
+    }
+
+    td a {
+        color: #ae6662;
+    }
+</style>
+
+<div class="body-content">
+
+    <h2>Bookings Statistics</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfBookings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfBookings)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDate)
+                </td>
+            </tr>
+            totalCollected += item.TotalAmount;
+        }
+
+    </table>
+    <p>
+        Total Collected from Payment: £ @totalCollected
+    </p>
+</div>
