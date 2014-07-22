@@ -259,7 +259,7 @@ namespace EntertainmentTicketMaster.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("datesWrongFormat", "The date format is dd/MM/yyyy");
+                ModelState.AddModelError("datesWrongFormat", "The from and to dates are required and should be of format: dd/MM/yyyy");
                 return View("BookingsStatistics");
             }
         }

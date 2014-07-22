@@ -44,6 +44,7 @@
     div.validation-summary-errors ul li {
         color: #B94A48;
     }
+
     table, th, td, tr {
         border: gray solid 2px;
         padding: 5px;
@@ -76,14 +77,16 @@
 
     @using (Html.BeginForm())
     {
+        <hr />
+        @Html.ValidationSummary()
         <div class="form-group">
             @Html.Label("Date from", new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
-            @Html.TextBox("dateFrom","", new { @class = "form-control", @id="dateFrom" })
+            @Html.TextBox("dateFrom", "", new { @class = "form-control", @id = "dateFrom" })
             <div>&nbsp;</div>
         </div>
         <div class="form-group">
             @Html.Label("Date to", new { @class = "col-md-2 control-label" })<span style="float: left;">&nbsp;</span>
-            @Html.TextBox("dateTo","", new { @class = "form-control", @id = "dateTo" })
+            @Html.TextBox("dateTo", "", new { @class = "form-control", @id = "dateTo" })
             <div>&nbsp;</div>
         </div>
         <div class="form-group">
@@ -111,29 +114,30 @@
                 @Html.DisplayNameFor(model => model.BookingDate)
             </th>
         </tr>
-
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookingId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfTickets)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookingDate)
-                </td>
-            </tr>
-            totalCollected += item.TotalAmount;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookingId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfTickets)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookingDate)
+                    </td>
+                </tr>
+                totalCollected += item.TotalAmount;
+            }
         }
-
     </table>
     <p>
         Total Collected from Payment: £ @totalCollected

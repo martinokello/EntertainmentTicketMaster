@@ -7,3 +7,4 @@ C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityF
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb
+C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.csprojResolveAssemblyReference.cache
