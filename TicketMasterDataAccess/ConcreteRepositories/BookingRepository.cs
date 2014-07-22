@@ -129,7 +129,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
         {
             var DBContext = DBContextFactory.GetDbContextInstance();
 
-            var eventGroups = from b in DBContext.Bookings
+            var results = from b in DBContext.Bookings
                 join t in DBContext.Tickets on b.EventId equals t.EventId
                 orderby b.Ticket.Event.EventName
                 group t by b
@@ -137,14 +137,13 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 select
                     new GroupedBooking
                     {
-                        EventId = (int)gr.Key.EventId,
+                        BookingId = (int)gr.Key.BookingId,
                         EventName = gr.Key.Ticket.Event.EventName,
-                        NumberOfBookings = gr.Count(),
-                        TotalAmount = (decimal) (gr.Key.NumberOfTickets*gr.Key.Ticket.Price),
+                        NumberOfTickets = (int)gr.Key.NumberOfTickets,
+                        TotalAmount = (decimal) gr.Select(p => p.Price * gr.Key.NumberOfTickets).FirstOrDefault(),
                         BookingDate = (DateTime)gr.Key.BookingDate
                     };
-            return eventGroups.ToArray();
-
+            return results.ToArray();
 
         }
     }
