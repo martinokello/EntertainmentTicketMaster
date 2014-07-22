@@ -125,12 +125,12 @@ namespace TicketMasterDataAccess.ConcreteRepositories
             return tickets.ToArray();
         }
 
-        public virtual GroupedBooking[] GetBookingsByEvent()
+        public virtual GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to)
         {
             var DBContext = DBContextFactory.GetDbContextInstance();
 
             var results = from b in DBContext.Bookings
-                join t in DBContext.Tickets on b.EventId equals t.EventId
+                from t in DBContext.Tickets where b.EventId == t.EventId && b.BookingDate >= fro && b.BookingDate <= to
                 orderby b.Ticket.Event.EventName
                 group t by b
                 into gr

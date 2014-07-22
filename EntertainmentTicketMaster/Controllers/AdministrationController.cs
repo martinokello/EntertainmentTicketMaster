@@ -17,7 +17,7 @@ using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
 
 namespace EntertainmentTicketMaster.Controllers
 {
-    [Authorize(Users="administrator")]
+    [Authorize(Users = "administrator")]
     public class AdministrationController : Controller
     {
         private RepositoryTicketServices _repositoryTicketServices;
@@ -48,7 +48,7 @@ namespace EntertainmentTicketMaster.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEvent(EventViewModel model,FormCollection formsCollection)
+        public ActionResult AddEvent(EventViewModel model, FormCollection formsCollection)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace EntertainmentTicketMaster.Controllers
                 var regex = new Regex(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$");
                 if (!regex.IsMatch(time))
                 {
-                    ModelState.AddModelError("timeWrong","the time format should be hh:mm");
+                    ModelState.AddModelError("timeWrong", "the time format should be hh:mm");
                 }
                 if (ModelState.IsValid)
                 {
@@ -89,17 +89,17 @@ namespace EntertainmentTicketMaster.Controllers
                         NumberOfTickets = model.NumberOfTickets
                     };
 
-                    if(_repositoryAdminServices.AddEvent(evnt))
+                    if (_repositoryAdminServices.AddEvent(evnt))
                     {
-                        return RedirectToAction("Events","Tickets");
+                        return RedirectToAction("Events", "Tickets");
                     }
-                    ModelState.AddModelError("eventError","An error occured. Please inform your administrator!");
+                    ModelState.AddModelError("eventError", "An error occured. Please inform your administrator!");
                     return View(model);
                 }
             }
             catch (Exception e)
             {
-                
+
             }
             return View(model);
         }
@@ -108,16 +108,16 @@ namespace EntertainmentTicketMaster.Controllers
 
         public ActionResult UpdateEvent(int eventId)
         {
-           var evnt = _repositoryTicketServices.GetEventById(eventId);
+            var evnt = _repositoryTicketServices.GetEventById(eventId);
             var viewModel = new EventViewModel
             {
                 EventId = evnt.EventId,
                 EventDate = ((DateTime)evnt.EventDate).ToString("dd/MM/yyyy HH:mm"),
                 EventDescription = evnt.EventDescription,
                 EventName = evnt.EventName,
-                NumberOfTickets = evnt.NumberOfTickets.HasValue ? (int) evnt.NumberOfTickets : 0,
+                NumberOfTickets = evnt.NumberOfTickets.HasValue ? (int)evnt.NumberOfTickets : 0,
                 Location = evnt.Location,
-                Price = evnt.PricePerTicket.HasValue ? (int) evnt.PricePerTicket.Value : 0
+                Price = evnt.PricePerTicket.HasValue ? (int)evnt.PricePerTicket.Value : 0
             };
 
             return View(viewModel);
@@ -127,16 +127,16 @@ namespace EntertainmentTicketMaster.Controllers
         public ActionResult UpdateEvent(EventViewModel model)
         {
             try
-            {                
+            {
                 var time = model.EventTime;
-               var regex = new Regex(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$");
+                var regex = new Regex(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$");
                 if (!regex.IsMatch(time))
                 {
-                    ModelState.AddModelError("timeWrong","the time format should be hh:mm");
+                    ModelState.AddModelError("timeWrong", "the time format should be hh:mm");
                 }
                 if (ModelState.IsValid)
                 {
-                    var eventDate = model.EventDate.Split(new char[]{' '},StringSplitOptions.RemoveEmptyEntries)[0] + " " + time;
+                    var eventDate = model.EventDate.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0] + " " + time;
                     var actualEventDate = DateTime.ParseExact(eventDate, "dd/MM/yyyy HH:mm", new CultureInfo("en-GB"));
                     var attachemntPath = string.Empty;
 
@@ -156,7 +156,7 @@ namespace EntertainmentTicketMaster.Controllers
                     }
                     var evnt = new Event
                     {
-                        EventId =  model.EventId,
+                        EventId = model.EventId,
                         EventDate = actualEventDate,
                         EventName = model.EventName,
                         EventDescription = model.EventDescription,
@@ -170,7 +170,7 @@ namespace EntertainmentTicketMaster.Controllers
                         return RedirectToAction("Events", "Tickets");
                     }
                     ModelState.AddModelError("eventError", "An error occured. Please inform your administrator!");
-                    return View("UpdateEvent",model);
+                    return View("UpdateEvent", model);
                 }
             }
             catch (Exception e)
@@ -232,15 +232,36 @@ namespace EntertainmentTicketMaster.Controllers
             }
             catch (Exception e)
             {
-                
+
             }
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult BookingsStatistics()
         {
-            var model = _repositoryTicketServices.GetBookingsByEvent();
-            return View(model);
+            var from = DateTime.Now.AddDays(-365);
+            var to = DateTime.Now;
+            var model = _repositoryTicketServices.GetBookingsByEvent(from, to);
+            return View("BookingsStatistics", model);
+
         }
-	}
+
+        [HttpPost]
+        public ActionResult BookingsStatistics(string dateFrom, string dateTo)
+        {
+            try
+            {
+                var from = DateTime.Parse(dateFrom, new CultureInfo("en-GB"));
+                var to = DateTime.Parse(dateTo, new CultureInfo("en-GB"));
+                var model = _repositoryTicketServices.GetBookingsByEvent(from, to);
+                return View("BookingsStatistics",model);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("datesWrongFormat", "The date format is dd/MM/yyyy");
+                return View("BookingsStatistics");
+            }
+        }
+    }
 }

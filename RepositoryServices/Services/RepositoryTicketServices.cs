@@ -134,9 +134,9 @@ namespace RepositoryServices.Services
             _bookingRepository.Update(booking);
         }
 
-        public GroupedBooking[] GetBookingsByEvent()
+        public GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to)
         {
-            return _bookingRepository.GetBookingsByEvent();
+            return _bookingRepository.GetBookingsByEvent(fro, to);
         }
     }
 
