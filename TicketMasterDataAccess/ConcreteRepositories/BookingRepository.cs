@@ -140,7 +140,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                         BookingId = (int)gr.Key.BookingId,
                         EventName = gr.Key.Ticket.Event.EventName,
                         NumberOfTickets = (int)gr.Key.NumberOfTickets,
-                        TotalAmount = (decimal) gr.Select(p => p.Price * gr.Key.NumberOfTickets).FirstOrDefault(),
+                        TotalAmount = (decimal) gr.Where(q => q.TicketId == gr.Key.TicketId).Select(p => p.Price * gr.Key.NumberOfTickets).FirstOrDefault(),
                         BookingDate = (DateTime)gr.Key.BookingDate
                     };
             return results.ToArray();
