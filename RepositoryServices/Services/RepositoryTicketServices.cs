@@ -147,6 +147,7 @@ namespace RepositoryServices.Services
         Ticket[] GetAllTickets();
 
         Ticket[] GetTicketForUser(string username);
+
         int BookTickets(Ticket ticket, int numberOfTickets, int userId);
 
         Event GetEventById(int eventId);
@@ -154,13 +155,19 @@ namespace RepositoryServices.Services
         Ticket GetTicketById(int ticketId);
 
         TicketMasterUser GetUserById(int userId);
+
         TicketMasterUser GetUserByName(string username);
+
         Address GetAddressByUsername(string username);
+
         bool UpdateAddressByUsername(string username, Address address);
 
         bool AddNewClientAddress(string username, Address address);
 
         Booking GetTicketBookingById(int id);
+
         void UpdateBooking(Booking booking);
+
+        GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to);
     }
 }
