@@ -28,6 +28,22 @@
     li#UpdateEvents a:hover {
         color: orange;
     }
+	
+	
+	div#admin  ul li  p a img {
+		border-bottom: 1px solid #4F4F4F;
+	}
+	div#admin ul li  p a img {
+		border-top: 1px solid #4F4F4F;
+	}
+	div#admin ul li  p a img {
+		border-right: 1px solid #4F4F4F;
+	}
+	div#admin ul li  p a img {
+		border-left: 1px solid #4F4F4F;
+	}
+	div#admin img{margin-top:22%;margin-left:22%;border-left: 1px solid #4F4F4F;}
+	div#admin a:hover{color:orange;)
 </style>
 
 <div class="body-content">
@@ -41,20 +57,20 @@
     <div id="admin" style="color: white; float: left; width: 100%;">
         <ul>
             <li>
-                <a href="/Administration/AddEvent">Add an Event</a><br/>
-                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond1.jpg")" />
+                <a href="/Administration/AddEvent">Add an Event<br/>
+                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond1.jpg")" /></a>
             </li>
             <li>
-                <a href="/Administration/EmailUsers">Send bulk email to users - campaign emails.</a><br/>
-                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" />
+                <a href="/Administration/EmailUsers">Send bulk email to users - campaign emails.<br/>
+                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" /></a>
             </li>
 
-            <li><a href="/Administration/GetPaidBooking">Check Users that have made successful Payments.</a><br/>
-                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond3.jpg")" /></li>
+            <li><a href="/Administration/GetPaidBooking">Check Users that have made successful Payments.<br/><img class="alignVerticalImage" src="@Url.Content("~/images/Diamond3.jpg")" /></a>
+                </li>
 
             <li>
-                <a href="/Administration/BookingsStatistics">Check Overall booking statistics.</a><br />
-                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" />
+                <a href="/Administration/BookingsStatistics">Check Overall booking statistics.<br/>
+                <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" /></a>
             </li>
             <li id="UpdateEvents"style="background-image:url('@Url.Content("~/images/Diamond2.jpg")'); color:orange;">
                 Update Events By Name:<br/><br/><br/>
