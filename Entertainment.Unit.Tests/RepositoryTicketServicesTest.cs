@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Web.Mvc;
 using Moq;
 using Entertainment.Unit.Tests.UnitOfWork;
 using EntertainmentTicketMaster.Controllers;
@@ -69,6 +71,7 @@ namespace Entertainment.Unit.Tests
             bookingRepository.Setup(p => p.GetAll()).Returns(bookings);
             bookingRepository.Setup(p => p.GetTicketsForUser(It.IsAny<string>())).Returns(bookings);
             bookingRepository.Setup(p => p.GetTicketsForUserVerified()).Returns(new BookingTicketInfo[]{new BookingTicketInfo{BookingId = 1,EventName="EventA",IsVerifiedPayment = true,NumberOfTickets = 5,Username = "martinokello"}});
+            bookingRepository.Setup(p => p.GetBookingsByEvent(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new GroupedBooking[] { new GroupedBooking() });
 
             addressRepository.Setup(p => p.GetById(It.IsAny<int>())).Returns(addresses[0]);
             addressRepository.Setup(p => p.GetAddressByUsername(It.IsAny<string>())).Returns(addresses[0]);
@@ -126,11 +129,22 @@ namespace Entertainment.Unit.Tests
             var result = (_repositoryTicketServiceSegregator as RepositoryTicketServices).GetAllEvents();
             Assert.AreEqual(result.Length, 2);
         }
-                [TestMethod]
+
+        [TestMethod]
         public void Repository_Ticket_Service_Test_Calls_AddNewClientAddress_Returns_The_Right_Result()
         {
             var result = (_repositoryTicketServiceSegregator as RepositoryTicketServices).AddNewClientAddress("martinalex",new Address{AddressId = 4,AddressLine1 = "xy1",AddressLine2 = "xy2",Country = "UK",PostCode = "xys 3ab",TicketMasterUser = new TicketMasterUser(),Town="bugansa",UserId = 5});
             Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void Repository_Ticket_Serice_Test_Call_GetBookingsByEvent_Returns_Right_Result()
+        {
+            var fro = DateTime.Now.AddDays(-3);
+            var to = DateTime.Now;
+
+            var result = (_repositoryTicketServiceSegregator as RepositoryTicketServices).GetBookingsByEvent(fro, to);
+            Assert.IsNotNull(result);
         }
     }
 }
