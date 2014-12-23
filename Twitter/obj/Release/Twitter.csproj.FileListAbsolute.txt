@@ -1,0 +1,6 @@
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Release\Twitter.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Release\Twitter.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Release\Newtonsoft.Json.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\obj\Release\Twitter.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\obj\Release\Twitter.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\obj\Release\Twitter.csprojResolveAssemblyReference.cache

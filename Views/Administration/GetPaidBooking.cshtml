@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TicketMasterDataAccess.Dto.BookingTicketInfo>
+@{
+    ViewBag.Title = "View1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    div.body-content div, div.body-content {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+
+    .form-control {
+        width: 250px;
+        float: left;
+    }
+
+    .control-label {
+        width: 150px;
+        text-align: right;
+        float: left;
+    }
+    table,th,td,tr{border:gray solid 2px;padding:5px;}
+    th, td {
+        background-color: #fceecb;
+        color: #882d2d;
+    }
+	td a {color:#ae6662;}
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#eventDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+</script>
+<div class="body-content">
+
+
+    <h2>User Paid Verified Bookings</h2>
+    <table>
+        <tr><th>Booking Id</th><th>Event Name</th><th>Username</th><th>Number Of Tickets</th><th>Is Verified Payment</th><th>User EntertainmentAddress</th></tr>
+        @foreach (var booking in Model)
+        {
+            <tr><td>@booking.BookingId</td><td>@booking.EventName</td><td>@booking.Username</td><td>@booking.NumberOfTickets</td><td>@booking.IsVerifiedPayment.ToString()</td><td><a href="Tickets/GetUserEntertainmentAddress?username=@booking.Username"  onmouseover="this.style.color='orange';" onmouseout="this.style.color='#ae6662';"></a></td></tr>
+        }
+
+    </table>
+    <div><br/></div>
+</div>

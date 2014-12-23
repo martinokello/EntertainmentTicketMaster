@@ -10,18 +10,6 @@
     <Property Name="Model" Type="varbinary(max)" Nullable="false" />
     <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
   </EntityType>
-  <EntityType Name="Address">
-    <Key>
-      <PropertyRef Name="AddressId" />
-    </Key>
-    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="AddressLine1" Type="varchar" MaxLength="100" />
-    <Property Name="AddressLine2" Type="varchar" MaxLength="100" />
-    <Property Name="Town" Type="varchar" MaxLength="100" />
-    <Property Name="PostCode" Type="varchar" MaxLength="100" />
-    <Property Name="Country" Type="varchar" MaxLength="100" />
-    <Property Name="UserId" Type="int" />
-  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -78,6 +66,18 @@
     <Property Name="TicketId" Type="int" />
     <Property Name="IsVerifiedPayment" Type="bit" />
   </EntityType>
+  <EntityType Name="EntertainmentAddress">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="100" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="100" />
+    <Property Name="Town" Type="varchar" MaxLength="100" />
+    <Property Name="PostCode" Type="varchar" MaxLength="100" />
+    <Property Name="Country" Type="varchar" MaxLength="100" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
   <EntityType Name="Event">
     <Key>
       <PropertyRef Name="EventId" />
@@ -110,12 +110,12 @@
   </EntityType>
   <Association Name="FK_Address_TicketMasterUsers">
     <End Role="TicketMasterUsers" Type="Self.TicketMasterUsers" Multiplicity="0..1" />
-    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <End Role="EntertainmentAddress" Type="Self.EntertainmentAddress" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TicketMasterUsers">
         <PropertyRef Name="UserId" />
       </Principal>
-      <Dependent Role="Address">
+      <Dependent Role="EntertainmentAddress">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
@@ -214,19 +214,19 @@
   </Association>
   <EntityContainer Name="TicketMasterModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntertainmentAddress" EntityType="Self.EntertainmentAddress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TicketMasterUsers" EntityType="Self.TicketMasterUsers" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Address_TicketMasterUsers" Association="Self.FK_Address_TicketMasterUsers">
       <End Role="TicketMasterUsers" EntitySet="TicketMasterUsers" />
-      <End Role="Address" EntitySet="Address" />
+      <End Role="EntertainmentAddress" EntitySet="EntertainmentAddress" />
     </AssociationSet>
     <AssociationSet Name="FK_Booking_Ticket" Association="Self.FK_Booking_Ticket">
       <End Role="Ticket" EntitySet="Ticket" />

@@ -1,0 +1,9 @@
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\bin\Release\RepositoryServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\bin\Release\RepositoryServices.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\bin\Release\TicketMasterDataAccess.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\bin\Release\EntityFramework.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\bin\Release\TicketMasterDataAccess.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\bin\Release\EntityFramework.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\obj\Release\RepositoryServices.csprojResolveAssemblyReference.cache
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\obj\Release\RepositoryServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\RepositoryServices\obj\Release\RepositoryServices.pdb

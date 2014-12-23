@@ -4,3 +4,9 @@ C:\C#Projects\EntertainmentTicketMaster\Twitter\bin\Debug\Newtonsoft.Json.dll
 C:\C#Projects\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.dll
 C:\C#Projects\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.pdb
 C:\C#Projects\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.csprojResolveAssemblyReference.cache
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Debug\Twitter.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Debug\Twitter.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Debug\Newtonsoft.Json.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\obj\Debug\Twitter.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\obj\Debug\Twitter.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\Twitter\bin\Debug\Newtonsoft.Json.xml

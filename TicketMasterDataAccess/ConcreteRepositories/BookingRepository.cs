@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -80,7 +81,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                     var booking = new Booking
                     {
                         BookingDate = DateTime.Now,
-                        EventId = ticket.EventId,
+                        EventId = evet.EventId,
                         NumberOfTickets = numberOfTickets,
                         UserId = userId,
                         TicketId = ticket.TicketId,
@@ -88,7 +89,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                         Ticket = ticket,
                     };
 
-                    Add(booking);
+                    this.Add(booking);
                     _unitOfWork.SaveChanges();
                     return booking.BookingId;
                 }
@@ -145,6 +146,26 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                     };
             return results.ToArray();
 
+        }
+
+        public virtual BookingStats[] GetStatsByMonth(DateTime fro, DateTime to)
+        {
+            var DBContext = DBContextFactory.GetDbContextInstance();
+
+            var results = from b in DBContext.Bookings
+                          from t in DBContext.Tickets
+                          where b.EventId == t.EventId && b.BookingDate >= fro && b.BookingDate <= to
+                          orderby b.Ticket.Event.EventName
+                          group t by b.BookingDate.Value.Month
+                              into gr
+                              select
+                                  new BookingStats
+                                  {
+                                      NumberOfTickets = (int)gr.Count(),
+                                      TotalAmount = (decimal)gr.Select(p => p.Price * gr.Count()).FirstOrDefault(),
+                                      BookingDate =gr.Key
+                                  };
+            return results.ToArray();
         }
     }
     public interface IBookingRepositorySegregator

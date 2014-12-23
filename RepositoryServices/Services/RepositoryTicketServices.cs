@@ -18,19 +18,19 @@ namespace RepositoryServices.Services
         private BookingRepository _bookingRepository;
         private TicketMasterUserRepository _ticketMasterUserRepository;
         private EventRepository _eventRepository;
-        private AddressRepository _addressRepository;
+        private EntertainmentAddressRepository _EntertainmentAddressRepository;
 
         public RepositoryTicketServices()
         {
             
         }
-        public RepositoryTicketServices(ITicketRepositorySegregator ticketRepository, IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator ticketMasterUserRepository, IBookingRepositorySegregator bookingRepository, IAddressRepositorySegregator addressRepository)
+        public RepositoryTicketServices(ITicketRepositorySegregator ticketRepository, IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator ticketMasterUserRepository, IBookingRepositorySegregator bookingRepository, IEntertainmentAddressRepositorySegregator EntertainmentAddressRepository)
         {
             _ticketRepository = ticketRepository as TicketRepository;
             _bookingRepository = bookingRepository as BookingRepository;
             _ticketMasterUserRepository = ticketMasterUserRepository as TicketMasterUserRepository;
             _eventRepository = eventRepository as EventRepository;
-            _addressRepository = addressRepository as AddressRepository;
+            _EntertainmentAddressRepository = EntertainmentAddressRepository as EntertainmentAddressRepository;
         }
 
         public Event[] GetAllEvents()
@@ -81,25 +81,25 @@ namespace RepositoryServices.Services
             return _ticketMasterUserRepository.GetUserByName(username);
         }
 
-        public Address GetAddressByUsername(string username)
+        public EntertainmentAddress GetEntertainmentAddressByUsername(string username)
         {
-            return _addressRepository.GetAddressByUsername(username);
+            return _EntertainmentAddressRepository.GetEntertainmentAddressByUsername(username);
         }
 
-        public bool UpdateAddressByUsername(string username, Address address)
+        public bool UpdateEntertainmentAddressByUsername(string username, EntertainmentAddress EntertainmentAddress)
         {
             try
             {
                 var user = GetUserByName(username);
-                var dbAddress = GetAddressByUsername(username);
+                var dbEntertainmentAddress = GetEntertainmentAddressByUsername(username);
 
-                dbAddress.AddressLine1 = address.AddressLine1;
-                dbAddress.AddressLine2 = address.AddressLine2;
-                dbAddress.Town = address.Town;
-                dbAddress.PostCode = address.PostCode;
-                dbAddress.Country = address.Country;
-                dbAddress.UserId = user.UserId;
-                _addressRepository.Update(dbAddress);
+                dbEntertainmentAddress.AddressLine1 = EntertainmentAddress.AddressLine1;
+                dbEntertainmentAddress.AddressLine2 = EntertainmentAddress.AddressLine2;
+                dbEntertainmentAddress.Town = EntertainmentAddress.Town;
+                dbEntertainmentAddress.PostCode = EntertainmentAddress.PostCode;
+                dbEntertainmentAddress.Country = EntertainmentAddress.Country;
+                dbEntertainmentAddress.UserId = user.UserId;
+                _EntertainmentAddressRepository.Update(dbEntertainmentAddress);
                 return true;
             }
             catch (Exception e)
@@ -108,14 +108,14 @@ namespace RepositoryServices.Services
             }
         }
 
-        public bool AddNewClientAddress(string username, Address address)
+        public bool AddNewClientAddress(string username, EntertainmentAddress EntertainmentAddress)
         {
             try
             {
                 var user = GetUserByName(username);
-                address.UserId = user.UserId;
+                EntertainmentAddress.UserId = user.UserId;
 
-                _addressRepository.Add(address);
+                _EntertainmentAddressRepository.Add(EntertainmentAddress);
                 return true;
             }
             catch (Exception e)
@@ -158,11 +158,11 @@ namespace RepositoryServices.Services
 
         TicketMasterUser GetUserByName(string username);
 
-        Address GetAddressByUsername(string username);
+        EntertainmentAddress GetEntertainmentAddressByUsername(string username);
 
-        bool UpdateAddressByUsername(string username, Address address);
+        bool UpdateEntertainmentAddressByUsername(string username, EntertainmentAddress EntertainmentAddress);
 
-        bool AddNewClientAddress(string username, Address address);
+        bool AddNewClientAddress(string username, EntertainmentAddress EntertainmentAddress);
 
         Booking GetTicketBookingById(int id);
 

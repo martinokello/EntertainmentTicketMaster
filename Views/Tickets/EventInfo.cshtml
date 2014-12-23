@@ -1,0 +1,63 @@
+﻿@model EntertainmentTicketMaster.Models.EventViewModel
+@{
+    ViewBag.Title = "EventInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    #body.home div div:first-child ul li:first-child {
+        width: 238px;
+    }
+
+    #body.home div div:first-child ul li {
+        border-right: 1px solid #4f4f4f;
+        min-height: 287px;
+        padding: 0;
+        width: 239px;
+    }
+     div.body-content div, div.body-content {
+         color: gray;
+     }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+
+    .form-control {
+        width: 250px;
+        float: left;
+    }
+
+    .control-label {
+        width: 150px;
+        text-align: right;
+        float: left;
+    }
+
+    #body.home div div:first-child ul li {width:auto;}
+</style>
+
+<div class="body-content">
+    <div>
+        <h2>Shows</h2>
+        <h3>We Have Free Templates for Everyone</h3>
+        <ul>
+            <li>
+                <h3>Be Part of Our Community</h3>
+                Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.freewebsitetemplates.com/about/terms">Terms of Use</a>. You can even remove all our links if you want to.
+            </li>
+            <li>
+                <div>
+                    <p>Event Name: @Model.EventName</p>
+                    <p>Event ID: @Model.EventId</p>
+                    <p>Location: @Model.Location</p>
+                    <p>Event Date: @Model.EventDate</p>
+                    <p>@Model.EventDescription</p>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

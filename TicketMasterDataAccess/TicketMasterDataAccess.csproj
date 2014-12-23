@@ -30,15 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -56,50 +58,47 @@
     <Compile Include="ConcreteRepositories\TicketMasterUserRepository.cs" />
     <Compile Include="ConcreteRepositories\TicketRepository.cs" />
     <Compile Include="ConcreteRepositories\UserRepository.cs" />
-    <Compile Include="DataAccess\Address.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccess\AspNetRole.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AspNetUser.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AspNetUserClaim.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AspNetUserLogin.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\Booking.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\C__MigrationHistory.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+    <Compile Include="DataAccess\EntertainmentAddress.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\Event.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\Ticket.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\TicketMaster.Context.cs">
+    <Compile Include="DataAccess\TicketMasterEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TicketMaster.Context.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\TicketMaster.cs">
+    <Compile Include="DataAccess\TicketMasterEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\TicketMaster.Designer.cs">
+    <Compile Include="DataAccess\TicketMasterEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TicketMaster.edmx</DependentUpon>
+      <DependentUpon>TicketMasterEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\TicketMasterUser.cs">
-      <DependentUpon>TicketMaster.tt</DependentUpon>
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Dto\BookingTicketInfo.cs" />
     <Compile Include="Dto\GroupedBooking.cs" />
@@ -110,27 +109,24 @@
     <Compile Include="UnitOfWork\IUnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EntityDeploy Include="DataAccess\TicketMaster.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TicketMaster.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="DataAccess\TicketMaster.Context.tt">
+    <EntityDeploy Include="DataAccess\TicketMasterEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TicketMasterEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataAccess\TicketMasterEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TicketMaster.edmx</DependentUpon>
-      <LastGenOutput>TicketMaster.Context.cs</LastGenOutput>
+      <DependentUpon>TicketMasterEntities.edmx</DependentUpon>
+      <LastGenOutput>TicketMasterEntities.Context.cs</LastGenOutput>
     </None>
-    <None Include="DataAccess\TicketMaster.edmx.diagram">
-      <DependentUpon>TicketMaster.edmx</DependentUpon>
+    <None Include="DataAccess\TicketMasterEntities.edmx.diagram">
+      <DependentUpon>TicketMasterEntities.edmx</DependentUpon>
     </None>
-    <None Include="DataAccess\TicketMaster.tt">
+    <None Include="DataAccess\TicketMasterEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TicketMaster.edmx</DependentUpon>
-      <LastGenOutput>TicketMaster.cs</LastGenOutput>
+      <DependentUpon>TicketMasterEntities.edmx</DependentUpon>
+      <LastGenOutput>TicketMasterEntities.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

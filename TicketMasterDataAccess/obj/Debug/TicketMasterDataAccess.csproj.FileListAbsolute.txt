@@ -8,3 +8,12 @@ C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityF
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.csprojResolveAssemblyReference.cache
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.dll.config
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\EntityFramework.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\EntityFramework.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb

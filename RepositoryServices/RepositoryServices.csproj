@@ -54,9 +54,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmailServices\EmailServices.csproj">
+      <Project>{f368223f-7903-481b-8d11-59390d44e2e9}</Project>
+      <Name>EmailServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TicketMasterDataAccess\TicketMasterDataAccess.csproj">
       <Project>{199705d6-4f1c-4fdc-847f-bd12ad044f6d}</Project>
       <Name>TicketMasterDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Twitter\Twitter.csproj">
+      <Project>{3bfe2a6b-0496-4f70-9e5a-5678f1977e5f}</Project>
+      <Name>Twitter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

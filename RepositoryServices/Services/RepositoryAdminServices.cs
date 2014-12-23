@@ -69,6 +69,11 @@ namespace RepositoryServices.Services
         {
             return _bookingRepository.GetTicketsForUserVerified();
         }
+
+        public virtual BookingStats[] GetStatsByMonth(DateTime startDate, DateTime endDate)
+        {
+            return _bookingRepository.GetStatsByMonth(startDate, endDate);
+        }
     }
 
     public interface IRepositoryAdminServiceSegregator

@@ -1,0 +1,9 @@
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\TicketMasterDataAccess.dll.config
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\TicketMasterDataAccess.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\TicketMasterDataAccess.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\EntityFramework.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\EntityFramework.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\obj\Release\TicketMasterDataAccess.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\TicketMasterDataAccess\obj\Release\TicketMasterDataAccess.pdb

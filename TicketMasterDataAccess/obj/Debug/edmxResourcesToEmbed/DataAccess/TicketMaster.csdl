@@ -6,6 +6,8 @@
     <EntitySet Name="AspNetUserClaims" EntityType="TicketMasterModel.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="TicketMasterModel.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="TicketMasterModel.AspNetUser" />
+    <EntitySet Name="Bookings" EntityType="TicketMasterModel.Booking" />
+    <EntitySet Name="EntertainmentAddresses" EntityType="TicketMasterModel.EntertainmentAddress" />
     <EntitySet Name="Events" EntityType="TicketMasterModel.Event" />
     <EntitySet Name="Tickets" EntityType="TicketMasterModel.Ticket" />
     <EntitySet Name="TicketMasterUsers" EntityType="TicketMasterModel.TicketMasterUser" />
@@ -21,6 +23,14 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="TicketMasterUser" EntitySet="TicketMasterUsers" />
     </AssociationSet>
+    <AssociationSet Name="FK_Booking_Ticket" Association="TicketMasterModel.FK_Booking_Ticket">
+      <End Role="Ticket" EntitySet="Tickets" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_TicketMasterUsers" Association="TicketMasterModel.FK_Address_TicketMasterUsers">
+      <End Role="TicketMasterUser" EntitySet="TicketMasterUsers" />
+      <End Role="EntertainmentAddress" EntitySet="EntertainmentAddresses" />
+    </AssociationSet>
     <AssociationSet Name="FK_Ticket_Event" Association="TicketMasterModel.FK_Ticket_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="Ticket" EntitySet="Tickets" />
@@ -28,16 +38,6 @@
     <AssociationSet Name="AspNetUserRoles" Association="TicketMasterModel.AspNetUserRoles">
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <EntitySet Name="Addresses" EntityType="TicketMasterModel.Address" />
-    <AssociationSet Name="FK_Address_TicketMasterUsers" Association="TicketMasterModel.FK_Address_TicketMasterUsers">
-      <End Role="TicketMasterUser" EntitySet="TicketMasterUsers" />
-      <End Role="Address" EntitySet="Addresses" />
-    </AssociationSet>
-    <EntitySet Name="Bookings" EntityType="TicketMasterModel.Booking" />
-    <AssociationSet Name="FK_Booking_Ticket" Association="TicketMasterModel.FK_Booking_Ticket">
-      <End Role="Ticket" EntitySet="Tickets" />
-      <End Role="Booking" EntitySet="Bookings" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -93,6 +93,32 @@
     <NavigationProperty Name="TicketMasterUsers" Relationship="TicketMasterModel.FK_TicketMasterUsers_ASPNetUsers" FromRole="AspNetUser" ToRole="TicketMasterUser" />
     <NavigationProperty Name="AspNetRoles" Relationship="TicketMasterModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
   </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="BookingDate" Type="DateTime" Precision="3" />
+    <Property Name="NumberOfTickets" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="TicketId" Type="Int32" />
+    <Property Name="IsVerifiedPayment" Type="Boolean" />
+    <NavigationProperty Name="Ticket" Relationship="TicketMasterModel.FK_Booking_Ticket" FromRole="Booking" ToRole="Ticket" />
+  </EntityType>
+  <EntityType Name="EntertainmentAddress">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Town" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="TicketMasterUser" Relationship="TicketMasterModel.FK_Address_TicketMasterUsers" FromRole="EntertainmentAddress" ToRole="TicketMasterUser" />
+  </EntityType>
   <EntityType Name="Event">
     <Key>
       <PropertyRef Name="EventId" />
@@ -114,8 +140,8 @@
     <Property Name="EventId" Type="Int32" />
     <Property Name="TicketGUID" Type="Guid" />
     <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
-    <NavigationProperty Name="Event" Relationship="TicketMasterModel.FK_Ticket_Event" FromRole="Ticket" ToRole="Event" />
     <NavigationProperty Name="Bookings" Relationship="TicketMasterModel.FK_Booking_Ticket" FromRole="Ticket" ToRole="Booking" />
+    <NavigationProperty Name="Event" Relationship="TicketMasterModel.FK_Ticket_Event" FromRole="Ticket" ToRole="Event" />
   </EntityType>
   <EntityType Name="TicketMasterUser">
     <Key>
@@ -126,7 +152,7 @@
     <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="ASPNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="TicketMasterModel.FK_TicketMasterUsers_ASPNetUsers" FromRole="TicketMasterUser" ToRole="AspNetUser" />
-    <NavigationProperty Name="Addresses" Relationship="TicketMasterModel.FK_Address_TicketMasterUsers" FromRole="TicketMasterUser" ToRole="Address" />
+    <NavigationProperty Name="EntertainmentAddresses" Relationship="TicketMasterModel.FK_Address_TicketMasterUsers" FromRole="TicketMasterUser" ToRole="EntertainmentAddress" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
     <End Type="TicketMasterModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -168,6 +194,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Booking_Ticket">
+    <End Type="TicketMasterModel.Ticket" Role="Ticket" Multiplicity="0..1" />
+    <End Type="TicketMasterModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="TicketId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="TicketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_TicketMasterUsers">
+    <End Type="TicketMasterModel.TicketMasterUser" Role="TicketMasterUser" Multiplicity="0..1" />
+    <End Type="TicketMasterModel.EntertainmentAddress" Role="EntertainmentAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketMasterUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EntertainmentAddress">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Ticket_Event">
     <End Type="TicketMasterModel.Event" Role="Event" Multiplicity="0..1" />
     <End Type="TicketMasterModel.Ticket" Role="Ticket" Multiplicity="*" />
@@ -183,55 +233,5 @@
   <Association Name="AspNetUserRoles">
     <End Type="TicketMasterModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="TicketMasterModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-  </Association>
-  <EntityType Name="Address">
-    <Key>
-      <PropertyRef Name="AddressId" />
-    </Key>
-    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Town" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="UserId" Type="Int32" />
-    <NavigationProperty Name="TicketMasterUser" Relationship="TicketMasterModel.FK_Address_TicketMasterUsers" FromRole="Address" ToRole="TicketMasterUser" />
-  </EntityType>
-  <Association Name="FK_Address_TicketMasterUsers">
-    <End Type="TicketMasterModel.TicketMasterUser" Role="TicketMasterUser" Multiplicity="0..1" />
-    <End Type="TicketMasterModel.Address" Role="Address" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TicketMasterUser">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="Address">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Booking">
-    <Key>
-      <PropertyRef Name="BookingId" />
-    </Key>
-    <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EventId" Type="Int32" />
-    <Property Name="BookingDate" Type="DateTime" Precision="3" />
-    <Property Name="NumberOfTickets" Type="Int32" />
-    <Property Name="UserId" Type="Int32" />
-    <Property Name="TicketId" Type="Int32" />
-    <Property Name="IsVerifiedPayment" Type="Boolean" />
-    <NavigationProperty Name="Ticket" Relationship="TicketMasterModel.FK_Booking_Ticket" FromRole="Booking" ToRole="Ticket" />
-  </EntityType>
-  <Association Name="FK_Booking_Ticket">
-    <End Type="TicketMasterModel.Ticket" Role="Ticket" Multiplicity="0..1" />
-    <End Type="TicketMasterModel.Booking" Role="Booking" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ticket">
-        <PropertyRef Name="TicketId" />
-      </Principal>
-      <Dependent Role="Booking">
-        <PropertyRef Name="TicketId" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
 </Schema>

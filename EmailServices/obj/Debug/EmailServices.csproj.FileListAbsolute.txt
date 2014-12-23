@@ -3,3 +3,7 @@ C:\C#Projects\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.pd
 C:\C#Projects\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.dll
 C:\C#Projects\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.pdb
 C:\C#Projects\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.csprojResolveAssemblyReference.cache
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\bin\Debug\EmailServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\bin\Debug\EmailServices.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\obj\Debug\EmailServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\obj\Debug\EmailServices.pdb

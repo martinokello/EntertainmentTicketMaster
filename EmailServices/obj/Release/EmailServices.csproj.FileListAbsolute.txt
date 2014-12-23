@@ -1,0 +1,4 @@
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\bin\Release\EmailServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\bin\Release\EmailServices.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\obj\Release\EmailServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\EmailServices\obj\Release\EmailServices.pdb

@@ -16,7 +16,7 @@ namespace TicketMasterDataAccess.DataAccess
     {
         public TicketMasterUser()
         {
-            this.Addresses = new HashSet<Address>();
+            this.EntertainmentAddresses = new HashSet<EntertainmentAddress>();
         }
     
         public int UserId { get; set; }
@@ -25,6 +25,6 @@ namespace TicketMasterDataAccess.DataAccess
         public string ASPNetUserId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<EntertainmentAddress> EntertainmentAddresses { get; set; }
     }
 }

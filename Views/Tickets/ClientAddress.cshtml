@@ -1,0 +1,101 @@
+﻿@model EntertainmentTicketMaster.Models.EntertainmentAddressViewModel
+
+@{
+    ViewBag.Title = "Client Address";
+}
+<style type="text/css">
+    div.validation-summary-errors ul li {
+        color: #B94A48;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Tickets/GetUserAddress",
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('#AddressLine1').val(data.AddressLine1);
+                $('#AddressLine2').val(data.AddressLine2);
+                $('#Town').val(data.Town);
+                $('#Country').val(data.Country);
+                $('#PostCode').val(data.PostCode);
+            },
+            error: function (error) {
+            }
+        });
+
+        $('#btnSaveAddress').click(function () {
+            var Address = { AddressLine1: $('#AddressLine1').val(), AddressLine2: $('#AddressLine2').val(), Town: $('#Town').val(), Country: $('#Country').val(), PostCode: $('#PostCode').val() };
+            var dta = JSON.stringify(Address);
+            $.ajax({
+                url: "@Url.Action("ClientAddress","Tickets")",
+                headers: {          
+                    Accept : "application/json"  
+                },
+                data: dta,
+                type: 'POST',
+                dataType: 'html',
+                contentType: "application/json",
+                success: function (data) {
+                    $('#AjaxAddressForm').html(data);
+                },
+                error: function () {
+                    var error = '<h4>Failed to save Address. Contact your administrator</h4>';
+                    $('#AjaxAddressForm').html(error);
+                }
+            });
+            return false;
+        });
+
+
+    });
+</script>
+@Html.AntiForgeryToken()
+<form id="AcutalAjaxEntertainmentAddressForm">
+    <div id="AjaxAddressForm" class="form-horizontal">
+        <h4>Enter your Address</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressLine1, new { @class = "control-label col-md-2" })<span style="float: left;">&nbsp;</span>
+            @Html.TextBoxFor(model => model.AddressLine1, new { @class = "form-control", @id = "AddressLine1" })
+            @Html.ValidationMessageFor(model => model.AddressLine1, "*")
+            <div>&nbsp;</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressLine2, new { @class = "control-label col-md-2" })<span style="float: left;">&nbsp;</span>
+            @Html.TextBoxFor(model => model.AddressLine2, new { @class = "form-control", @id = "AddressLine2" })
+            @Html.ValidationMessageFor(model => model.AddressLine2, "*")
+            <div>&nbsp;</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Town, new { @class = "control-label col-md-2" })<span style="float: left;">&nbsp;</span>
+            @Html.TextBoxFor(model => model.Town, new { @class = "form-control", @id = "Town" })
+            @Html.ValidationMessageFor(model => model.Town, "*")
+            <div>&nbsp;</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostCode, new { @class = "control-label col-md-2" })<span style="float: left;">&nbsp;</span>
+            @Html.TextBoxFor(model => model.PostCode, new { @class = "form-control", @id = "PostCode" })
+            @Html.ValidationMessageFor(model => model.PostCode, "*")
+            <div>&nbsp;</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, new { @class = "control-label col-md-2" })<span style="float: left;">&nbsp;</span>
+            @Html.TextBoxFor(model => model.Country, new { @class = "form-control", @id = "Country" })
+            @Html.ValidationMessageFor(model => model.Country, "*")
+            <div>&nbsp;</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save Address" class="btn btn-default" id="btnSaveAddress" />
+            </div>
+        </div>
+    </div>
+</form>

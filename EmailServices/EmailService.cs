@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,7 @@ namespace EmailServices
 
             mailMessage.Subject = message.Subject;
             mailMessage.Body = message.EmailMessage;
+            _smtpServer.Credentials = new NetworkCredential("business-enterprise@martinlayooinc.co.uk", "eps1LonX!505First14Chars");
 
             _smtpServer.Send(mailMessage);
         }

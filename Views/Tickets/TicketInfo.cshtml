@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TicketMasterDataAccess.DataAccess.Ticket>
+@{
+    ViewBag.Title = "Ticket Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    div.body-content div, div.body-content {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+
+    .form-control {
+        width: 250px;
+        float: left;
+    }
+
+    .control-label {
+        width: 150px;
+        text-align: right;
+        float: left;
+    }
+    table, th, td {
+        border: 1px solid white;
+        background-color:paleturquoise;
+        padding: 5px;
+        color: black;
+    }
+    a style{color:#ae6662;}
+    div.validation-summary-errors ul li {
+        color: #B94A48;
+    }
+</style>
+
+<div class="body-content">
+    <div>
+        <h2>Ticket Info</h2>
+        <p>
+            Description of ticket requirements.
+        </p>
+
+        @if (Model != null && Model.Any())
+        {
+            <table>
+                <tr><th>Event Name</th><th>Booking Date</th><th>Number Of Ticket</th><th>Price per Ticket</th><th>Total Price</th></tr>
+
+				@if(Model != null && Model.Any()){
+					foreach (var ticket in Model)
+					{
+						<tr>
+						<td><a href="@Url.Action("EventInfo", "Tickets", new { @id = ticket.EventId })" onmouseover="this.style.color='orange';" onmouseout="this.style.color='#ae6662';">@ticket.Event.EventName</a></td>
+							<td>@(ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId)!= null?((DateTime)ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId).BookingDate).ToString("dd/MM/yyyy"): "Did not book")</td>
+							<td>@(ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId)!= null?ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId).NumberOfTickets: 0)</td>
+							<td>@ticket.Price.Value</td>
+							<td>@(ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId) == null?(decimal)0.00: ticket.Bookings.SingleOrDefault(p => p.EventId == ticket.EventId && p.TicketId == ticket.TicketId).NumberOfTickets.Value * ticket.Price.Value)</td>
+						</tr>
+					}
+				}
+            </table>
+        }
+        else
+        {
+            <h2>You haven't any tickets Booked, please log in to see what tickets you have booked.</h2>
+        }
+        <div><br/></div>
+    </div>
+</div>

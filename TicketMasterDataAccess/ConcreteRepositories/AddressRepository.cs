@@ -9,24 +9,24 @@ using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
 
 namespace TicketMasterDataAccess.ConcreteRepositories
 {
-    public class AddressRepository : AbstractTicketRepository<Address, int>, IAddressRepositorySegregator
+    public class EntertainmentAddressRepository : AbstractTicketRepository<EntertainmentAddress, int>, IEntertainmentAddressRepositorySegregator
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddressRepository(IUnitOfWork unitOfWork)
+        public EntertainmentAddressRepository(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public override bool Add(Address instance)
+        public override bool Add(EntertainmentAddress instance)
         {
             var result = base.Add(instance);
             _unitOfWork.SaveChanges();
             return result;
         }
-        public override Address GetById(int key)
+        public override EntertainmentAddress GetById(int key)
         {
-            return DBContextFactory.GetDbContextInstance().Addresses.SingleOrDefault(p => p.UserId == key);
+            return DBContextFactory.GetDbContextInstance().EntertainmentAddresses.SingleOrDefault(p => p.UserId == key);
         }
 
         public override bool Delete(int key)
@@ -34,8 +34,8 @@ namespace TicketMasterDataAccess.ConcreteRepositories
             try
             {
                 DBContextFactory.GetDbContextInstance()
-                    .Addresses.Remove(
-                        DBContextFactory.GetDbContextInstance().Addresses.SingleOrDefault(k => k.AddressId == key));
+                    .EntertainmentAddresses.Remove(
+                        DBContextFactory.GetDbContextInstance().EntertainmentAddresses.SingleOrDefault(k => k.AddressId == key));
                 _unitOfWork.SaveChanges();
                 return true;
             }
@@ -45,18 +45,18 @@ namespace TicketMasterDataAccess.ConcreteRepositories
             }
         }
 
-        public override bool Update(Address instance)
+        public override bool Update(EntertainmentAddress instance)
         {
             try
             {
-                var address =
+                var EntertainmentAddress =
                     DBContextFactory.GetDbContextInstance()
-                        .Addresses.SingleOrDefault(k => k.UserId == instance.UserId);
-                address.AddressLine1 = instance.AddressLine1;
-                address.AddressLine2 = instance.AddressLine2;
-                address.Town = instance.Town;
-                address.Country = instance.Country;
-                address.PostCode = instance.PostCode;
+                        .EntertainmentAddresses.SingleOrDefault(k => k.UserId == instance.UserId);
+                EntertainmentAddress.AddressLine1 = instance.AddressLine1;
+                EntertainmentAddress.AddressLine2 = instance.AddressLine2;
+                EntertainmentAddress.Town = instance.Town;
+                EntertainmentAddress.Country = instance.Country;
+                EntertainmentAddress.PostCode = instance.PostCode;
                 _unitOfWork.SaveChanges();
                 return true;
             }
@@ -66,7 +66,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
             }
         }
 
-        public virtual Address GetAddressByUsername(string username)
+        public virtual EntertainmentAddress GetEntertainmentAddressByUsername(string username)
         {
             try
             {
@@ -76,8 +76,8 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 
                 if (user != null)
                 {
-                    var address = DBContextFactory.GetDbContextInstance().Addresses.SingleOrDefault(p => p.UserId == user.UserId);
-                    return address;
+                    var EntertainmentAddress = DBContextFactory.GetDbContextInstance().EntertainmentAddresses.SingleOrDefault(p => p.UserId == user.UserId);
+                    return EntertainmentAddress;
                 }
             }
             catch (Exception e)
@@ -88,7 +88,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
         }
     }
 
-    public interface IAddressRepositorySegregator
+    public interface IEntertainmentAddressRepositorySegregator
     {
         
     }

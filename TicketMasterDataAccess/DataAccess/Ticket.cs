@@ -24,7 +24,7 @@ namespace TicketMasterDataAccess.DataAccess
         public Nullable<System.Guid> TicketGUID { get; set; }
         public Nullable<decimal> Price { get; set; }
     
-        public virtual Event Event { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

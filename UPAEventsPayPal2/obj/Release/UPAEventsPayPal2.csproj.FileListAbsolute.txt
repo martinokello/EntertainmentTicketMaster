@@ -1,0 +1,16 @@
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\UPAEventsPayPal.dll.config
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\UPAEventsPayPal.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\UPAEventsPayPal.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\EmailServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\EntityFramework.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\EntityFramework.SqlServer.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\RepositoryServices.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\TicketMasterDataAccess.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\EmailServices.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\RepositoryServices.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\TicketMasterDataAccess.pdb
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\EntityFramework.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\bin\EntityFramework.SqlServer.xml
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\obj\Release\UPAEventsPayPal2.csprojResolveAssemblyReference.cache
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\obj\Release\UPAEventsPayPal.dll
+C:\C#Projects\MartinLayooIncMVC\MartinLayooIncMVC\UPAEventsPayPal2\obj\Release\UPAEventsPayPal.pdb

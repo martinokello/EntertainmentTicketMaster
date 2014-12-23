@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var chartMonths = [];
+    var NumberOfTicketsBoughtLastyear = [];
+    var GrossTicketSalesLastyear = [];
+    
+    $(document).ready(function () {
+        $('#StartDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $('#EndDate').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $('#GetStartsBtn').click(function () {
+            var stDate = $('#StartDate').val();
+            var enDate = $('#EndDate').val();
+            $.ajax({
+                url: 'http://www.martinlayooinc.co.uk/EntertainmentTicketMaster/Administration//GetStats?startDate=' + stDate + '&endDate=' + enDate,
+                method: 'GET',
+                contentType:'application/json',
+                success: function (data, statuscode, jq_XHR) {
+                    if (data === undefined || data == null) {
+                        alert('No results were returned');
+                        return;
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        chartMonths[i] = ConverToMonthsLiteral(data[i].BookingDate);
+                        NumberOfTicketsBoughtLastyear[i] = data[i].NumberOfTickets;
+                        GrossTicketSalesLastyear[i] = data[i].TotalAmount;
+                    }
+                    DrawChart(chartMonths, NumberOfTicketsBoughtLastyear, GrossTicketSalesLastyear);
+                },
+                error: function (jq_XHR, errorCode, errorMethod) {
+                    alert(jq.xhr.response.toString());
+                }
+            });
+        });
+    });
+
+    function ConverToMonthsLiteral(month) {
+            switch (month) {
+                case 1:
+                    return 'January';
+                case 2:
+                    return 'February';
+                case 3:
+                    return 'March';
+                case 4:
+                    return 'April';
+                case 5:
+                    return 'May';
+                case 6:
+                    return 'June';
+                case 7:
+                    return 'July';
+                case 8:
+                    return 'August';
+                case 9:
+                    return 'September';
+                case 10:
+                    return 'October';
+                case 11:
+                    return 'November';
+                default:
+                    return 'December';
+            }
+    }
+
+</script>
+<style type="text/css">
+    div.body-content div {
+        color: gray;
+    }
+
+    #body.home div div, #body.home div div:first-child {
+        float: left;
+        width: 960px;
+    }
+        #body.home div div:first-child ul li:first-child, #body.home div div:first-child ul li, #body.home div div ul li {
+            border: gray solid 2px;
+            width: 28%;
+            padding: 2%;
+            height: 250px;
+        }
+    #body.home div:first-child ul li:first-child {
+        border: solid 1px #4F4F4F;
+    }
+
+    .alignVerticalImage {
+        vertical-align: central;
+        height: 95%;
+    }
+    li#UpdateEvents a:hover {
+        color: orange;
+    }
+	
+	
+	div#admin  ul li  p a img {
+		border-bottom: 1px solid #4F4F4F;
+	}
+	div#admin ul li  p a img {
+		border-top: 1px solid #4F4F4F;
+	}
+	div#admin ul li  p a img {
+		border-right: 1px solid #4F4F4F;
+	}
+	div#admin ul li  p a img {
+		border-left: 1px solid #4F4F4F;
+	}
+	div#admin img{margin-top:22%;margin-left:22%;border-left: 1px solid #4F4F4F;}
+	div#admin a:hover{color:orange;
+}
+</style>
+
+<div class="body-content">
+    <div>
+        <h2>Site Administration</h2>
+        <p>
+            Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.freewebsitetemplates.com/about/terms">Terms of Use</a>. You can even remove all our links if you want to.
+        </p>
+        <h3>We Have More Templates for You</h3>
+
+        <div id="admin" style="color: white; float: left; width: 100%;">
+            <ul>
+                <li>
+                    <a href="@Url.Action("AddEvent","Administration")">Add an Event<br/>
+                        <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond1.jpg")" /></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("EmailUsers","Administration")">
+                        Send bulk email to users - campaign emails.<br />
+                        <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" />
+                    </a>
+                </li>
+
+                <li><a href="@Url.Action("GetPaidBooking","Administration")">Check Users that have made successful Payments.<br /><img class="alignVerticalImage" src="@Url.Content("~/images/Diamond3.jpg")" /></a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("BookingsStatistics","Administration")">
+                        Check Overall booking statistics.<br />
+                        <img class="alignVerticalImage" src="@Url.Content("~/images/Diamond2.jpg")" />
+                    </a>
+                </li>
+                <li id="UpdateEvents">
+                    <a href="#" style=" font-weight: bolder;font-size:large;">Update Events By Name:<br /><br /></a>
+                    <div style="overflow-y:scroll;">
+
+                        @foreach (var evnt in ViewBag.Events)
+                        {
+                            <a style="font-weight: bolder;" onmouseover="this.style.color = 'orange';" onmouseout="    this.style.color = '#ae6662';" href="@Url.Action("UpdateEvent","Administration",new { @eventId = evnt.EventId})">@evnt.EventName</a><br />
+                        }
+                    </div>
+                </li>
+                <li>
+                    @Html.Label("StartDateLbl", "Start Date", new { @style = "color:#ae6662;" }):<br/><br/>
+                    @Html.TextBox("StartDate",null,new{@id="StartDate"})<br/>  <br />              
+                    @Html.Label("EndDateLbl", "End Date", new { @style = "color:#ae6662;" }):<br /><br/>
+                    @Html.TextBox("EndDate", null, new { @id = "EndDate" })<br /><br/>
+                    <hr style="text-align: center;color:silver;width:70%;"/><br /><br />
+                    <input type="button" class="btn btn-default" id="GetStartsBtn" value="Get Stats Diagram" />
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div style="background-color:white;margin-top:20px;">
+        <div style="height:auto;float:left;margin-left:20px;width:45%;padding:10px;"><span style="text-align: center; padding: 10px;color:goldenrod;font-weight: bolder; ">Number of Tickets Bought Over Year</span><canvas id="myChart" height=250px" width="90%"></canvas><br /></div> 
+        <div style="height: auto; float: left; margin-left: 20px; width: 45%; padding: 10px; "><span style="text-align: center; padding: 10px; color: goldenrod; font-weight: bolder;">Gross Ticket Income Over Year</span><canvas id="myChart2" height=250px" width="90%"></canvas><br /></div> 
+   </div>
+</div>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/chartTrends.js")"></script>

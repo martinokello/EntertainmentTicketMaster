@@ -49,6 +49,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="TicketMasterModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="IsVerifiedPayment" ColumnName="IsVerifiedPayment" />
+          <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NumberOfTickets" ColumnName="NumberOfTickets" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntertainmentAddresses">
+      <EntityTypeMapping TypeName="TicketMasterModel.EntertainmentAddress">
+        <MappingFragment StoreEntitySet="EntertainmentAddress">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="TicketMasterModel.Event">
         <MappingFragment StoreEntitySet="Event">
@@ -90,31 +116,5 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Addresses">
-      <EntityTypeMapping TypeName="TicketMasterModel.Address">
-        <MappingFragment StoreEntitySet="Address">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
-          <ScalarProperty Name="Town" ColumnName="Town" />
-          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Bookings">
-      <EntityTypeMapping TypeName="TicketMasterModel.Booking">
-        <MappingFragment StoreEntitySet="Booking">
-          <ScalarProperty Name="IsVerifiedPayment" ColumnName="IsVerifiedPayment" />
-          <ScalarProperty Name="TicketId" ColumnName="TicketId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="NumberOfTickets" ColumnName="NumberOfTickets" />
-          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
-          <ScalarProperty Name="EventId" ColumnName="EventId" />
-          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
