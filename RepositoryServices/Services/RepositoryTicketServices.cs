@@ -33,11 +33,14 @@ namespace RepositoryServices.Services
             _EntertainmentAddressRepository = EntertainmentAddressRepository as EntertainmentAddressRepository;
         }
 
+        public Event[] GetAllCurrentEvents()
+        {
+            return _eventRepository.GetAll().Where(p=> p.EventDate != null && (DateTime)p.EventDate >= DateTime.Now).ToArray();
+        }
         public Event[] GetAllEvents()
         {
             return _eventRepository.GetAll();
         }
-
         public Ticket[] GetAllTickets()
         {
             return _ticketRepository.GetAll();
@@ -143,6 +146,8 @@ namespace RepositoryServices.Services
     public interface IRepositoryTicketServiceSegregator
     {
         Event[] GetAllEvents();
+
+        Event[] GetAllCurrentEvents();
 
         Ticket[] GetAllTickets();
 

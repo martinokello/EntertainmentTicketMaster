@@ -146,7 +146,7 @@ namespace EntertainmentTicketMaster.Controllers
         public ActionResult BookTickets()
         {
             ViewBag.Title = "Book Tickets";
-            var events = _repositoryTicketServices.GetAllEvents();
+            var events = _repositoryTicketServices.GetAllCurrentEvents();
 
             var eventList = new SelectListItem[events.Length + 1];
 
@@ -167,7 +167,7 @@ namespace EntertainmentTicketMaster.Controllers
         public ActionResult BookTickets(TicketViewModel model)
         {
             ViewBag.Title = "Book Tickets";
-            var events = _repositoryTicketServices.GetAllEvents();
+            var events = _repositoryTicketServices.GetAllCurrentEvents();
             var eventList = new SelectListItem[events.Length + 1];
 
             var index = 0;
