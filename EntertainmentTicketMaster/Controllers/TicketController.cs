@@ -143,30 +143,16 @@ namespace EntertainmentTicketMaster.Controllers
             return PartialView(model);
         }
         [Authorize]
-        public ActionResult BookTickets()
+                public ActionResult BookTickets()
         {
             ViewBag.Title = "Book Tickets";
-            var events = _repositoryTicketServices.GetAllCurrentEvents();
-
-            var eventList = new SelectListItem[events.Length + 1];
-
-            var index = 0;
-            eventList[index] = new SelectListItem { Selected = false, Text = "Select Event", Value = (-1).ToString() };
-
-            foreach (var evt in events)
-            {
-                eventList[index + 1] = new SelectListItem { Selected = false, Text = evt.EventName, Value = evt.EventId.ToString() };
-                index++;
-            }
-            ViewBag.Events = eventList;
+            PopulateUIEventsView();
 
             return View("BookTickets");
         }
-        [HttpPost]
-        [Authorize]
-        public ActionResult BookTickets(TicketViewModel model)
+
+        private void PopulateUIEventsView()
         {
-            ViewBag.Title = "Book Tickets";
             var events = _repositoryTicketServices.GetAllCurrentEvents();
             var eventList = new SelectListItem[events.Length + 1];
 
@@ -189,6 +175,13 @@ namespace EntertainmentTicketMaster.Controllers
                 index++;
             }
             ViewBag.Events = eventList;
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult BookTickets(TicketViewModel model)
+        {
+            ViewBag.Title = "Book Tickets";
+            PopulateUIEventsView();
 
             int eventId = -1;
             if (!int.TryParse(model.EventName, out eventId) || model.NumberOfTickets < 1 || model.Price <= (decimal)0.0 || model.TotalPrice <= (decimal)0.00)
@@ -222,7 +215,6 @@ namespace EntertainmentTicketMaster.Controllers
                         var cancelUrl = ConfigurationManager.AppSettings["CancelUrl"];
                         var successUrl = ConfigurationManager.AppSettings["SuccessUrl"];
                         var notifyUrl = ConfigurationManager.AppSettings["NotifyUrl"];
-                        var smtpServer = ConfigurationManager.AppSettings["SmtpHostServer"];
                         var businessEmail = ConfigurationManager.AppSettings["BusinessEmail"];
                         var customer = _repositoryTicketServices.GetUserByName(User.Identity.Name);
 
@@ -238,7 +230,6 @@ namespace EntertainmentTicketMaster.Controllers
                         var products = new List<Product> { product };
                         Session["ShoppingBasket"] = products;
                         var upaProducts = products;
-                        var totalAmount = model.TotalPrice;
 
                         Session["InvoiceNo"] = bookingId;
                         Session["ProductsUPA"] = upaProducts;
@@ -247,11 +238,7 @@ namespace EntertainmentTicketMaster.Controllers
                         var context = HttpContext;
                         //Process Payment
                         var paypal = new PayPalHandler(context.ApplicationInstance.Context.Session,
-                            System.Configuration.ConfigurationManager.AppSettings["PaypalBaseUrl"],
-                            System.Configuration.ConfigurationManager.AppSettings["BusinessEmail"],
-                            System.Configuration.ConfigurationManager.AppSettings["SuccessUrl"],
-                            System.Configuration.ConfigurationManager.AppSettings["CancelUrl"],
-                            System.Configuration.ConfigurationManager.AppSettings["NotifyUrl"]);
+                            paypalBaseUrl, businessEmail, successUrl, cancelUrl, notifyUrl);
 
                         paypal.Response = context.ApplicationInstance.Context.Response;
 
