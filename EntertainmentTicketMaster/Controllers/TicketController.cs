@@ -143,7 +143,7 @@ namespace EntertainmentTicketMaster.Controllers
             return PartialView(model);
         }
         [Authorize]
-                public ActionResult BookTickets()
+        public ActionResult BookTickets()
         {
             ViewBag.Title = "Book Tickets";
             PopulateUIEventsView();

@@ -13,6 +13,8 @@
     <description>jQuery UI is an open source library of interface components — interactions, full-featured widgets, and animation effects — based on the stellar jQuery javascript library . Each component is built according to jQuery's event-driven architecture (find something, manipulate it) and is themeable, making it easy for developers of any skill level to integrate and extend into their own code.
     NOTE: This package is maintained on behalf of the library owners by the NuGet Community Packages project at http://nugetpackages.codeplex.com/</description>
     <summary>The full jQuery UI library as a single combined file. Includes the base theme.</summary>
+    <releaseNotes />
+    <copyright />
     <language>en-US</language>
     <tags>jQuery jQueryUI plugins</tags>
     <dependencies>

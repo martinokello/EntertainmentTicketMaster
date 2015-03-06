@@ -14,6 +14,8 @@
         Modernizr is a small and simple JavaScript library that helps you take advantage of emerging web technologies (CSS3, HTML5) while still maintaining a fine level of control over older browsers that may not yet support these new technologies.
         NOTE: This package is maintained on behalf of the library owners by the NuGet Community Packages project at http://nugetpackages.codeplex.com/</description>
     <summary>Modernizr is a small and simple JavaScript library that helps you take advantage of emerging web technologies (CSS3, HTML 5) while still maintaining a fine level of control over older browsers that may not yet support these new technologies.</summary>
+    <releaseNotes />
+    <copyright />
     <language>en-US</language>
     <tags>JavaScript HTML HTML5 CSS CSS3 SVG</tags>
   </metadata>

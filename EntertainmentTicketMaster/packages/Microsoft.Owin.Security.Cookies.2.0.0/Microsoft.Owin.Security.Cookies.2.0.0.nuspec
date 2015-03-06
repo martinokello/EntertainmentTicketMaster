@@ -10,6 +10,9 @@
     <projectUrl>http://katanaproject.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Middleware that enables an application to use cookie based authentication, similar to ASP.NET's forms authentication.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
     <tags>Microsoft OWIN</tags>
     <dependencies>
       <dependency id="Owin" version="1.0" />

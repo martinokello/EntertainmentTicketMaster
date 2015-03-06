@@ -12,7 +12,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Unity is a lightweight extensible dependency injection container. This package is a Unity bootstrapper for ASP.NET MVC.</description>
     <summary>This package is a Unity bootstrapper for ASP.NET MVC</summary>
+    <releaseNotes />
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <language />
     <tags>Unity Unity3 Unity35 EntLib EntLib6 IoC DI container dependency injection inversion control aspnet mvc aspnetmvc LOB OSS</tags>
     <dependencies>
       <dependency id="Unity" version="3.5.1404.0" />

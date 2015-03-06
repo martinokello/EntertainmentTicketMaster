@@ -13,6 +13,7 @@
     <description>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</description>
     <releaseNotes />
     <copyright>Copyright 2013</copyright>
+    <language />
     <tags>bootstrap html css javascript web</tags>
     <dependencies>
       <dependency id="jquery" version="1.9.0" />

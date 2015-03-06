@@ -23,8 +23,8 @@
                 method: 'GET',
                 contentType:'application/json',
                 success: function (data, statuscode, jq_XHR) {
-                    if (data === undefined || data == null) {
-                        alert('No results were returned');
+                    if (data === undefined || data == null || data.length == 0) {
+                        alert('No results for the period. Please extend the dates and try again!');
                         return;
                     }
                     for (var i = 0; i < data.length; i++) {

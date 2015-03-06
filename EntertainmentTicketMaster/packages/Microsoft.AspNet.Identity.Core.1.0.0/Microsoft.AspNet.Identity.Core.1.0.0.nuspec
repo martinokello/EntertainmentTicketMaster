@@ -10,7 +10,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Core interfaces for ASP.NET Identity.</description>
     <summary>Core interfaces for ASP.NET Identity.</summary>
+    <releaseNotes />
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <language />
     <tags>Identity Membership</tags>
   </metadata>
 </package>

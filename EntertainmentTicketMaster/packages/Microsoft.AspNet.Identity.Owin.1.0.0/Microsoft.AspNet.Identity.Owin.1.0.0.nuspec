@@ -10,7 +10,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Owin implementation for ASP.NET Identity.</description>
     <summary>Owin implementation for ASP.NET Identity.</summary>
+    <releaseNotes />
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <language />
     <tags>Identity Membership</tags>
     <dependencies>
       <dependency id="Microsoft.AspNet.Identity.Core" version="1.0.0" />

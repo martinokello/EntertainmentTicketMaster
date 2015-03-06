@@ -10,6 +10,9 @@
     <projectUrl>http://katanaproject.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>OWIN server that enables OWIN-based applications to run on IIS using the ASP.NET request pipeline.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
     <tags>Microsoft OWIN</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.0">
