@@ -19,7 +19,7 @@
             var stDate = $('#StartDate').val();
             var enDate = $('#EndDate').val();
             $.ajax({
-                url: 'http://www.martinlayooinc.co.uk/EntertainmentTicketMaster/Administration//GetStats?startDate=' + stDate + '&endDate=' + enDate,
+                url: 'http://martinlayooinc.co.uk/EntertainmentTicketMaster/Administration/GetStats?startDate=' + stDate + '&endDate=' + enDate,
                 method: 'GET',
                 contentType:'application/json',
                 success: function (data, statuscode, jq_XHR) {
@@ -169,7 +169,8 @@
         </div>
     </div>
     <div style="background-color:white;margin-top:20px;">
-        <div style="height:auto;float:left;margin-left:20px;width:45%;padding:10px;"><span style="text-align: center; padding: 10px;color:goldenrod;font-weight: bolder; ">Number of Tickets Bought Over Year</span><canvas id="myChart" height=250px" width="90%"></canvas><br /></div> 
+        <div style="height:auto;float:left;margin-left:20px;width:45%;padding:10px;"><span style="text-align: center; padding: 10px;color:goldenrod;font-weight: bolder; ">Number of Tickets Bought Over Year</span>
+        <canvas id="myChart" height=250px" width="90%"></canvas><br /></div> 
         <div style="height: auto; float: left; margin-left: 20px; width: 45%; padding: 10px; "><span style="text-align: center; padding: 10px; color: goldenrod; font-weight: bolder;">Gross Ticket Income Over Year</span><canvas id="myChart2" height=250px" width="90%"></canvas><br /></div> 
    </div>
 </div>

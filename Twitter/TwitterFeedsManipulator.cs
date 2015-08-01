@@ -7,7 +7,6 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Caching;
 using System.Xml.Linq;
@@ -15,9 +14,9 @@ using Newtonsoft.Json;
 
 namespace Twitter
 {
-    public class TwitterFeedsManipulator
+    public class TwitterFeedsManipulator<T> where T : WidgetGroupItemList, new()
     {
-        private WidgetGroupItemList _widgetGroupItems;
+        private T WidgetGroupItems;
         private string _groupActionText;
         private string _groupActionUrl;
         private string _groupHeaderText;
@@ -25,14 +24,14 @@ namespace Twitter
         private string _cacheTimeSecs;
         private Cache _cache;
 
-        public TwitterFeedsManipulator(string groupActionText,string groupActionUrl,string groupHeaderText,string cacheKey,string cacheTimeSecs,Cache cache)
+        public TwitterFeedsManipulator(GroupObject twitterConfig)
         {
-            _groupActionText = groupActionText;
-            _groupActionUrl = groupActionUrl;
-            _groupHeaderText = groupHeaderText;
-            _cacheKey = cacheKey;
-            _cacheTimeSecs = cacheTimeSecs;
-            _cache = cache;
+            _groupActionText = twitterConfig.GroupActionText;
+            _groupActionUrl = twitterConfig.GroupActionUrl;
+            _groupHeaderText = twitterConfig.GroupHeaderText;
+            _cacheKey = twitterConfig.CacheKey;
+            _cacheTimeSecs = twitterConfig.CacheTimeInSeconds;
+            _cache = HttpRuntime.Cache;
         }
 
         public string GetOauthToken(OauthAuthentication oauthAuthentication)
@@ -84,172 +83,103 @@ namespace Twitter
         }
 
 
-        public WidgetGroupItemList GetProfileTwitterFeeds(string twitterProfileUrl, OauthAuthentication oauthAuthentication)
+        public T GetProfileTwitterFeeds(string twitterProfileUrl, OauthAuthentication oauthAuthentication)
         {
             //Using Twitter Oauth: http://www.codeproject.com/Articles/247336/Twitter-OAuth-authentication-using-Net
-            _widgetGroupItems = _cache[_cacheKey] == null ? null : _cache[_cacheKey] as WidgetGroupItemList;
 
-            if (_widgetGroupItems == null)
+            var oauthToken = GetOauthToken(oauthAuthentication);
+            var oauthHeader = GetOauthHeader(OauthHeaderType.Bearer, oauthToken);
+            StreamReader reader = null;
+
+            ServicePointManager.Expect100Continue = false;
+
+            try
             {
-                _widgetGroupItems = new WidgetGroupItemList();
+                HttpWebRequest request = null;
 
-                var oauthToken = GetOauthToken(oauthAuthentication);
-                var oauthHeader = GetOauthHeader(OauthHeaderType.Bearer, oauthToken);
-                StreamReader reader = null;
+                request = WebRequest.Create(twitterProfileUrl) as HttpWebRequest;
 
-                ServicePointManager.Expect100Continue = false;
-
-                try
+                if (request != null)
                 {
-                    HttpWebRequest request = null;
 
-                    request = WebRequest.Create(twitterProfileUrl) as HttpWebRequest;
+                    request.Headers.Add("Authorization", oauthHeader);
+                    request.Method = "GET";
+                    request.ContentType = "application/x-www-form-urlencoded";
 
-                    if (request != null)
+                    using (var response = request.GetResponse() as HttpWebResponse)
                     {
-
-                        request.Headers.Add("Authorization", oauthHeader);
-                        request.Method = "GET";
-                        request.ContentType = "application/x-www-form-urlencoded";
-
-                        using (var response = request.GetResponse() as HttpWebResponse)
+                        using (Stream respStream = response.GetResponseStream())
                         {
-                            using (Stream respStream = response.GetResponseStream())
+                            if (respStream != null)
                             {
-                                if (respStream != null)
-                                {
-                                    reader = new StreamReader(respStream);
+                                reader = new StreamReader(respStream);
 
-                                    string xmlString = reader.ReadToEnd();
-                                    reader.Close();
-                                    return ConvertRawTweetsToXmlConsumables(xmlString);
-                                }
+                                string xmlString = reader.ReadToEnd();
+                                reader.Close();
+                                return ConvertRawTweetsToXmlConsumables(xmlString);
                             }
                         }
                     }
-                    return new WidgetGroupItemList();
-                }
-                catch (Exception e)
-                {
-                    if (reader != null)
-                        reader.Close();
-                    throw e;
                 }
             }
-            else return _cache[_cacheKey] as WidgetGroupItemList;
+            catch (Exception e)
+            {
+                if (reader != null)
+                    reader.Close();
+                throw e;
+            }
+            return null;
         }
 
 
-        public WidgetGroupItemList GetSearchTwitterFeeds(string twitterSearchUrl, OauthAuthentication oauthAuthentication, HttpServerUtility Server)
+        public T GetSearchTwitterFeeds(string twitterSearchUrl, OauthAuthentication oauthAuthentication)
         {
             //Using Twitter Oauth: http://www.codeproject.com/Articles/247336/Twitter-OAuth-authentication-using-Net
-            _widgetGroupItems = _cache[_cacheKey] as WidgetGroupItemList;
+            //this.WidgetGroupItems = Cache[cacheKey] as WidgetGroupItemList;
 
-            if (_widgetGroupItems == null)
+            var oauthToken = GetOauthToken(oauthAuthentication);
+            var oauthHeader = GetOauthHeader(OauthHeaderType.Bearer, oauthToken);
+            StreamReader reader = null;
+
+            ServicePointManager.Expect100Continue = false;
+
+            try
             {
-                _widgetGroupItems = new WidgetGroupItemList();
+                HttpWebRequest request = null;
 
-                var oauthToken = GetOauthToken(oauthAuthentication);
-                var oauthHeader = GetOauthHeader(OauthHeaderType.Bearer, oauthToken);
-                StreamReader reader = null;
+                request = WebRequest.Create(twitterSearchUrl) as HttpWebRequest;
 
-                ServicePointManager.Expect100Continue = false;
-
-                try
+                if (request != null)
                 {
-                    HttpWebRequest request = null;
 
-                    request = WebRequest.Create(twitterSearchUrl) as HttpWebRequest;
+                    request.Headers.Add("Authorization", oauthHeader);
+                    request.Method = "GET";
+                    request.ContentType = "application/x-www-form-urlencoded";
 
-                    if (request != null)
+                    using (var response = request.GetResponse() as HttpWebResponse)
                     {
-
-                        request.Headers.Add("Authorization", oauthHeader);
-                        request.Method = "GET";
-                        request.ContentType = "application/x-www-form-urlencoded";
-
-                        using (var response = request.GetResponse() as HttpWebResponse)
+                        using (Stream respStream = response.GetResponseStream())
                         {
-                            using (Stream respStream = response.GetResponseStream())
+                            if (respStream != null)
                             {
-                                if (respStream != null)
-                                {
-                                    reader = new StreamReader(respStream);
+                                reader = new StreamReader(respStream);
 
-                                    string xmlString = reader.ReadToEnd();
-                                    reader.Close();
-                                    return ConvertRawSearchTweetsToXmlConsumables(xmlString);
-                                }
+                                string xmlString = reader.ReadToEnd();
+                                reader.Close();
+                                return ConvertRawSearchTweetsToXmlConsumables(xmlString);
                             }
                         }
                     }
-                    return _widgetGroupItems;
                 }
-                catch (Exception e)
-                {
-                    if (reader != null)
-                        reader.Close();
-                    throw e;
-                }
+                return null;
             }
-            return _widgetGroupItems;
-        }
-        private string GetOauthHeader(OauthAuthentication oauthentication, string resource_url)
-        {
-
-            var oauth_version = "1.0";
-            var oauth_signature_method = "HMAC-SHA1";
-            var oauth_nonce = Convert.ToBase64String(new ASCIIEncoding().GetBytes(DateTime.Now.Ticks.ToString()));
-
-            var timeSpan = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0,
-                                                   DateTimeKind.Utc);
-            var oauth_timestamp = Convert.ToInt64(timeSpan.TotalSeconds).ToString();
-
-            var baseFormat = "oauth_consumer_key={0}&oauth_nonce={1}&oauth_signature_method={2}" +
-                "&oauth_timestamp={3}&oauth_token={4}&oauth_version={5}&oauth_verifier={6}";
-            var oauth_token = GetOauthToken(oauthentication);
-
-            var baseString = string.Format(baseFormat,
-                                        oauthentication.ConsumerKey,
-                                        oauth_nonce,
-                                        oauth_signature_method,
-                                        oauth_timestamp,
-                                        oauthentication.TokenKey,
-                                        oauth_version
-                                        );
-
-            baseString = string.Concat("GET&", Uri.EscapeDataString(resource_url),
-                         "&", Uri.EscapeDataString(baseString));
-
-            var compositeKey = string.Concat(Uri.EscapeDataString(oauthentication.ConsumerSecret),
-                        "&", Uri.EscapeDataString(oauthentication.TokenSecret));
-
-            string oauth_signature;
-
-            using (HMACSHA1 hasher = new HMACSHA1(ASCIIEncoding.ASCII.GetBytes(compositeKey)))
+            catch (Exception e)
             {
-                oauth_signature = Convert.ToBase64String(
-                    hasher.ComputeHash(ASCIIEncoding.ASCII.GetBytes(baseString)));
+                if (reader != null)
+                    reader.Close();
+                throw e;
             }
-
-            var headerFormat = "OAuth oauth_nonce=\"{0}\", oauth_signature_method=\"{1}\", " +
-               "oauth_timestamp=\"{2}\", oauth_consumer_key=\"{3}\", " +
-               "oauth_token=\"{4}\", oauth_signature=\"{5}\", " +
-               "oauth_version=\"{6}\",oauth_callback=oob";
-
-            var authHeader = string.Format(headerFormat,
-            Uri.EscapeDataString(oauth_nonce),
-            Uri.EscapeDataString(oauth_signature_method),
-            Uri.EscapeDataString(oauth_timestamp),
-            Uri.EscapeDataString(oauthentication.ConsumerKey),
-            Uri.EscapeDataString(oauthentication.TokenKey),
-            Uri.EscapeDataString(oauth_signature),
-            Uri.EscapeDataString(oauth_version)
-    );
-
-            return authHeader;
         }
-
         public enum OauthHeaderType { Basic = 0, Bearer = 1 }
 
         private string GetOauthHeader(OauthAuthentication oauthentication, OauthHeaderType oauthHeaderType)
@@ -298,6 +228,7 @@ namespace Twitter
         {
             return oauthHeaderType.ToString() + " " + bearerToken;
         }
+
         public class TweetObject
         {
             public string AvatarUrl { get; set; }
@@ -307,7 +238,6 @@ namespace Twitter
             public string Username { get; set; }
             public string GroupUrl { get; set; }
         }
-
         private IEnumerable<TweetObject> GetTweetsFromXdoc(XDocument xdoc)
         {
             var tweetResults = from tweets in xdoc.Descendants("status")
@@ -320,7 +250,7 @@ namespace Twitter
                         tweets.Element("user").Element("screen_name").Value,
                                    StatusId = tweets.Element("id_str").Value,
                                    TimeCreated = tweets.Element("created_at").Value,
-                                   GroupUrl = tweets.Descendants("entities").Descendants("urls").Any() ? tweets.Descendants("entities").Descendants("urls").FirstOrDefault().Element("url").Value : "http://www.martinlayooinc.co.uk"
+                                   GroupUrl = tweets.Element("entities").Element("urls") != null ? tweets.Element("entities").Element("urls").Element("url").Value : "http://www.martinlayooinc.co.uk"
                                };
             return tweetResults;
         }
@@ -359,10 +289,10 @@ namespace Twitter
                 else timeSince = string.Format("{0} seconds ago", timePeriod);
             }
         }
-        private WidgetGroupItemList ConvertRawTweetsToXmlConsumables(string jsonString)
+        private T ConvertRawTweetsToXmlConsumables(string jsonString)
         {
             // To convert JSON text contained in string json into an XML node
-
+            WidgetGroupItems = new T();
             var xmldoc = JsonConvert.DeserializeXNode("{\"status\":" + jsonString + "}", "root");
 
 
@@ -392,15 +322,15 @@ namespace Twitter
 
                 }
 
-                _widgetGroupItems.Add(new GroupObject { GroupActionText = _groupActionText, GroupActionUrl = _groupActionUrl, GroupDescription = AddColourToTwitterKnownWords(profileTweet.Tweet), GroupAvatarUrl = profileTweet.AvatarUrl, GroupId = -1, GroupHeaderText = _groupHeaderText, GroupUrl = profileTweet.GroupUrl, Username = profileTweet.Username, Duration = timeSince, TweetStatusId = profileTweet.StatusId });
+                WidgetGroupItems.Add(new GroupObject { GroupActionText = _groupActionText, GroupActionUrl = _groupActionUrl, GroupDescription = AddColourToTwitterKnownWords(profileTweet.Tweet), GroupAvatarUrl = profileTweet.AvatarUrl, GroupId = -1, GroupHeaderText = _groupHeaderText, GroupUrl = profileTweet.GroupUrl, Username = profileTweet.Username, Duration = timeSince, TweetStatusId = profileTweet.StatusId });
             }
 
 
-            int _cacheTime = 180;
-            Int32.TryParse(_cacheTimeSecs, out _cacheTime);
-            _cache.Insert(_cacheKey, _widgetGroupItems, null, DateTime.UtcNow.AddSeconds(_cacheTime), System.Web.Caching.Cache.NoSlidingExpiration);
+            //int cacheTime = 180;
+            //Int32.TryParse(cacheTimeSecs, out cacheTime);
+            //Cache.Insert(cacheKey, WidgetGroupItems, null, DateTime.UtcNow.AddSeconds(cacheTime), System.Web.Caching.Cache.NoSlidingExpiration);
             //return WidgetGroupItems.ToSerializerXml();
-            return _widgetGroupItems;
+            return WidgetGroupItems;
         }
         private WidgetGroupItemList GenerateWidgetItems(IEnumerable<TweetObject> profileTweets, int pageSize)
         {
@@ -433,14 +363,14 @@ namespace Twitter
                 {
 
                 }
-                _widgetGroupItems.Add(new GroupObject { GroupActionText = _groupActionText, GroupActionUrl = _groupActionUrl, GroupDescription = searchedTweet.Tweet, GroupAvatarUrl = searchedTweet.AvatarUrl, GroupId = -1, GroupHeaderText = _groupHeaderText, GroupUrl = _groupActionUrl, Username = searchedTweet.Username, TweetStatusId = searchedTweet.StatusId, Duration = timeSince });
+                WidgetGroupItems.Add(new GroupObject { GroupActionText = _groupActionText, GroupActionUrl = _groupActionUrl, GroupDescription = AddColourToTwitterKnownWords(searchedTweet.Tweet), GroupAvatarUrl = searchedTweet.AvatarUrl, GroupId = -1, GroupHeaderText = _groupHeaderText, GroupUrl = searchedTweet.GroupUrl, Username = searchedTweet.Username, Duration = timeSince, TweetStatusId = searchedTweet.StatusId });
                 tweetIndex++;
 
                 if (tweetIndex > pageSize - 1)
                 {
                     long lastResultId = -1;
 
-                    long.TryParse(_widgetGroupItems[_widgetGroupItems.Count - 1].TweetStatusId, out lastResultId);
+                    long.TryParse(WidgetGroupItems[WidgetGroupItems.Count - 1].TweetStatusId, out lastResultId);
                     if (lastResultId > 0)
                     {
                         //Application["LastResultId"] = lastResultId;
@@ -453,18 +383,18 @@ namespace Twitter
             {
                 long lastResultId = -1;
 
-                long.TryParse(_widgetGroupItems[_widgetGroupItems.Count - 1].TweetStatusId, out lastResultId);
+                long.TryParse(WidgetGroupItems[WidgetGroupItems.Count - 1].TweetStatusId, out lastResultId);
                 if (lastResultId > 0)
                 {
                     //Application["LastResultId"] = lastResultId;
                 }
             }
-            return _widgetGroupItems;
+            return WidgetGroupItems;
         }
-        private WidgetGroupItemList ConvertRawSearchTweetsToXmlConsumables(string jsonString)
+        private T ConvertRawSearchTweetsToXmlConsumables(string jsonString)
         {
             // To convert JSON text contained in string json into an XML node
-
+            WidgetGroupItems = new T();
             var xmldoc = JsonConvert.DeserializeXNode("{\"status\":" + jsonString + "}", "root");
 
 
@@ -481,18 +411,18 @@ namespace Twitter
 
             foreach (var profileTweet in ProfileTweets)
             {
-                _widgetGroupItems.Add(new GroupObject { GroupActionText = _groupActionText, GroupActionUrl = _groupActionUrl, GroupDescription = AddColourToTwitterKnownWords(profileTweet.Tweet), GroupAvatarUrl = profileTweet.AvatarUrl, GroupId = -1, GroupHeaderText = _groupHeaderText, GroupUrl = _groupActionUrl, Username = profileTweet.Username, TweetStatusId = profileTweet.TweetStatusId });
+                WidgetGroupItems.Add(new GroupObject {GroupActionText = _groupActionText, GroupActionUrl = _groupActionUrl, GroupDescription = AddColourToTwitterKnownWords(profileTweet.Tweet), GroupAvatarUrl = profileTweet.AvatarUrl, GroupId = -1, GroupHeaderText = _groupHeaderText, GroupUrl = _groupActionUrl, Username = profileTweet.Username, TweetStatusId = profileTweet.TweetStatusId });
             }
 
 
-            int cacheTime = 180;
-            Int32.TryParse(_cacheTimeSecs, out cacheTime);
-            _cache.Insert(_cacheKey, _widgetGroupItems, null, DateTime.UtcNow.AddSeconds(cacheTime), System.Web.Caching.Cache.NoSlidingExpiration);
-            return _widgetGroupItems;
+            //int cacheTime = 180;
+            //Int32.TryParse(cacheTimeSecs, out cacheTime);
+            //Cache.Insert(cacheKey, WidgetGroupItems, null, DateTime.UtcNow.AddSeconds(cacheTime), System.Web.Caching.Cache.NoSlidingExpiration);
+            return WidgetGroupItems;
         }
         private string AddColourToTwitterKnownWords(string sentence)
         {
-            var pattern = @"((?:http://|www\.)\S+\b)|(?:\@\S+)|(?:\#\S+)";
+            var pattern = @"((?:http://|www\.)\S+\b)|(?:\@\S+)|(?:\#\S+)|((?:https://|www\.)\S+\b)|(?:\@\S+)|(?:\#\S+)";
 
             string wrapper = @"<span class='greentext'>{0}</span>";
             string linkWrapper = @"<a class='greentext' href='{0}' target='_blank'>{0}</a>";
@@ -502,7 +432,7 @@ namespace Twitter
                 string value = match.Value;
 
                 string wrappedText = string.Empty;
-                if (value.Trim().StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+                if (value.Trim().StartsWith("http://", StringComparison.OrdinalIgnoreCase) || value.Trim().StartsWith("https://", StringComparison.OrdinalIgnoreCase))
                 {
                     wrappedText = string.Format(linkWrapper, value);
                 }
@@ -515,5 +445,6 @@ namespace Twitter
             }
             return sentence;
         }
+        
     }
 }

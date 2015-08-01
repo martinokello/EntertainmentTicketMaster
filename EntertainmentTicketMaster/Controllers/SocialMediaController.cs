@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Caching;
 using System.Web.Http;
 using Twitter;
 
@@ -21,9 +16,7 @@ namespace EntertainmentTicketMaster.Controllers
         {
             var configSection = GetConfigValues();
 
-            var twitterManipulator = new TwitterFeedsManipulator(configSection.GroupActionText,
-                configSection.GroupActionUrl, configSection.GroupHeaderText, configSection.CacheKey,
-                configSection.CacheTimeInSeconds, MvcApplication.ApiCache);
+            var twitterManipulator = new TwitterFeedsManipulator<Twitter.WidgetGroupItemList>(configSection);
             _profileTweetUrl = configSection.TwitterProfileBaseUrl +
                                                         string.Format(
                                                             "include_entities={0}&include_rts={1}&screen_name={2}&count={3}",

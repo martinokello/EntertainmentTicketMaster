@@ -5,15 +5,15 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntertainmentTicketMaster", "EntertainmentTicketMaster.csproj", "{F30A3207-0172-48D6-9DFE-C1B4322040F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryServices", "..\MartinLayooIncMVC\RepositoryServices\RepositoryServices.csproj", "{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryServices", "..\RepositoryServices\RepositoryServices.csproj", "{0CFA4E01-7868-48C5-A16F-7C0A97AFB432}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketMasterDataAccess", "..\MartinLayooIncMVC\TicketMasterDataAccess\TicketMasterDataAccess.csproj", "{199705D6-4F1C-4FDC-847F-BD12AD044F6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketMasterDataAccess", "..\TicketMasterDataAccess\TicketMasterDataAccess.csproj", "{199705D6-4F1C-4FDC-847F-BD12AD044F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPAEventsPayPal2", "..\MartinLayooIncMVC\UPAEventsPayPal2\UPAEventsPayPal2.csproj", "{817DF4F9-7250-4A76-ABA2-A31A2D4C7053}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPAEventsPayPal2", "..\UPAEventsPayPal2\UPAEventsPayPal2.csproj", "{817DF4F9-7250-4A76-ABA2-A31A2D4C7053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailServices", "..\MartinLayooIncMVC\EmailServices\EmailServices.csproj", "{F368223F-7903-481B-8D11-59390D44E2E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailServices", "..\EmailServices\EmailServices.csproj", "{F368223F-7903-481B-8D11-59390D44E2E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter", "..\MartinLayooIncMVC\Twitter\Twitter.csproj", "{3BFE2A6B-0496-4F70-9E5A-5678F1977E5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter", "..\Twitter\Twitter.csproj", "{3BFE2A6B-0496-4F70-9E5A-5678F1977E5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

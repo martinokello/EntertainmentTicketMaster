@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using EntertainmentTicketMaster.App_Start;
+using EntertainmentTicketMaster.Migrations;
 
 namespace EntertainmentTicketMaster
 {
@@ -17,8 +18,10 @@ namespace EntertainmentTicketMaster
         public static Cache ApiCache { get; set; }
         protected void Application_Start()
         {
+            EntityFrameWorkUpdateV2 frame =new EntityFrameWorkUpdateV2();
+            frame.Up();
             ApiCache = HttpRuntime.Cache;
-            UnityConfig.RegisterTypes(UnityConfig.GetConfiguredContainer());
+            UnityConfig.RegisterComponents();  
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             WebApiConfig.Register(GlobalConfiguration.Configuration);

@@ -36,7 +36,20 @@ namespace EntertainmentTicketMaster.Controllers
 
             return View();
         }
+        public ActionResult Cancel()
+        {
+            ViewBag.Title = "Cancel";
+            ViewBag.Message = "The Transaction was canceled.";
 
+            return View();
+        }        
+		public ActionResult Success()
+        {
+            ViewBag.Title = "Success";
+            ViewBag.Message = "You've bought tickets to shows. Check your registered Email for details.";
+
+            return View();
+        }        
         public ActionResult PaypalNotify(FormCollection formCollection)
         {
             var paymentVerification = new InstantPaymentNotification(HttpContext.ApplicationInstance.Context.Request,

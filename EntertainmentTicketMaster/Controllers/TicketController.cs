@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Web;
-using System.Web.Management;
 using System.Web.Mvc;
-using System.Web.UI.WebControls.WebParts;
 using EntertainmentTicketMaster.Models;
-using Microsoft.Owin.Security.DataHandler.Encoder;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.DataAccess;
 using UPAEventsPayPal;
@@ -193,61 +189,57 @@ namespace EntertainmentTicketMaster.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    eventId = -1;
-                    if (int.TryParse(model.EventName, out eventId))
+                    var evnt = _repositoryTicketServices.GetEventById(eventId);
+                    var user = _repositoryTicketServices.GetUserByName(User.Identity.Name);
+                    if (evnt == null || eventId == -1)
                     {
-                        var evnt = _repositoryTicketServices.GetEventById(eventId);
-                        var user = _repositoryTicketServices.GetUserByName(User.Identity.Name);
-                        if (evnt == null || eventId == 1)
-                        {
-                            ModelState.AddModelError("chooseEvent", "Event needs to be chosen");
-                            return View("BookTickets", model);
-                        }
-                        var ticket = new Ticket
-                        {
-                            EventId = eventId,
-                            Price = model.Price,
-                            TicketGUID = Guid.NewGuid()
-                        };
-
-                        var bookingId = _repositoryTicketServices.BookTickets(ticket, model.NumberOfTickets, user.UserId);
-                        var paypalBaseUrl = ConfigurationManager.AppSettings["PaypalBaseUrl"];
-                        var cancelUrl = ConfigurationManager.AppSettings["CancelUrl"];
-                        var successUrl = ConfigurationManager.AppSettings["SuccessUrl"];
-                        var notifyUrl = ConfigurationManager.AppSettings["NotifyUrl"];
-                        var businessEmail = ConfigurationManager.AppSettings["BusinessEmail"];
-                        var customer = _repositoryTicketServices.GetUserByName(User.Identity.Name);
-
-                        var buyerEmail = customer.Email;
-                        var product = new Product
-                        {
-                            Ammount = model.Price,
-                            ProductDescription = evnt.EventDescription,
-                            ProductName = evnt.EventName,
-                            Quantity = model.NumberOfTickets,
-                            VATAmmount = 0
-                        };
-                        var products = new List<Product> { product };
-                        Session["ShoppingBasket"] = products;
-                        var upaProducts = products;
-
-                        Session["InvoiceNo"] = bookingId;
-                        Session["ProductsUPA"] = upaProducts;
-                        Session["buyerEmail"] = buyerEmail;
-
-                        var context = HttpContext;
-                        //Process Payment
-                        var paypal = new PayPalHandler(context.ApplicationInstance.Context.Session,
-                            paypalBaseUrl, businessEmail, successUrl, cancelUrl, notifyUrl);
-
-                        paypal.Response = context.ApplicationInstance.Context.Response;
-
-
-                        paypal.RedirectToPayPal();
-                        return View("BookedSuccess");
+                        ModelState.AddModelError("chooseEvent", "Event needs to be chosen");
+                        return View("BookTickets", model);
                     }
+                    var ticket = new Ticket
+                    {
+                        EventId = eventId,
+                        Price = model.Price,
+                        TicketGUID = Guid.NewGuid()
+                    };
 
+                    var bookingId = _repositoryTicketServices.BookTickets(ticket, model.NumberOfTickets, user.UserId);
+                    var paypalBaseUrl = ConfigurationManager.AppSettings["PaypalBaseUrl"];
+                    var cancelUrl = ConfigurationManager.AppSettings["CancelUrl"];
+                    var successUrl = ConfigurationManager.AppSettings["SuccessUrl"];
+                    var notifyUrl = ConfigurationManager.AppSettings["NotifyUrl"];
+                    var businessEmail = ConfigurationManager.AppSettings["BusinessEmail"];
+                    var customer = _repositoryTicketServices.GetUserByName(User.Identity.Name);
+
+                    var buyerEmail = customer.Email;
+                    var product = new Product
+                    {
+                        Ammount = model.Price,
+                        ProductDescription = evnt.EventDescription,
+                        ProductName = evnt.EventName,
+                        Quantity = model.NumberOfTickets,
+                        VATAmmount = 0
+                    };
+                    var products = new List<Product> { product };
+                    Session["ShoppingBasket"] = products;
+                    var upaProducts = products;
+
+                    Session["InvoiceNo"] = bookingId;
+                    Session["ProductsUPA"] = upaProducts;
+                    Session["buyerEmail"] = buyerEmail;
+
+                    var context = HttpContext;
+                    //Process Payment
+                    var paypal = new PayPalHandler(context.ApplicationInstance.Context.Session,
+                        paypalBaseUrl, businessEmail, successUrl, cancelUrl, notifyUrl);
+
+                    paypal.Response = context.ApplicationInstance.Context.Response;
+
+
+                    paypal.RedirectToPayPal();
+                    return View("BookedSuccess");
                 }
+
                 else return View(model);
             }
             catch (Exception e)
