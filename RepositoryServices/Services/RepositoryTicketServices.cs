@@ -15,22 +15,34 @@ namespace RepositoryServices.Services
     public class RepositoryTicketServices : IRepositoryTicketServiceSegregator
     {
         private TicketRepository _ticketRepository;
-        private BookingRepository _bookingRepository;
         private TicketMasterUserRepository _ticketMasterUserRepository;
         private EventRepository _eventRepository;
-        private EntertainmentAddressRepository _EntertainmentAddressRepository;
+        private BookingRepository _bookingRepository;
+        private EntertainmentAddressRepository _entertainmentAddressRepository;
+
+        private IUnitOfWork _ticketUnitOfWork;
+        private IUnitOfWork _eventUnitOfWork;
+        private IUnitOfWork _ticketUserUnitOfWork;
+        private IUnitOfWork _bookingUnitOfWork;
+        private IUnitOfWork _entertainmentAddressUnitOfWork;
+
 
         public RepositoryTicketServices()
         {
             
         }
-        public RepositoryTicketServices(ITicketRepositorySegregator ticketRepository, IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator ticketMasterUserRepository, IBookingRepositorySegregator bookingRepository, IEntertainmentAddressRepositorySegregator EntertainmentAddressRepository)
+        public RepositoryTicketServices(ITicketRepositorySegregator ticketRepository, IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator userRepository, IBookingRepositorySegregator bookingRepository, IEntertainmentAddressRepositorySegregator entertainmentAddressRepository)
         {
             _ticketRepository = ticketRepository as TicketRepository;
-            _bookingRepository = bookingRepository as BookingRepository;
-            _ticketMasterUserRepository = ticketMasterUserRepository as TicketMasterUserRepository;
+            _ticketUnitOfWork = new UnitOfWork<Ticket>(_ticketRepository);
             _eventRepository = eventRepository as EventRepository;
-            _EntertainmentAddressRepository = EntertainmentAddressRepository as EntertainmentAddressRepository;
+            _eventUnitOfWork = new UnitOfWork<Event>(_eventRepository);
+            _ticketMasterUserRepository = userRepository as TicketMasterUserRepository;
+            _ticketUserUnitOfWork = new UnitOfWork<TicketMasterUser>(_ticketMasterUserRepository);
+            _bookingRepository = bookingRepository as BookingRepository;
+            _bookingUnitOfWork = new UnitOfWork<Booking>(_bookingRepository);
+            _entertainmentAddressRepository = entertainmentAddressRepository as EntertainmentAddressRepository;
+            _entertainmentAddressUnitOfWork = new UnitOfWork<EntertainmentAddress>(_entertainmentAddressRepository);
         }
 
         public Event[] GetAllCurrentEvents()
@@ -61,7 +73,9 @@ namespace RepositoryServices.Services
         }
         public int BookTickets(Ticket ticket, int numberOfTickets, int userId)
         {
-            return _bookingRepository.BookTickets(ticket, numberOfTickets, userId);
+            var result = _bookingRepository.BookTickets(ticket, numberOfTickets, userId);
+            _bookingUnitOfWork.SaveChanges();
+            return result;
         }
 
         public Event GetEventById(int eventId)
@@ -86,23 +100,24 @@ namespace RepositoryServices.Services
 
         public EntertainmentAddress GetEntertainmentAddressByUsername(string username)
         {
-            return _EntertainmentAddressRepository.GetEntertainmentAddressByUsername(username);
+            return _entertainmentAddressRepository.GetEntertainmentAddressByUsername(username);
         }
 
-        public bool UpdateEntertainmentAddressByUsername(string username, EntertainmentAddress EntertainmentAddress)
+        public bool UpdateEntertainmentAddressByUsername(string username, EntertainmentAddress entertainmentAddress)
         {
             try
             {
                 var user = GetUserByName(username);
                 var dbEntertainmentAddress = GetEntertainmentAddressByUsername(username);
 
-                dbEntertainmentAddress.AddressLine1 = EntertainmentAddress.AddressLine1;
-                dbEntertainmentAddress.AddressLine2 = EntertainmentAddress.AddressLine2;
-                dbEntertainmentAddress.Town = EntertainmentAddress.Town;
-                dbEntertainmentAddress.PostCode = EntertainmentAddress.PostCode;
-                dbEntertainmentAddress.Country = EntertainmentAddress.Country;
+                dbEntertainmentAddress.AddressLine1 = entertainmentAddress.AddressLine1;
+                dbEntertainmentAddress.AddressLine2 = entertainmentAddress.AddressLine2;
+                dbEntertainmentAddress.Town = entertainmentAddress.Town;
+                dbEntertainmentAddress.PostCode = entertainmentAddress.PostCode;
+                dbEntertainmentAddress.Country = entertainmentAddress.Country;
                 dbEntertainmentAddress.UserId = user.UserId;
-                _EntertainmentAddressRepository.Update(dbEntertainmentAddress);
+                _entertainmentAddressRepository.Update(dbEntertainmentAddress);
+                _entertainmentAddressUnitOfWork.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -111,14 +126,15 @@ namespace RepositoryServices.Services
             }
         }
 
-        public bool AddNewClientAddress(string username, EntertainmentAddress EntertainmentAddress)
+        public bool AddNewClientAddress(string username, EntertainmentAddress entertainmentAddress)
         {
             try
             {
                 var user = GetUserByName(username);
-                EntertainmentAddress.UserId = user.UserId;
+                entertainmentAddress.UserId = user.UserId;
 
-                _EntertainmentAddressRepository.Add(EntertainmentAddress);
+                _entertainmentAddressRepository.Add(entertainmentAddress);
+                _entertainmentAddressUnitOfWork.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -135,6 +151,7 @@ namespace RepositoryServices.Services
         public void UpdateBooking(Booking booking)
         {
             _bookingRepository.Update(booking);
+            _bookingUnitOfWork.SaveChanges();
         }
 
         public GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to)

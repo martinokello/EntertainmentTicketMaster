@@ -25,7 +25,6 @@ namespace EntertainmentTicketMaster
             container.RegisterType<IAccontManagerServiceSegregator, AccountManagementServices>();
             container.RegisterType<IRepositoryAdminServiceSegregator, RepositoryAdminServices>();
             container.RegisterType<IEmailService, EmailService>();
-            container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IUserRepositorySegregator, UserRepository>();
             container.RegisterType<ITicketRepositorySegregator, TicketRepository>();
             container.RegisterType<ITicketMasterUserRepositorySegregator, TicketMasterUserRepository>();

@@ -26,3 +26,12 @@ C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityF
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
 C:\C#Projects\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.dll.config
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.dll
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.pdb
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.dll
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.xml
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml

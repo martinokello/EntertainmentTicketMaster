@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.ConcreteRepositories;
 using TicketMasterDataAccess.UnitOfWork;
+using TicketMasterDataAccess.DataAccess;
 using UPAEventsPayPal;
 
 namespace EntertainmentTicketMaster.Controllers
@@ -53,7 +54,7 @@ namespace EntertainmentTicketMaster.Controllers
         public ActionResult PaypalNotify(FormCollection formCollection)
         {
             var paymentVerification = new InstantPaymentNotification(HttpContext.ApplicationInstance.Context.Request,
-                ConfigurationManager.AppSettings["BusinessEmail"], formCollection, new BookingRepository(new UnitOfWork()));
+                ConfigurationManager.AppSettings["BusinessEmail"], formCollection, new BookingRepository(new TicketMasterEntities()));
 
             FileInfo fileInfo = new FileInfo(Server.MapPath("~/IPN_Notification/IPNMessage.txt"));
             var ipnWriter = fileInfo.CreateText();

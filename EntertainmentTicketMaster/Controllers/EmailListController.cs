@@ -14,6 +14,8 @@ using EntertainmentTicketMaster.Models;
 using Microsoft.AspNet.Identity;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.DataAccess;
+using TicketMasterDataAccess.ConcreteRepositories;
+
 
 namespace EntertainmentTicketMaster.Controllers
 {
@@ -25,7 +27,7 @@ namespace EntertainmentTicketMaster.Controllers
 
         public EmailListController()
         {
-            _adminServices = new RepositoryAdminServices();
+            _adminServices = new RepositoryAdminServices(new TicketMasterUserRepository(new TicketMasterEntities()));
         }
 
         // POST api/<controller>

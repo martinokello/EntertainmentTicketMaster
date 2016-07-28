@@ -14,3 +14,7 @@ C:\C#Projects\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.dl
 C:\C#Projects\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.pdb
 C:\C#Projects\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.dll
 C:\C#Projects\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.pdb
+C:\GitRepositories\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.dll
+C:\GitRepositories\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.pdb
+C:\GitRepositories\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.dll
+C:\GitRepositories\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.pdb

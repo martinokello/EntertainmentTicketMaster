@@ -10,38 +10,30 @@ using System.Transactions;
 using TicketMasterDataAccess.Abstracts;
 using TicketMasterDataAccess.DataAccess;
 using TicketMasterDataAccess.Dto;
-using TicketMasterDataAccess.Factories;
-using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
 
 namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class BookingRepository : AbstractTicketRepository<Booking, int>, IBookingRepositorySegregator
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public BookingRepository(IUnitOfWork unitOfWork)
+        public BookingRepository(TicketMasterEntities context) : base(context)
         {
-            _unitOfWork = unitOfWork;
         }
         public override bool Add(Booking instance)
         {
             var result = base.Add(instance);
-            _unitOfWork.SaveChanges();
             return result;
         }
         public override Booking GetById(int key)
         {
-            return DBContextFactory.GetDbContextInstance().Bookings.SingleOrDefault(p => p.BookingId == key);
+            return DBContext.Bookings.SingleOrDefault(p => p.BookingId == key);
         }
 
         public override bool Delete(int key)
         {
                 try
                 {
-                    DBContextFactory.GetDbContextInstance()
-                        .Bookings.Remove(
-                            DBContextFactory.GetDbContextInstance().Bookings.SingleOrDefault(k => k.BookingId == key));
-                    _unitOfWork.SaveChanges();
+                DBContext.Bookings.Remove(
+                        DBContext.Bookings.SingleOrDefault(k => k.BookingId == key));
                     return true;
                 }
                 catch (Exception e)
@@ -55,12 +47,10 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 try
                 {
                     var booking =
-                        DBContextFactory.GetDbContextInstance()
-                            .Bookings.SingleOrDefault(k => k.BookingId == instance.BookingId);
+                        DBContext.Bookings.SingleOrDefault(k => k.BookingId == instance.BookingId);
                     booking.BookingDate = instance.BookingDate;
                     booking.EventId = instance.EventId;
                     booking.NumberOfTickets = instance.NumberOfTickets;
-                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)
@@ -73,9 +63,8 @@ namespace TicketMasterDataAccess.ConcreteRepositories
         {
                 try
                 {
-                     DBContextFactory.GetDbContextInstance().Tickets.Add(ticket);
-                    _unitOfWork.SaveChanges();
-                    var evet = DBContextFactory.GetDbContextInstance().Events.SingleOrDefault(p => p.EventId == ticket.EventId);
+                     DBContext.Tickets.Add(ticket);
+                    var evet = DBContext.Events.SingleOrDefault(p => p.EventId == ticket.EventId);
                     ticket.Event = evet;
 
                     var booking = new Booking
@@ -90,7 +79,6 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                     };
 
                     this.Add(booking);
-                    _unitOfWork.SaveChanges();
                     return booking.BookingId;
                 }
                 catch (Exception e)
@@ -101,15 +89,14 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 
         public virtual Booking[] GetTicketsForUser(string username)
         {
-            var userRepository = new TicketMasterUserRepository(new UnitOfWork.UnitOfWork());
+            var userRepository = new TicketMasterUserRepository(DBContext);
             var user = userRepository.GetUserByName(username);
-            return DBContextFactory.GetDbContextInstance().Bookings.Where(p => p.UserId == user.UserId).ToArray();
+            return DBContext.Bookings.Where(p => p.UserId == user.UserId).ToArray();
         }
 
         public virtual BookingTicketInfo[] GetTicketsForUserVerified()
         {
-            var DBContext = DBContextFactory.GetDbContextInstance();
-            var userRepository = new TicketMasterUserRepository(new UnitOfWork.UnitOfWork());
+            var userRepository = new TicketMasterUserRepository(DBContext);
             var tickets = from t in DBContext.Tickets
                           from b in DBContext.Bookings
                           from u in DBContext.TicketMasterUsers
@@ -128,8 +115,6 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 
         public virtual GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to)
         {
-            var DBContext = DBContextFactory.GetDbContextInstance();
-
             var results = from b in DBContext.Bookings
                 from t in DBContext.Tickets where b.EventId == t.EventId && b.BookingDate >= fro && b.BookingDate <= to
                 orderby b.Ticket.Event.EventName
@@ -150,8 +135,6 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 
         public virtual BookingStats[] GetStatsByMonth(DateTime fro, DateTime to)
         {
-            var DBContext = DBContextFactory.GetDbContextInstance();
-
             var results = from b in DBContext.Bookings
                           from t in DBContext.Tickets
                           where b.EventId == t.EventId && b.BookingDate >= fro && b.BookingDate <= to

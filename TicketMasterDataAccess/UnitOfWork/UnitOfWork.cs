@@ -5,15 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketMasterDataAccess.DataAccess;
 using TicketMasterDataAccess.Factories;
-using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
+using TicketMasterDataAccess.Abstracts;
 
 namespace TicketMasterDataAccess.UnitOfWork
 {
-    public class UnitOfWork: IUnitOfWork.IUnitOfWork
+    public class UnitOfWork<T>: IUnitOfWork.IUnitOfWork where T : class
     {
+        private TicketMasterEntities dbContext;
+
+        private AbstractTicketRepository<T, int> repository;
+        public UnitOfWork(AbstractTicketRepository<T,int> repository)
+        {
+            this.repository = repository;
+        }
         public void SaveChanges()
         {
-            DBContextFactory.GetDbContextInstance().SaveChanges();
+            dbContext = new TicketMasterEntities();
+            dbContext.SaveChanges();
         }
     }
 }
