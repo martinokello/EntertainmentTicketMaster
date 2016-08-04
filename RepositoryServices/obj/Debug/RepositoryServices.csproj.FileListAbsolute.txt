@@ -56,9 +56,6 @@ C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Newtonsoft.
 C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.csprojResolveAssemblyReference.cache
 C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.dll
 C:\C#Projects\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.pdb
-C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.csprojResolveAssemblyReference.cache
-C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.dll
-C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.pdb
 C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\RepositoryServices.dll
 C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\RepositoryServices.pdb
 C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\EmailServices.dll
@@ -71,3 +68,6 @@ C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Ticket
 C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Twitter.pdb
 C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\EntityFramework.xml
 C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\bin\Debug\Newtonsoft.Json.xml
+C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.csprojResolveAssemblyReference.cache
+C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.dll
+C:\GitRepositories\EntertainmentTicketMaster\RepositoryServices\obj\Debug\RepositoryServices.pdb

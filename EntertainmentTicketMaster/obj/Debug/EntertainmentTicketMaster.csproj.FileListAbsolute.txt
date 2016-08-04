@@ -302,6 +302,7 @@ C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.WebPages.Razor.xml
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.dll
 C:\C#Projects\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.pdb
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EntertainmentTicketMaster.dll.config
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EntertainmentTicketMaster.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EntertainmentTicketMaster.pdb
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\EmailServices.dll
@@ -368,3 +369,6 @@ C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.csproj.GenerateResource.Cache
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.pdb
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Newtonsoft.Json.xml
