@@ -318,6 +318,7 @@ C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Micro
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Owin.Security.OAuth.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.Configuration.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.dll
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Web.Infrastructure.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Newtonsoft.Json.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Owin.dll
@@ -354,6 +355,8 @@ C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Micro
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Owin.Security.OAuth.xml
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.xml
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Newtonsoft.Json.xml
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Net.Http.Formatting.xml
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Helpers.xml
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\System.Web.Http.xml
@@ -369,6 +372,6 @@ C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.csproj.GenerateResource.Cache
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.dll
 C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\obj\Debug\EntertainmentTicketMaster.pdb
-C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
-C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
-C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Newtonsoft.Json.xml
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Antlr3.Runtime.dll
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\WebActivatorEx.dll
+C:\GitRepositories\EntertainmentTicketMaster\EntertainmentTicketMaster\bin\Antlr3.Runtime.pdb

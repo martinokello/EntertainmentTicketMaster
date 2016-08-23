@@ -33,5 +33,6 @@ C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\En
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.dll
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.xml
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.csprojResolveAssemblyReference.cache
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb
