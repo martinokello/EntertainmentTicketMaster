@@ -23,7 +23,7 @@ namespace RepositoryServices.Services
         private IUnitOfWork _bookingUnitOfWork;
 
 
-        public RepositoryAdminServices(TicketMasterUserRepository userRepository)
+        public RepositoryAdminServices(ITicketMasterUserRepositorySegregator userRepository)
         {
             var dbContext = new TicketMasterEntities();
             _ticketMasterUserRepository = userRepository as TicketMasterUserRepository;

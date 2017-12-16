@@ -11,10 +11,9 @@ namespace TicketMasterDataAccess.Abstracts
 {
     public abstract class AbstractTicketRepository<T, TKey> : IRepository<T, TKey> where T : class
     {
-        protected TicketMasterEntities DBContext;
+        public TicketMasterEntities DBContext { get; set; }
 
-        protected AbstractTicketRepository(TicketMasterEntities dbContext) {
-            DBContext = dbContext;
+        protected AbstractTicketRepository() {
         }
         public abstract T GetById(TKey key);
 

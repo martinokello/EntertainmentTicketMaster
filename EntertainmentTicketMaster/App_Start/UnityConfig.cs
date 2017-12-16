@@ -1,12 +1,11 @@
 using System.Web.Mvc;
 using EmailServices;
 using EmailServices.Interfaces;
-using Microsoft.Practices.Unity;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.ConcreteRepositories;
-using TicketMasterDataAccess.UnitOfWork;
-using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
-using Unity.Mvc5;
+using System.Web.Http;
+using Unity;
+using Unity.AspNet.Mvc;
 
 namespace EntertainmentTicketMaster
 {
@@ -14,11 +13,10 @@ namespace EntertainmentTicketMaster
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
-            
+            var container = new UnityContainer();
             // register all your components with the container here
             // it is NOT necessary to register your controllers
-            
+
             // e.g. container.RegisterType<ITestService, TestService>();
 
             container.RegisterType<IRepositoryTicketServiceSegregator, RepositoryTicketServices>();
@@ -34,4 +32,4 @@ namespace EntertainmentTicketMaster
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
-}
+}          

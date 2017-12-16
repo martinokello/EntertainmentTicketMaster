@@ -14,7 +14,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class UserRepository : AbstractTicketRepository<TicketMasterUser, int>, IUserRepositorySegregator
     {
-        public UserRepository(TicketMasterEntities context):base(context)
+        public UserRepository()
         {
             
         }

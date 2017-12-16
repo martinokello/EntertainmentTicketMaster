@@ -14,7 +14,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class TicketRepository : AbstractTicketRepository<Ticket, int>, ITicketRepositorySegregator
     {
-        public TicketRepository(TicketMasterEntities context):base(context)
+        public TicketRepository()
         {
         }
         public override Ticket GetById(int key)

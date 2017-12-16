@@ -39,11 +39,13 @@ namespace UPAEventsPayPal
             HttpContext context = application.Context;
             try
             {
+                var bookingRepository = new BookingRepository();
+                bookingRepository.DBContext = new TicketMasterEntities(); 
                 string myUrl = System.Configuration.ConfigurationManager.AppSettings["NotifyUrl"];
                 if (application.Request.Path.Contains("VerifyPayment"))
                 {
                     var form = context.Request.QueryString;
-                    InstantPaymentNotification PayPalINP = new InstantPaymentNotification(context.Request, System.Configuration.ConfigurationSettings.AppSettings["BusinessEmail"],form,new BookingRepository(new TicketMasterEntities()));
+                    InstantPaymentNotification PayPalINP = new InstantPaymentNotification(context.Request, System.Configuration.ConfigurationSettings.AppSettings["BusinessEmail"],form,bookingRepository);
                     FileInfo fileInfo = new FileInfo(context.Server.MapPath("~/IPNMessage.txt"));
                     StreamWriter IPNWriter = fileInfo.CreateText();
                     bool result = PayPalINP.ProcessIPNResults(context,IPNWriter);

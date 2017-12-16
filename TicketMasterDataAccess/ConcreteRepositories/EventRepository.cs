@@ -13,7 +13,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class EventRepository : AbstractTicketRepository<Event, int>, IEventRepositorySegregator
     {
-        public EventRepository(TicketMasterEntities context):base(context)
+        public EventRepository()
         {
         }
         public override bool Add(Event instance)

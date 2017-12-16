@@ -15,7 +15,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class BookingRepository : AbstractTicketRepository<Booking, int>, IBookingRepositorySegregator
     {
-        public BookingRepository(TicketMasterEntities context) : base(context)
+        public BookingRepository()
         {
         }
         public override bool Add(Booking instance)
@@ -89,14 +89,14 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 
         public virtual Booking[] GetTicketsForUser(string username)
         {
-            var userRepository = new TicketMasterUserRepository(DBContext);
+            var userRepository = new TicketMasterUserRepository();
             var user = userRepository.GetUserByName(username);
             return DBContext.Bookings.Where(p => p.UserId == user.UserId).ToArray();
         }
 
         public virtual BookingTicketInfo[] GetTicketsForUserVerified()
         {
-            var userRepository = new TicketMasterUserRepository(DBContext);
+            var userRepository = new TicketMasterUserRepository();
             var tickets = from t in DBContext.Tickets
                           from b in DBContext.Bookings
                           from u in DBContext.TicketMasterUsers

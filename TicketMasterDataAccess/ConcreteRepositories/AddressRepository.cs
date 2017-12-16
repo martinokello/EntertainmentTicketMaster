@@ -11,7 +11,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class EntertainmentAddressRepository : AbstractTicketRepository<EntertainmentAddress, int>, IEntertainmentAddressRepositorySegregator
     {
-        public EntertainmentAddressRepository(TicketMasterEntities context):base(context)
+        public EntertainmentAddressRepository()
         {
             
         }

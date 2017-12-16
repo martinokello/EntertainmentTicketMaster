@@ -25,9 +25,9 @@ namespace EntertainmentTicketMaster.Controllers
 
         private EmailService _emailServices;
 
-        public EmailListController()
+        public EmailListController(ITicketMasterUserRepositorySegregator adminRepository)
         {
-            _adminServices = new RepositoryAdminServices(new TicketMasterUserRepository(new TicketMasterEntities()));
+            _adminServices = new RepositoryAdminServices(adminRepository);
         }
 
         // POST api/<controller>
