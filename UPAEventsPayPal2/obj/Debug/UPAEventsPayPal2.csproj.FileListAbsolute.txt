@@ -61,3 +61,15 @@ C:\GitRepositories\EntertainmentTicketMaster\UPAEventsPayPal2\bin\TicketMasterDa
 C:\GitRepositories\EntertainmentTicketMaster\UPAEventsPayPal2\obj\Debug\UPAEventsPayPal2.csprojResolveAssemblyReference.cache
 C:\GitRepositories\EntertainmentTicketMaster\UPAEventsPayPal2\obj\Debug\UPAEventsPayPal.dll
 C:\GitRepositories\EntertainmentTicketMaster\UPAEventsPayPal2\obj\Debug\UPAEventsPayPal.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\UPAEventsPayPal.dll.config
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\UPAEventsPayPal.dll
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\UPAEventsPayPal.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\EmailServices.dll
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\RepositoryServices.dll
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\TicketMasterDataAccess.dll
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\EmailServices.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\RepositoryServices.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\bin\TicketMasterDataAccess.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\obj\Debug\UPAEventsPayPal2.csprojResolveAssemblyReference.cache
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\obj\Debug\UPAEventsPayPal.dll
+C:\SiteDeploys\EntertainmentTicketMaster\UPAEventsPayPal2\obj\Debug\UPAEventsPayPal.pdb

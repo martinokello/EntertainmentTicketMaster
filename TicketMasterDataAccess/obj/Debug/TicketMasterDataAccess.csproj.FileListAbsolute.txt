@@ -36,3 +36,13 @@ C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\En
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.csprojResolveAssemblyReference.cache
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.dll.config
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.dll
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.dll
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.xml
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.csprojResolveAssemblyReference.cache
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
+C:\SiteDeploys\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb

@@ -11,8 +11,7 @@ namespace TicketMasterDataAccess.UnitOfWork
 {
     public class UnitOfWork<T>: IUnitOfWork.IUnitOfWork where T : class
     {
-        private TicketMasterEntities dbContext;
-
+        public TicketMasterEntities DBContext { get; set; }
         private AbstractTicketRepository<T, int> repository;
         public UnitOfWork(AbstractTicketRepository<T,int> repository)
         {
@@ -20,8 +19,7 @@ namespace TicketMasterDataAccess.UnitOfWork
         }
         public void SaveChanges()
         {
-            dbContext = new TicketMasterEntities();
-            dbContext.SaveChanges();
+            DBContext.SaveChanges();
         }
     }
 }

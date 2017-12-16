@@ -14,6 +14,7 @@ namespace RepositoryServices.Services
         {
             _userRepository = userRepository;
             _unitOfWork = new UnitOfWork<TicketMasterUser>(userRepository);
+            (_unitOfWork as UnitOfWork<TicketMasterUser>).DBContext = new TicketMasterEntities();
         }
 
         public bool ChangeUserEmail(TicketMasterUser user)

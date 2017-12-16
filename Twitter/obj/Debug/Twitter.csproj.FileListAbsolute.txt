@@ -26,3 +26,9 @@ C:\GitRepositories\EntertainmentTicketMaster\Twitter\bin\Debug\Newtonsoft.Json.d
 C:\GitRepositories\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.dll
 C:\GitRepositories\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.pdb
 C:\GitRepositories\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.csprojResolveAssemblyReference.cache
+C:\SiteDeploys\EntertainmentTicketMaster\Twitter\bin\Debug\Twitter.dll
+C:\SiteDeploys\EntertainmentTicketMaster\Twitter\bin\Debug\Twitter.pdb
+C:\SiteDeploys\EntertainmentTicketMaster\Twitter\bin\Debug\Newtonsoft.Json.dll
+C:\SiteDeploys\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.csprojResolveAssemblyReference.cache
+C:\SiteDeploys\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.dll
+C:\SiteDeploys\EntertainmentTicketMaster\Twitter\obj\Debug\Twitter.pdb
