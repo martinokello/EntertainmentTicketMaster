@@ -28,7 +28,7 @@ namespace RepositoryServices.Services
             var dbContext = new TicketMasterEntities();
             _ticketMasterUserRepository = userRepository as TicketMasterUserRepository;
             _ticketUserUnitOfWork = new UnitOfWork<TicketMasterUser>(_ticketMasterUserRepository);
-            (_ticketUserUnitOfWork as UnitOfWork<TicketMasterUser>).DBContext = dbContext;
+            _ticketMasterUserRepository.DBContext = (_ticketUserUnitOfWork as UnitOfWork<TicketMasterUser>).DBContext = dbContext;
         }
         public RepositoryAdminServices(ITicketRepositorySegregator ticketRepository,IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator userRepository,IBookingRepositorySegregator bookingRepository)
         {
@@ -36,16 +36,16 @@ namespace RepositoryServices.Services
             var  dbContext = new TicketMasterEntities();
             _ticketRepository = ticketRepository as TicketRepository;
             _ticketUnitOfWork = new UnitOfWork<Ticket>(_ticketRepository);
-            (_ticketUnitOfWork as UnitOfWork<Ticket>).DBContext = dbContext;
+            _ticketRepository.DBContext = (_ticketUnitOfWork as UnitOfWork<Ticket>).DBContext = dbContext;
             _eventRepository = eventRepository as EventRepository;
             _eventUnitOfWork = new UnitOfWork<Event>(_eventRepository);
-            (_eventUnitOfWork as UnitOfWork<Event>).DBContext = dbContext;
+            _eventRepository.DBContext = (_eventUnitOfWork as UnitOfWork<Event>).DBContext = dbContext;
             _ticketMasterUserRepository = userRepository as TicketMasterUserRepository;
             _ticketUserUnitOfWork = new UnitOfWork<TicketMasterUser>(_ticketMasterUserRepository);
-            (_ticketUserUnitOfWork as UnitOfWork<TicketMasterUser>).DBContext = dbContext;
+            _ticketMasterUserRepository.DBContext = (_ticketUserUnitOfWork as UnitOfWork<TicketMasterUser>).DBContext = dbContext;
             _bookingRepository = bookingRepository as BookingRepository;
             _bookingUnitOfWork = new UnitOfWork<Booking>(_bookingRepository);
-            (_bookingUnitOfWork as UnitOfWork<Booking>).DBContext = dbContext;
+            _bookingRepository.DBContext = (_bookingUnitOfWork as UnitOfWork<Booking>).DBContext = dbContext;
         }
 
         public bool AddEvent(Event evnt)

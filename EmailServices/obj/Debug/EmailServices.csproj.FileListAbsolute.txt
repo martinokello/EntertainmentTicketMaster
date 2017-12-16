@@ -21,6 +21,8 @@ C:\SiteDeploys\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.d
 C:\SiteDeploys\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.pdb
 C:\GitRepositories\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.dll
 C:\GitRepositories\EntertainmentTicketMaster\EmailServices\bin\Debug\EmailServices.pdb
+C:\GitRepositories\EntertainmentTicketMaster\EmailServices\bin\Debug\Newtonsoft.Json.dll
+C:\GitRepositories\EntertainmentTicketMaster\EmailServices\bin\Debug\Newtonsoft.Json.xml
 C:\GitRepositories\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.csprojResolveAssemblyReference.cache
 C:\GitRepositories\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.dll
 C:\GitRepositories\EntertainmentTicketMaster\EmailServices\obj\Debug\EmailServices.pdb

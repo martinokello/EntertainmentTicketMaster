@@ -41,7 +41,10 @@ C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\Ti
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\TicketMasterDataAccess.pdb
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.dll
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\Newtonsoft.Json.dll
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.xml
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\bin\Debug\Newtonsoft.Json.xml
+C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.csprojResolveAssemblyReference.cache
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.dll
 C:\GitRepositories\EntertainmentTicketMaster\TicketMasterDataAccess\obj\Debug\TicketMasterDataAccess.pdb

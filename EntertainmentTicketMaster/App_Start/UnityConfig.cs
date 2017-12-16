@@ -3,9 +3,7 @@ using EmailServices;
 using EmailServices.Interfaces;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.ConcreteRepositories;
-using System.Web.Http;
 using Unity;
-using Unity.AspNet.Mvc;
 
 namespace EntertainmentTicketMaster
 {
@@ -29,7 +27,7 @@ namespace EntertainmentTicketMaster
             container.RegisterType<IEventRepositorySegregator, EventRepository>();
             container.RegisterType<IBookingRepositorySegregator, BookingRepository>();
             container.RegisterType<IEntertainmentAddressRepositorySegregator, EntertainmentAddressRepository>();
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            DependencyResolver.SetResolver(new Unity.Mvc.UnityDependencyResolver(container));
         }
     }
 }          
