@@ -87,16 +87,18 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 }
         }
 
-        public virtual Booking[] GetTicketsForUser(string username)
+        public  Booking[] GetTicketsForUser(string username)
         {
             var userRepository = new TicketMasterUserRepository();
+            userRepository.DBContext = this.DBContext;
             var user = userRepository.GetUserByName(username);
             return DBContext.Bookings.Where(p => p.UserId == user.UserId).ToArray();
         }
 
-        public virtual BookingTicketInfo[] GetTicketsForUserVerified()
+        public BookingTicketInfo[] GetTicketsForUserVerified()
         {
             var userRepository = new TicketMasterUserRepository();
+            userRepository.DBContext = this.DBContext;
             var tickets = from t in DBContext.Tickets
                           from b in DBContext.Bookings
                           from u in DBContext.TicketMasterUsers
@@ -113,7 +115,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
             return tickets.ToArray();
         }
 
-        public virtual GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to)
+        public GroupedBooking[] GetBookingsByEvent(DateTime fro, DateTime to)
         {
             var results = from b in DBContext.Bookings
                 from t in DBContext.Tickets where b.EventId == t.EventId && b.BookingDate >= fro && b.BookingDate <= to
@@ -133,7 +135,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 
         }
 
-        public virtual BookingStats[] GetStatsByMonth(DateTime fro, DateTime to)
+        public BookingStats[] GetStatsByMonth(DateTime fro, DateTime to)
         {
             var results = from b in DBContext.Bookings
                           from t in DBContext.Tickets

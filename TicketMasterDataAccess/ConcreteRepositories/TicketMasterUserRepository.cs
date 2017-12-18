@@ -74,7 +74,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                     return false;
                 }
             }
-        public virtual TicketMasterUser GetUserByName(string username)
+        public TicketMasterUser GetUserByName(string username)
         {
             return DBContext.TicketMasterUsers.SingleOrDefault(p => p.UserName == username);
         }
