@@ -14,19 +14,22 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class UserRepository : AbstractTicketRepository<TicketMasterUser, int>, IUserRepositorySegregator
     {
-        public UserRepository()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public UserRepository(IUnitOfWork unitOfWork)
         {
-            
+            _unitOfWork = unitOfWork;
         }
 
         public override bool Add(TicketMasterUser instance)
         {
             var result = base.Add(instance);
+            _unitOfWork.SaveChanges();
             return result;
         }
         public override TicketMasterUser GetById(int key)
         {
-            return DBContext.TicketMasterUsers.SingleOrDefault(p => p.UserId == key);
+            return DBContextFactory.GetDbContextInstance().TicketMasterUsers.SingleOrDefault(p => p.UserId == key);
         }
 
         public override bool Delete(int key)
@@ -35,7 +38,8 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 {
                     DBContextFactory.GetDbContextInstance()
                         .TicketMasterUsers.Remove(
-                            DBContext.TicketMasterUsers.SingleOrDefault(k => k.UserId == key));
+                            DBContextFactory.GetDbContextInstance().TicketMasterUsers.SingleOrDefault(k => k.UserId == key));
+                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)
@@ -49,9 +53,11 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 try
                 {
                     var user =
-                        DBContext.TicketMasterUsers.SingleOrDefault(k => k.UserId == instance.UserId);
+                        DBContextFactory.GetDbContextInstance()
+                            .TicketMasterUsers.SingleOrDefault(k => k.UserId == instance.UserId);
                     user.UserName = instance.UserName;
                     user.Email = instance.Email;
+                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)

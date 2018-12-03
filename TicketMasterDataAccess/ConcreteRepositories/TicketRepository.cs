@@ -14,24 +14,30 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class TicketRepository : AbstractTicketRepository<Ticket, int>, ITicketRepositorySegregator
     {
-        public TicketRepository()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public TicketRepository(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
         }
         public override Ticket GetById(int key)
         {
-            return DBContext.Tickets.SingleOrDefault(p => p.TicketId == key);
+            return DBContextFactory.GetDbContextInstance().Tickets.SingleOrDefault(p => p.TicketId == key);
         }
         public override bool Add(Ticket instance)
         {
             var result = base.Add(instance);
+            _unitOfWork.SaveChanges();
             return result;
         }
         public override bool Delete(int key)
         {
                 try
                 {
-                DBContext.Tickets.Remove(
-                        DBContext.Tickets.SingleOrDefault(k => k.TicketId == key));
+                    DBContextFactory.GetDbContextInstance()
+                        .Tickets.Remove(
+                            DBContextFactory.GetDbContextInstance().Tickets.SingleOrDefault(k => k.TicketId == key));
+                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)
@@ -45,10 +51,12 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 try
                 {
                     var ticket =
-                        DBContext.Tickets.SingleOrDefault(k => k.TicketId == instance.TicketId);
+                        DBContextFactory.GetDbContextInstance()
+                            .Tickets.SingleOrDefault(k => k.TicketId == instance.TicketId);
                     ticket.EventId = instance.EventId;
                     ticket.Price = instance.Price;
                     ticket.TicketGUID = instance.TicketGUID;
+                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)

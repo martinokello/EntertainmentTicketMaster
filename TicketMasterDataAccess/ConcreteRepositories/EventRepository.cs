@@ -13,25 +13,31 @@ namespace TicketMasterDataAccess.ConcreteRepositories
 {
     public class EventRepository : AbstractTicketRepository<Event, int>, IEventRepositorySegregator
     {
-        public EventRepository()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public EventRepository(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
         }
         public override bool Add(Event instance)
         {
             var result = base.Add(instance);
+            _unitOfWork.SaveChanges();
             return result;
         }
         public override Event GetById(int key)
         {
-            return DBContext.Events.SingleOrDefault(p => p.EventId == key);
+            return DBContextFactory.GetDbContextInstance().Events.SingleOrDefault(p => p.EventId == key);
         }
 
         public override bool Delete(int key)
         {
                 try
                 {
-                    DBContext.Events.Remove(
-                            DBContext.Events.SingleOrDefault(k => k.EventId == key));
+                    DBContextFactory.GetDbContextInstance()
+                        .Events.Remove(
+                            DBContextFactory.GetDbContextInstance().Events.SingleOrDefault(k => k.EventId == key));
+                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)
@@ -44,7 +50,8 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                 try
                 {
                     var evt =
-                        DBContext.Events.SingleOrDefault(k => k.EventId == instance.EventId);
+                        DBContextFactory.GetDbContextInstance()
+                            .Events.SingleOrDefault(k => k.EventId == instance.EventId);
                     evt.EventDescription = instance.EventDescription;
                     evt.EventId = instance.EventId;
                     evt.NumberOfTickets = instance.NumberOfTickets;
@@ -53,6 +60,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
                     evt.Location = instance.Location;
                     evt.Tickets = instance.Tickets;
                     evt.EventDate = instance.EventDate;
+                    _unitOfWork.SaveChanges();
                     return true;
                 }
                 catch (Exception e)
@@ -64,7 +72,7 @@ namespace TicketMasterDataAccess.ConcreteRepositories
         public decimal? GetUnitPriceOfTicketByEventId(int eventId)
         {
             return
-                DBContext.Events.SingleOrDefault(p => p.EventId == eventId).PricePerTicket;
+                DBContextFactory.GetDbContextInstance().Events.SingleOrDefault(p => p.EventId == eventId).PricePerTicket;
         }
     }
     public interface IEventRepositorySegregator

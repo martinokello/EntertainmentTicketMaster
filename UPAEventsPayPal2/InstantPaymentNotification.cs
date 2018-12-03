@@ -9,9 +9,6 @@ using System.Data.SqlClient;
 using EmailServices.EmailDomain;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.ConcreteRepositories;
-using TicketMasterDataAccess.UnitOfWork;
-using TicketMasterDataAccess.UnitOfWork.IUnitOfWork;
-using TicketMasterDataAccess.DataAccess;
 
 
 namespace UPAEventsPayPal
@@ -25,15 +22,13 @@ namespace UPAEventsPayPal
         private DateTime orderDate;
         private NameValueCollection form;
         private BookingRepository _bookingRepository;
-        private IUnitOfWork _bookingUnitOfWork;
 
-        public InstantPaymentNotification(HttpRequest request, string accountEmail, NameValueCollection form, BookingRepository bookingRepository)
+        public InstantPaymentNotification(HttpRequest request, string accountEmail, NameValueCollection form, BookingRepository repositoryTicket)
         {
             this.request = request;
             this.accountEmail = accountEmail;
             this.form = form;
-            _bookingRepository = bookingRepository;
-            _bookingUnitOfWork = new UnitOfWork<Booking>(_bookingRepository);
+            _bookingRepository = repositoryTicket;
         }
 
         public string ClientEmail

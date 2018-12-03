@@ -10,8 +10,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Net.Mail;
 using System.IO;
-using TicketMasterDataAccess.DataAccess;
+using RepositoryServices.Services;
 using TicketMasterDataAccess.ConcreteRepositories;
+using TicketMasterDataAccess.UnitOfWork;
 
 namespace UPAEventsPayPal
 {
@@ -39,13 +40,11 @@ namespace UPAEventsPayPal
             HttpContext context = application.Context;
             try
             {
-                var bookingRepository = new BookingRepository();
-                bookingRepository.DBContext = new TicketMasterEntities(); 
                 string myUrl = System.Configuration.ConfigurationManager.AppSettings["NotifyUrl"];
                 if (application.Request.Path.Contains("VerifyPayment"))
                 {
                     var form = context.Request.QueryString;
-                    InstantPaymentNotification PayPalINP = new InstantPaymentNotification(context.Request, System.Configuration.ConfigurationSettings.AppSettings["BusinessEmail"],form,bookingRepository);
+                    InstantPaymentNotification PayPalINP = new InstantPaymentNotification(context.Request, System.Configuration.ConfigurationSettings.AppSettings["BusinessEmail"],form, new BookingRepository(new UnitOfWork()));
                     FileInfo fileInfo = new FileInfo(context.Server.MapPath("~/IPNMessage.txt"));
                     StreamWriter IPNWriter = fileInfo.CreateText();
                     bool result = PayPalINP.ProcessIPNResults(context,IPNWriter);

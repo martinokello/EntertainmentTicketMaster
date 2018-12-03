@@ -36,10 +36,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\EntertainmentTicketMaster\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\EntertainmentTicketMaster\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -60,6 +56,9 @@
     <Compile Include="ConcreteRepositories\TicketMasterUserRepository.cs" />
     <Compile Include="ConcreteRepositories\TicketRepository.cs" />
     <Compile Include="ConcreteRepositories\UserRepository.cs" />
+    <Compile Include="DataAccess\ADDRESS.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\AspNetRole.cs">
       <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
@@ -75,10 +74,70 @@
     <Compile Include="DataAccess\Booking.cs">
       <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\COUNTRY.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\C__MigrationHistory.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\EncryptionAlgorithm.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\EntertainmentAddress.cs">
       <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\EpsilonHost.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\EpsilonKey.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\EpsilonUser.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\Event.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ForumReview.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\GetRevenueByMonthOverLastYear_Result.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ItemOrder.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Login.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MartinLayooIncGetMostOrderedItems_Result.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\NumberOfProductsBoughtLastYearByMonth_Result.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Order.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Property.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RSSChannel.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RSSItem.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SHOP_PRODS.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TicketMasterEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sysdiagram.cs">
       <DependentUpon>TicketMasterEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\Ticket.cs">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,7 +12,7 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
     <script src="@Url.Content("~/jquery-ui-1.10.3/ui/jquery-ui.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/chart.js")" type="text/javascript"></script>
-    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript" src="https://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">        stLight.options({ publisher: "7253900c-b2c5-475f-a54d-05a12e8b60c2" }); </script>
     <style type="text/css">
         div#header a.selected {
@@ -81,7 +81,7 @@
                 var userDetails = JSON.stringify(user);
 
                 $.ajax({
-                    url: "/Home/Index/api/EmailList",
+                    url: '@System.Configuration.ConfigurationManager.AppSettings["SiteRoot2"]'+'/api/EmailList/AddUserToMailList',
                     type: "POST",
                     contentType: "application/json",
                     data: userDetails,
@@ -89,7 +89,7 @@
 						alert('Your email: '+email+' has been successfully added to the mailing list');
                     },
                     error: function (jqXHR, error, errorThrown) {
-						alert('Your email: '+email+' failed addition to mail list: check your email format!!');
+						alert('Your email: '+email+' failed addition to mail list, server error: email may already exist!!');
                     }
                 });
                 return false;
@@ -206,7 +206,7 @@
     </div>
     <div><br/></div>
     <div style="text-align: center;font-size:small;font-weight: bolder;">
-        <a style="color: #ae6662; font-weight: bolder;" onmouseover="this.style.color = 'orange';" onmouseout="this.style.color = '#ae6662';" href="http://www.martinlayooinc.co.uk">Site Developed by MartinLayooInc. Software &copy; 2007 - 2016</a>
+        <a style="color: #ae6662; font-weight: bolder;" onmouseover="this.style.color = 'orange';" onmouseout="this.style.color = '#ae6662';" href="https://www.martinlayooinc.co.uk">Site Developed by MartinLayooInc. Software &copy; 2007 - 2016</a>
     </div>
     <div id="footer">
         <div>
@@ -254,7 +254,7 @@
                 &#169; 2023 Cinema Theatre
             </p>
             <div class="connect">
-                <span>Stay Connected:</span> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
+                <span>Stay Connected:</span> <a href="https://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="https://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="https://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
             </div>
         </div>
 

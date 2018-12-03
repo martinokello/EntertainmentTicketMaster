@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Web;
@@ -12,6 +13,7 @@ using RepositoryServices.Services;
 using TicketMasterDataAccess.DataAccess;
 using EmailServices.EmailDomain;
 using EmailServices;
+using Microsoft.Owin;
 
 namespace EntertainmentTicketMaster.Controllers
 {
@@ -421,7 +423,15 @@ namespace EntertainmentTicketMaster.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().Authentication;
+                IDictionary<string, object> environment =
+                    Request.RequestContext.HttpContext.GetOwinContext().Environment;
+
+                if (environment == null)
+                {
+                    throw new InvalidOperationException("No owin Environment found");
+                }
+
+                return (new OwinContext(environment)).Authentication; 
             }
         }
 

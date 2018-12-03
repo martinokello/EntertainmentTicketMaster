@@ -1,48 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="omegaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="AspNetRole">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-  </EntityType>
-  <EntityType Name="AspNetUserClaim">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
-  </EntityType>
-  <EntityType Name="AspNetUserLogin">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="LoginProvider" />
-      <PropertyRef Name="ProviderKey" />
-    </Key>
-    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
-  </EntityType>
-  <EntityType Name="AspNetUser">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-    <NavigationProperty Name="TicketMasterUsers" Relationship="Self.FK_TicketMasterUsers_ASPNetUsers" FromRole="AspNetUsers" ToRole="TicketMasterUsers" />
-    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-  </EntityType>
   <EntityType Name="Booking">
     <Key>
       <PropertyRef Name="BookingId" />
@@ -55,19 +12,6 @@
     <Property Name="TicketId" Type="Int32" />
     <Property Name="IsVerifiedPayment" Type="Boolean" />
     <NavigationProperty Name="Ticket" Relationship="Self.FK_Booking_Ticket" FromRole="Booking" ToRole="Ticket" />
-  </EntityType>
-  <EntityType Name="EntertainmentAddress">
-    <Key>
-      <PropertyRef Name="AddressId" />
-    </Key>
-    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Town" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="UserId" Type="Int32" />
-    <NavigationProperty Name="TicketMasterUser" Relationship="Self.FK_Address_TicketMasterUsers" FromRole="EntertainmentAddress" ToRole="TicketMasterUsers" />
   </EntityType>
   <EntityType Name="Event">
     <Key>
@@ -93,57 +37,6 @@
     <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Ticket" FromRole="Ticket" ToRole="Booking" />
     <NavigationProperty Name="Event" Relationship="Self.FK_Ticket_Event" FromRole="Ticket" ToRole="Event" />
   </EntityType>
-  <EntityType Name="TicketMasterUser">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="ASPNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_TicketMasterUsers_ASPNetUsers" FromRole="TicketMasterUsers" ToRole="AspNetUsers" />
-    <NavigationProperty Name="EntertainmentAddresses" Relationship="Self.FK_Address_TicketMasterUsers" FromRole="TicketMasterUsers" ToRole="EntertainmentAddress" />
-  </EntityType>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaims">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogins">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TicketMasterUsers_ASPNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-    <End Role="TicketMasterUsers" Type="Self.TicketMasterUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TicketMasterUsers">
-        <PropertyRef Name="ASPNetUserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Booking_Ticket">
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="0..1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
@@ -153,18 +46,6 @@
       </Principal>
       <Dependent Role="Booking">
         <PropertyRef Name="TicketId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Address_TicketMasterUsers">
-    <End Role="TicketMasterUsers" Type="Self.TicketMasterUser" Multiplicity="0..1" />
-    <End Role="EntertainmentAddress" Type="Self.EntertainmentAddress" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TicketMasterUsers">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="EntertainmentAddress">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -180,47 +61,498 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="TicketMasterEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
-    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
-    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
-    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="Bookings" EntityType="Self.Booking" />
-    <EntitySet Name="EntertainmentAddresses" EntityType="Self.EntertainmentAddress" />
     <EntitySet Name="Events" EntityType="Self.Event" />
     <EntitySet Name="Tickets" EntityType="Self.Ticket" />
-    <EntitySet Name="TicketMasterUsers" EntityType="Self.TicketMasterUser" />
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TicketMasterUsers_ASPNetUsers" Association="Self.FK_TicketMasterUsers_ASPNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="TicketMasterUsers" EntitySet="TicketMasterUsers" />
-    </AssociationSet>
     <AssociationSet Name="FK_Booking_Ticket" Association="Self.FK_Booking_Ticket">
       <End Role="Ticket" EntitySet="Tickets" />
       <End Role="Booking" EntitySet="Bookings" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Address_TicketMasterUsers" Association="Self.FK_Address_TicketMasterUsers">
-      <End Role="TicketMasterUsers" EntitySet="TicketMasterUsers" />
-      <End Role="EntertainmentAddress" EntitySet="EntertainmentAddresses" />
     </AssociationSet>
     <AssociationSet Name="FK_Ticket_Event" Association="Self.FK_Ticket_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="Ticket" EntitySet="Tickets" />
     </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    <EntitySet Name="C__MigrationHistory" EntityType="omegaxModel.C__MigrationHistory" />
+    <EntitySet Name="ADDRESSes" EntityType="omegaxModel.ADDRESS" />
+    <EntitySet Name="COUNTRies" EntityType="omegaxModel.COUNTRY" />
+    <EntitySet Name="EncryptionAlgorithms" EntityType="omegaxModel.EncryptionAlgorithm" />
+    <EntitySet Name="EpsilonHosts" EntityType="omegaxModel.EpsilonHost" />
+    <EntitySet Name="EpsilonKeys" EntityType="omegaxModel.EpsilonKey" />
+    <EntitySet Name="EpsilonUsers" EntityType="omegaxModel.EpsilonUser" />
+    <EntitySet Name="ForumReviews" EntityType="omegaxModel.ForumReview" />
+    <EntitySet Name="ItemOrders" EntityType="omegaxModel.ItemOrder" />
+    <EntitySet Name="Logins" EntityType="omegaxModel.Login" />
+    <EntitySet Name="Orders" EntityType="omegaxModel.Order" />
+    <EntitySet Name="Properties" EntityType="omegaxModel.Property" />
+    <EntitySet Name="RSSChannels" EntityType="omegaxModel.RSSChannel" />
+    <EntitySet Name="RSSItems" EntityType="omegaxModel.RSSItem" />
+    <EntitySet Name="SHOP_PRODS" EntityType="omegaxModel.SHOP_PRODS" />
+    <EntitySet Name="sysdiagrams" EntityType="omegaxModel.sysdiagram" />
+    <AssociationSet Name="FK_EpsilonKeys_EpsilonUsers" Association="omegaxModel.FK_EpsilonKeys_EpsilonUsers">
+      <End Role="EpsilonKey" EntitySet="EpsilonKeys" />
+      <End Role="EpsilonKey1" EntitySet="EpsilonKeys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EpsilonUsers_EpsilonKeys" Association="omegaxModel.FK_EpsilonUsers_EpsilonKeys">
+      <End Role="EpsilonUser" EntitySet="EpsilonUsers" />
+      <End Role="EpsilonUser1" EntitySet="EpsilonUsers" />
+    </AssociationSet>
+    <FunctionImport Name="AddUser">
+      <Parameter Name="userN" Mode="In" Type="String" />
+      <Parameter Name="passW" Mode="In" Type="String" />
+      <Parameter Name="role" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CheckUser">
+      <Parameter Name="userN" Mode="In" Type="String" />
+      <Parameter Name="passW" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetRevenueByMonthOverLastYear" ReturnType="Collection(omegaxModel.GetRevenueByMonthOverLastYear_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="MartinLayooIncGetMostOrderedItems" ReturnType="Collection(omegaxModel.MartinLayooIncGetMostOrderedItems_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="NumberOfProductsBoughtLastYearByMonth" ReturnType="Collection(omegaxModel.NumberOfProductsBoughtLastYearByMonth_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="ShrinkMe" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AutoSearchNegate" ReturnType="Collection(String)" />
+    <FunctionImport Name="sp_ChangeEncryptUserPassword">
+      <Parameter Name="userName" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EncryptPassword">
+      <Parameter Name="oldPassword" Mode="In" Type="String" />
+      <Parameter Name="newPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(omegaxModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(omegaxModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="AspNetRoles" EntityType="omegaxModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="omegaxModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="omegaxModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="omegaxModel.AspNetUser" />
+    <EntitySet Name="EntertainmentAddresses" EntityType="omegaxModel.EntertainmentAddress" />
+    <EntitySet Name="TicketMasterUsers" EntityType="omegaxModel.TicketMasterUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="omegaxModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="omegaxModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketMasterUsers_ASPNetUsers" Association="omegaxModel.FK_TicketMasterUsers_ASPNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="TicketMasterUser" EntitySet="TicketMasterUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_TicketMasterUsers" Association="omegaxModel.FK_Address_TicketMasterUsers">
+      <End Role="TicketMasterUser" EntitySet="TicketMasterUsers" />
+      <End Role="EntertainmentAddress" EntitySet="EntertainmentAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="omegaxModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ADDRESS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="address3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="postcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="country_id_fk" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="COUNTRY">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="value" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="nameCased" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="nameAbv" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EncryptionAlgorithm">
+    <Key>
+      <PropertyRef Name="EncryptTypeId" />
+    </Key>
+    <Property Name="EncryptTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EncryptionAlgorithm1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EpsilonHost">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="PortNumber" Type="Int32" />
+    <Property Name="AddressFlag" Type="Boolean" Nullable="false" />
+    <Property Name="Current" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EpsilonKey">
+    <Key>
+      <PropertyRef Name="KeyId" />
+    </Key>
+    <Property Name="KeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="PublicKey" Type="Binary" Nullable="false" MaxLength="1000" FixedLength="false" />
+    <Property Name="PrivateKey" Type="Binary" Nullable="false" MaxLength="1000" FixedLength="false" />
+    <Property Name="Current" Type="Boolean" Nullable="false" />
+    <Property Name="TrippleDESKey" Type="Binary" MaxLength="100" FixedLength="false" />
+    <Property Name="RSAStrength" Type="Int32" Nullable="false" />
+    <Property Name="Modulus" Type="Binary" Nullable="false" MaxLength="1000" FixedLength="false" />
+    <Property Name="EncryptTypeId" Type="Int32" />
+    <NavigationProperty Name="EpsilonKeys1" Relationship="omegaxModel.FK_EpsilonKeys_EpsilonUsers" FromRole="EpsilonKey" ToRole="EpsilonKey1" />
+    <NavigationProperty Name="EpsilonKey1" Relationship="omegaxModel.FK_EpsilonKeys_EpsilonUsers" FromRole="EpsilonKey1" ToRole="EpsilonKey" />
+  </EntityType>
+  <EntityType Name="EpsilonUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RoleFlag" Type="Boolean" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EpsilonUsers1" Relationship="omegaxModel.FK_EpsilonUsers_EpsilonKeys" FromRole="EpsilonUser" ToRole="EpsilonUser1" />
+    <NavigationProperty Name="EpsilonUser1" Relationship="omegaxModel.FK_EpsilonUsers_EpsilonKeys" FromRole="EpsilonUser1" ToRole="EpsilonUser" />
+  </EntityType>
+  <EntityType Name="ForumReview">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="forum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="reviews" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="forum_flag" Type="Boolean" />
+    <Property Name="review_flag" Type="Boolean" />
+    <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="timePosted" Type="DateTime" Precision="3" />
+    <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ItemOrder">
+    <Key>
+      <PropertyRef Name="itemId" />
+    </Key>
+    <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="order_id_fk" Type="Int32" />
+    <Property Name="numberOrdered" Type="Int32" />
+    <Property Name="itemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="roles" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="expireDate" Type="DateTime" Precision="3" />
+    <Property Name="validDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="order_date" Type="DateTime" Precision="3" />
+    <Property Name="order_gross" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="paid_for" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyNumber" Type="Int32" />
+    <Property Name="CrossArea" Type="Decimal" Precision="8" Scale="4" />
+    <Property Name="YieldStress" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="PlasticMod" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="YoungsMod" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="SecondMomArea" Type="Decimal" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="RSSChannel">
+    <Key>
+      <PropertyRef Name="ChannelId" />
+    </Key>
+    <Property Name="ChannelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Language" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastBuildDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RSSItem">
+    <Key>
+      <PropertyRef Name="RSSItemId" />
+    </Key>
+    <Property Name="RSSItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PubDate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="Channel_id_fk" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SHOP_PRODS">
+    <Key>
+      <PropertyRef Name="prodId" />
+    </Key>
+    <Property Name="prodId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prodName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="prodPrice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="prodDesc" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="rating" Type="Int32" />
+    <Property Name="numberOfVoters" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_EpsilonKeys_EpsilonUsers">
+    <End Type="omegaxModel.EpsilonKey" Role="EpsilonKey" Multiplicity="1" />
+    <End Type="omegaxModel.EpsilonKey" Role="EpsilonKey1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EpsilonKey">
+        <PropertyRef Name="KeyId" />
+      </Principal>
+      <Dependent Role="EpsilonKey1">
+        <PropertyRef Name="KeyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EpsilonUsers_EpsilonKeys">
+    <End Type="omegaxModel.EpsilonUser" Role="EpsilonUser" Multiplicity="1" />
+    <End Type="omegaxModel.EpsilonUser" Role="EpsilonUser1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EpsilonUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EpsilonUser1">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetRevenueByMonthOverLastYear_Result">
+    <Property Type="Decimal" Name="orderGross" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="month" Nullable="true" />
+    <Property Type="Int32" Name="year" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="MartinLayooIncGetMostOrderedItems_Result">
+    <Property Type="String" Name="product_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="numberedOrdered" Nullable="true" />
+    <Property Type="Int32" Name="month" Nullable="true" />
+    <Property Type="Int32" Name="year" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="NumberOfProductsBoughtLastYearByMonth_Result">
+    <Property Type="Int32" Name="NumberOrdered" Nullable="true" />
+    <Property Type="Int32" Name="month" Nullable="true" />
+    <Property Type="Int32" Name="year" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="omegaxModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="omegaxModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="omegaxModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="omegaxModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="omegaxModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="TicketMasterUsers" Relationship="omegaxModel.FK_TicketMasterUsers_ASPNetUsers" FromRole="AspNetUser" ToRole="TicketMasterUser" />
+    <NavigationProperty Name="AspNetRoles" Relationship="omegaxModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="EntertainmentAddress">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Town" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="TicketMasterUser" Relationship="omegaxModel.FK_Address_TicketMasterUsers" FromRole="EntertainmentAddress" ToRole="TicketMasterUser" />
+  </EntityType>
+  <EntityType Name="TicketMasterUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ASPNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="omegaxModel.FK_TicketMasterUsers_ASPNetUsers" FromRole="TicketMasterUser" ToRole="AspNetUser" />
+    <NavigationProperty Name="EntertainmentAddresses" Relationship="omegaxModel.FK_Address_TicketMasterUsers" FromRole="TicketMasterUser" ToRole="EntertainmentAddress" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Type="omegaxModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="omegaxModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="omegaxModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="omegaxModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketMasterUsers_ASPNetUsers">
+    <End Type="omegaxModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="omegaxModel.TicketMasterUser" Role="TicketMasterUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TicketMasterUser">
+        <PropertyRef Name="ASPNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_TicketMasterUsers">
+    <End Type="omegaxModel.TicketMasterUser" Role="TicketMasterUser" Multiplicity="0..1" />
+    <End Type="omegaxModel.EntertainmentAddress" Role="EntertainmentAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketMasterUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EntertainmentAddress">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="omegaxModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="omegaxModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
 </Schema>

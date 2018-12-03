@@ -7,21 +7,16 @@ namespace RepositoryServices.Services
 {
     public class AccountManagementServices : IAccontManagerServiceSegregator
     {
-        private TicketMasterUserRepository _userRepository;
-        private IUnitOfWork _unitOfWork;
+        TicketMasterUserRepository _userRepository;
 
-        public AccountManagementServices(TicketMasterUserRepository userRepository)
+        public AccountManagementServices(ITicketRepositorySegregator ticketMasterUserRepository)
         {
-            _userRepository = userRepository;
-            _unitOfWork = new UnitOfWork<TicketMasterUser>(userRepository);
-            _userRepository.DBContext = (_unitOfWork as UnitOfWork<TicketMasterUser>).DBContext = new TicketMasterEntities();
+            _userRepository = ticketMasterUserRepository as TicketMasterUserRepository;
         }
 
         public bool ChangeUserEmail(TicketMasterUser user)
         {
-            var result = _userRepository.ChangeEmail(user);
-            _unitOfWork.SaveChanges();
-            return result;
+            return _userRepository.ChangeEmail(user);
         }
     }
 

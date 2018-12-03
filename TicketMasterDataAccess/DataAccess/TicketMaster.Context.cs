@@ -16,7 +16,7 @@ namespace TicketMasterDataAccess.DataAccess
     public partial class TicketMasterEntities : DbContext
     {
         public TicketMasterEntities()
-            : base("name=TicketMasterEntities")
+            : base("name=omegax2Entities")
         {
         }
     

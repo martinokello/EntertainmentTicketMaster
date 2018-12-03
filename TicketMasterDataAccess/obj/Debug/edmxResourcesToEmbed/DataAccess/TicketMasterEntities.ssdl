@@ -1,5 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="omegaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="omegaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ADDRESS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address1" Type="varchar" MaxLength="100" />
+    <Property Name="address2" Type="varchar" MaxLength="100" />
+    <Property Name="address3" Type="varchar" MaxLength="100" />
+    <Property Name="city" Type="varchar" MaxLength="100" />
+    <Property Name="postcode" Type="varchar" MaxLength="100" />
+    <Property Name="country_id_fk" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="20" />
+    <Property Name="password" Type="varchar" MaxLength="300" />
+  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -14,7 +38,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClaimType" Type="nvarchar(max)" />
     <Property Name="ClaimValue" Type="nvarchar(max)" />
-    <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserLogins">
     <Key>
@@ -39,10 +63,17 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PasswordHash" Type="nvarchar(max)" />
     <Property Name="SecurityStamp" Type="nvarchar(max)" />
-    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Booking">
     <Key>
@@ -56,6 +87,24 @@
     <Property Name="TicketId" Type="int" />
     <Property Name="IsVerifiedPayment" Type="bit" />
   </EntityType>
+  <EntityType Name="COUNTRY">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="value" Type="varchar" MaxLength="4" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="nameCased" Type="varchar" MaxLength="100" />
+    <Property Name="nameAbv" Type="varchar" MaxLength="4" />
+    <Property Name="code" Type="varchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="EncryptionAlgorithm">
+    <Key>
+      <PropertyRef Name="EncryptTypeId" />
+    </Key>
+    <Property Name="EncryptTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EncryptionAlgorithm" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="EntertainmentAddress">
     <Key>
       <PropertyRef Name="AddressId" />
@@ -68,6 +117,43 @@
     <Property Name="Country" Type="varchar" MaxLength="100" />
     <Property Name="UserId" Type="int" />
   </EntityType>
+  <EntityType Name="EpsilonHost">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="PortNumber" Type="int" />
+    <Property Name="AddressFlag" Type="bit" Nullable="false" />
+    <Property Name="Current" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EpsilonKeys">
+    <Key>
+      <PropertyRef Name="KeyId" />
+    </Key>
+    <Property Name="KeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="PublicKey" Type="varbinary" MaxLength="1000" Nullable="false" />
+    <Property Name="PrivateKey" Type="varbinary" MaxLength="1000" Nullable="false" />
+    <Property Name="Current" Type="bit" Nullable="false" />
+    <Property Name="TrippleDESKey" Type="varbinary" MaxLength="100" />
+    <Property Name="RSAStrength" Type="int" Nullable="false" />
+    <Property Name="Modulus" Type="varbinary" MaxLength="1000" Nullable="false" />
+    <Property Name="EncryptTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="EpsilonUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" />
+    <Property Name="Role" Type="varchar" MaxLength="20" />
+    <Property Name="RoleFlag" Type="bit" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
   <EntityType Name="Event">
     <Key>
       <PropertyRef Name="EventId" />
@@ -79,6 +165,112 @@
     <Property Name="EventDate" Type="datetime" />
     <Property Name="PricePerTicket" Type="decimal" Precision="5" Scale="2" />
     <Property Name="NumberOfTickets" Type="int" />
+  </EntityType>
+  <EntityType Name="ForumReviews">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="forum" Type="text" />
+    <Property Name="reviews" Type="text" />
+    <Property Name="forum_flag" Type="bit" />
+    <Property Name="review_flag" Type="bit" />
+    <Property Name="password" Type="varchar" MaxLength="300" />
+    <Property Name="timePosted" Type="datetime" />
+    <Property Name="userid" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ItemOrder">
+    <Key>
+      <PropertyRef Name="itemId" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="order_id_fk" Type="int" />
+    <Property Name="numberOrdered" Type="int" />
+    <Property Name="itemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="roles" Type="varchar" MaxLength="20" />
+    <Property Name="firstName" Type="varchar" MaxLength="50" />
+    <Property Name="lastName" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="expireDate" Type="datetime" />
+    <Property Name="validDate" Type="datetime" />
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" />
+    <Property Name="password" Type="varchar" MaxLength="300" />
+    <Property Name="status" Type="varchar" MaxLength="1000" />
+    <Property Name="order_date" Type="datetime" />
+    <Property Name="order_gross" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="paid_for" Type="bit" />
+  </EntityType>
+  <EntityType Name="Properties">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropertyNumber" Type="int" />
+    <Property Name="CrossArea" Type="decimal" Precision="8" Scale="4" />
+    <Property Name="YieldStress" Type="decimal" Precision="8" Scale="0" />
+    <Property Name="PlasticMod" Type="decimal" Precision="8" Scale="0" />
+    <Property Name="YoungsMod" Type="decimal" Precision="8" Scale="0" />
+    <Property Name="SecondMomArea" Type="decimal" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="RSSChannel">
+    <Key>
+      <PropertyRef Name="ChannelId" />
+    </Key>
+    <Property Name="ChannelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+    <Property Name="Link" Type="varchar" MaxLength="100" />
+    <Property Name="Language" Type="varchar" MaxLength="20" />
+    <Property Name="LastBuildDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RSSItem">
+    <Key>
+      <PropertyRef Name="RSSItemId" />
+    </Key>
+    <Property Name="RSSItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="Link" Type="varchar" MaxLength="200" />
+    <Property Name="PubDate" Type="datetime" />
+    <Property Name="Description" Type="varchar" MaxLength="8000" />
+    <Property Name="Channel_id_fk" Type="int" />
+  </EntityType>
+  <EntityType Name="SHOP_PRODS">
+    <Key>
+      <PropertyRef Name="prodId" />
+    </Key>
+    <Property Name="prodId" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="prodName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="prodPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="prodDesc" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="rating" Type="int" />
+    <Property Name="numberOfVoters" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -132,7 +324,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserClaims">
-        <PropertyRef Name="User_Id" />
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -178,6 +370,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_EpsilonKeys_EpsilonUsers">
+    <End Role="EpsilonKeys" Type="Self.EpsilonKeys" Multiplicity="1" />
+    <End Role="EpsilonKeys1" Type="Self.EpsilonKeys" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EpsilonKeys">
+        <PropertyRef Name="KeyId" />
+      </Principal>
+      <Dependent Role="EpsilonKeys1">
+        <PropertyRef Name="KeyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EpsilonUsers_EpsilonKeys">
+    <End Role="EpsilonUsers" Type="Self.EpsilonUsers" Multiplicity="1" />
+    <End Role="EpsilonUsers1" Type="Self.EpsilonUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EpsilonUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EpsilonUsers1">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Ticket_Event">
     <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
@@ -202,15 +418,93 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userN" Type="varchar" Mode="In" />
+    <Parameter Name="passW" Type="varchar" Mode="In" />
+    <Parameter Name="role" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CheckUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userN" Type="varchar" Mode="In" />
+    <Parameter Name="passW" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetRevenueByMonthOverLastYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="MartinLayooIncGetMostOrderedItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="NumberOfProductsBoughtLastYearByMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ShrinkMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_AutoSearchNegate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ChangeEncryptUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_EncryptPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="oldPassword" Type="varchar" Mode="In" />
+    <Parameter Name="newPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="omegaxModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ADDRESS" EntityType="Self.ADDRESS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EncryptionAlgorithm" EntityType="Self.EncryptionAlgorithm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EntertainmentAddress" EntityType="Self.EntertainmentAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EpsilonHost" EntityType="Self.EpsilonHost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EpsilonKeys" EntityType="Self.EpsilonKeys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EpsilonUsers" EntityType="Self.EpsilonUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumReviews" EntityType="Self.ForumReviews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemOrder" EntityType="Self.ItemOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Properties" EntityType="Self.Properties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RSSChannel" EntityType="Self.RSSChannel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RSSItem" EntityType="Self.RSSItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SHOP_PRODS" EntityType="Self.SHOP_PRODS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TicketMasterUsers" EntityType="Self.TicketMasterUsers" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Address_TicketMasterUsers" Association="Self.FK_Address_TicketMasterUsers">
@@ -236,6 +530,14 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EpsilonKeys_EpsilonUsers" Association="Self.FK_EpsilonKeys_EpsilonUsers">
+      <End Role="EpsilonKeys" EntitySet="EpsilonKeys" />
+      <End Role="EpsilonKeys1" EntitySet="EpsilonKeys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EpsilonUsers_EpsilonKeys" Association="Self.FK_EpsilonUsers_EpsilonKeys">
+      <End Role="EpsilonUsers" EntitySet="EpsilonUsers" />
+      <End Role="EpsilonUsers1" EntitySet="EpsilonUsers" />
     </AssociationSet>
     <AssociationSet Name="FK_Ticket_Event" Association="Self.FK_Ticket_Event">
       <End Role="Event" EntitySet="Event" />

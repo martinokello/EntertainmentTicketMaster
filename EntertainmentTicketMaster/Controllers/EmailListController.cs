@@ -14,8 +14,6 @@ using EntertainmentTicketMaster.Models;
 using Microsoft.AspNet.Identity;
 using RepositoryServices.Services;
 using TicketMasterDataAccess.DataAccess;
-using TicketMasterDataAccess.ConcreteRepositories;
-
 
 namespace EntertainmentTicketMaster.Controllers
 {
@@ -25,9 +23,9 @@ namespace EntertainmentTicketMaster.Controllers
 
         private EmailService _emailServices;
 
-        public EmailListController(ITicketMasterUserRepositorySegregator adminRepository)
+        public EmailListController()
         {
-            _adminServices = new RepositoryAdminServices(adminRepository);
+            _adminServices = new RepositoryAdminServices();
         }
 
         // POST api/<controller>
@@ -41,9 +39,18 @@ namespace EntertainmentTicketMaster.Controllers
             makeUniqueUsername = regEx.Replace(makeUniqueUsername,"");
             var user = new ApplicationUser() { UserName = makeUniqueUsername };
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var result = userManager.Create(user, model.Password);
+            IdentityResult result;
+            try
+            {
+                result = userManager.Create(user, model.Password);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.Conflict, "User was not added successfully to user list due to Error");
+            }
+            
 
-            if (result.Succeeded)
+            if (result != null && result.Succeeded)
             {
                 var userOfDomain = new TicketMasterUser
                 {

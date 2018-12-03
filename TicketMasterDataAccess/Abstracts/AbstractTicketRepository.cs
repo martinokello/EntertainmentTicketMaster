@@ -9,24 +9,20 @@ using TicketMasterDataAccess.Interfaces;
 
 namespace TicketMasterDataAccess.Abstracts
 {
-    public abstract class AbstractTicketRepository<T, TKey> : IRepository<T, TKey> where T : class
+    public abstract class AbstractTicketRepository<T,TKey> :IRepository<T,TKey> where T : class
     {
-        public TicketMasterEntities DBContext { get; set; }
-
-        protected AbstractTicketRepository() {
-        }
         public abstract T GetById(TKey key);
 
         public virtual T[] GetAll()
         {
-            return DBContext.Set<T>().ToArray<T>();
+            return DBContextFactory.GetDbContextInstance().Set<T>().ToArray<T>();
         }
 
         public virtual bool Add(T instance)
         {
             try
             {
-                DBContext.Set<T>().Add(instance);
+                DBContextFactory.GetDbContextInstance().Set<T>().Add(instance);
                 return true;
             }
             catch (Exception e)

@@ -17,55 +17,32 @@ namespace RepositoryServices.Services
         private TicketMasterUserRepository _ticketMasterUserRepository;
         private EventRepository _eventRepository;
         private BookingRepository _bookingRepository;
-        private IUnitOfWork _ticketUnitOfWork;
-        private IUnitOfWork _eventUnitOfWork;
-        private IUnitOfWork _ticketUserUnitOfWork;
-        private IUnitOfWork _bookingUnitOfWork;
 
-
-        public RepositoryAdminServices(ITicketMasterUserRepositorySegregator userRepository)
+        public RepositoryAdminServices()
         {
-            var dbContext = new TicketMasterEntities();
-            _ticketMasterUserRepository = userRepository as TicketMasterUserRepository;
-            _ticketUserUnitOfWork = new UnitOfWork<TicketMasterUser>(_ticketMasterUserRepository);
-            _ticketMasterUserRepository.DBContext = (_ticketUserUnitOfWork as UnitOfWork<TicketMasterUser>).DBContext = dbContext;
+            _ticketMasterUserRepository = new TicketMasterUserRepository(new UnitOfWork());
+     
         }
-        public RepositoryAdminServices(ITicketRepositorySegregator ticketRepository,IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator userRepository,IBookingRepositorySegregator bookingRepository)
+        public RepositoryAdminServices(ITicketRepositorySegregator ticketRepository,IEventRepositorySegregator eventRepository, ITicketMasterUserRepositorySegregator ticketMasterUserRepository,IBookingRepositorySegregator bookingRepository)
         {
-
-            var  dbContext = new TicketMasterEntities();
             _ticketRepository = ticketRepository as TicketRepository;
-            _ticketUnitOfWork = new UnitOfWork<Ticket>(_ticketRepository);
-            _ticketRepository.DBContext = (_ticketUnitOfWork as UnitOfWork<Ticket>).DBContext = dbContext;
             _eventRepository = eventRepository as EventRepository;
-            _eventUnitOfWork = new UnitOfWork<Event>(_eventRepository);
-            _eventRepository.DBContext = (_eventUnitOfWork as UnitOfWork<Event>).DBContext = dbContext;
-            _ticketMasterUserRepository = userRepository as TicketMasterUserRepository;
-            _ticketUserUnitOfWork = new UnitOfWork<TicketMasterUser>(_ticketMasterUserRepository);
-            _ticketMasterUserRepository.DBContext = (_ticketUserUnitOfWork as UnitOfWork<TicketMasterUser>).DBContext = dbContext;
+            _ticketMasterUserRepository = ticketMasterUserRepository as TicketMasterUserRepository;
             _bookingRepository = bookingRepository as BookingRepository;
-            _bookingUnitOfWork = new UnitOfWork<Booking>(_bookingRepository);
-            _bookingRepository.DBContext = (_bookingUnitOfWork as UnitOfWork<Booking>).DBContext = dbContext;
         }
 
         public bool AddEvent(Event evnt)
         {
-            var result = _eventRepository.Add(evnt);
-            _eventUnitOfWork.SaveChanges();
-            return result;
+            return _eventRepository.Add(evnt);
         }
 
         public bool AddUser(TicketMasterUser user)
         {
-            var result = _ticketMasterUserRepository.Add(user);
-            _ticketUserUnitOfWork.SaveChanges();
-            return result;
+            return _ticketMasterUserRepository.Add(user);
         }
         public bool AddTicket(Ticket ticket)
         {
-            var result = _ticketRepository.Add(ticket);
-            _ticketUnitOfWork.SaveChanges();
-            return result;
+            return _ticketRepository.Add(ticket);
         }
 
         public Event[] GetAllEvents()
@@ -85,9 +62,7 @@ namespace RepositoryServices.Services
 
         public bool UpdateEvent(Event evnt)
         {
-            var result = _eventRepository.Update(evnt);
-            _eventUnitOfWork.SaveChanges();
-            return result;
+            return _eventRepository.Update(evnt);
         }
 
         public virtual BookingTicketInfo[] GetVerifiedBooking()

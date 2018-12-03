@@ -16,7 +16,7 @@ namespace EntertainmentTicketMaster
     {
 
         public static Cache ApiCache { get; set; }
-        protected void Application_Start()
+         protected void Application_Start()
         {
             EntityFrameWorkUpdateV2 frame =new EntityFrameWorkUpdateV2();
             frame.Up();
@@ -27,6 +27,8 @@ namespace EntertainmentTicketMaster
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
+        
     }
 }

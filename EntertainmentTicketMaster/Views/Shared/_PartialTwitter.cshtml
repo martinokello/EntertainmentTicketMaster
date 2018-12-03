@@ -1,11 +1,14 @@
 ﻿<script type="text/javascript">
     $(document).ready(function() {
         $.ajax({
-            url: "http://martinlayooinc.co.uk/EntertainmentTicketMaster/api/SocialMedia/GetTwitterFeeds",
+            url:"@System.Configuration.ConfigurationManager.AppSettings["SiteRoot2"]"+"/api/SocialMedia/GetTwitterFeeds",
+			beforeSend: function(req)
+			{
+				req.setRequestHeader('Access-Control-Allow-Headers','x-requested-with');
+			},
             type: "GET",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
-                debugger;
                 $.each(data, function (index, value) {
                     if (index == 0) {
                         var firstli = $('ul#twitterProfileFeeds li').find('p#firstTweet');

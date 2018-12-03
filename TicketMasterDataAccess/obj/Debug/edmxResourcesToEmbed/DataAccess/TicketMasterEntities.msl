@@ -1,44 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="omegaxModelStoreContainer" CdmEntityContainer="TicketMasterEntities">
-    <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="omegaxModel.AspNetRole">
-        <MappingFragment StoreEntitySet="AspNetRoles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserClaims">
-      <EntityTypeMapping TypeName="omegaxModel.AspNetUserClaim">
-        <MappingFragment StoreEntitySet="AspNetUserClaims">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserLogins">
-      <EntityTypeMapping TypeName="omegaxModel.AspNetUserLogin">
-        <MappingFragment StoreEntitySet="AspNetUserLogins">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="omegaxModel.AspNetUser">
-        <MappingFragment StoreEntitySet="AspNetUsers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="omegaxModel.Booking">
         <MappingFragment StoreEntitySet="Booking">
@@ -49,19 +11,6 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="TicketId" ColumnName="TicketId" />
           <ScalarProperty Name="IsVerifiedPayment" ColumnName="IsVerifiedPayment" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="EntertainmentAddresses">
-      <EntityTypeMapping TypeName="omegaxModel.EntertainmentAddress">
-        <MappingFragment StoreEntitySet="EntertainmentAddress">
-          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-          <ScalarProperty Name="Town" ColumnName="Town" />
-          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -88,22 +37,338 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="omegaxModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADDRESSes">
+      <EntityTypeMapping TypeName="omegaxModel.ADDRESS">
+        <MappingFragment StoreEntitySet="ADDRESS">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="country_id_fk" ColumnName="country_id_fk" />
+          <ScalarProperty Name="postcode" ColumnName="postcode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address3" ColumnName="address3" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COUNTRies">
+      <EntityTypeMapping TypeName="omegaxModel.COUNTRY">
+        <MappingFragment StoreEntitySet="COUNTRY">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="nameAbv" ColumnName="nameAbv" />
+          <ScalarProperty Name="nameCased" ColumnName="nameCased" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EncryptionAlgorithms">
+      <EntityTypeMapping TypeName="omegaxModel.EncryptionAlgorithm">
+        <MappingFragment StoreEntitySet="EncryptionAlgorithm">
+          <ScalarProperty Name="EncryptionAlgorithm1" ColumnName="EncryptionAlgorithm" />
+          <ScalarProperty Name="EncryptTypeId" ColumnName="EncryptTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EpsilonHosts">
+      <EntityTypeMapping TypeName="omegaxModel.EpsilonHost">
+        <MappingFragment StoreEntitySet="EpsilonHost">
+          <ScalarProperty Name="Current" ColumnName="Current" />
+          <ScalarProperty Name="AddressFlag" ColumnName="AddressFlag" />
+          <ScalarProperty Name="PortNumber" ColumnName="PortNumber" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EpsilonKeys">
+      <EntityTypeMapping TypeName="omegaxModel.EpsilonKey">
+        <MappingFragment StoreEntitySet="EpsilonKeys">
+          <ScalarProperty Name="EncryptTypeId" ColumnName="EncryptTypeId" />
+          <ScalarProperty Name="Modulus" ColumnName="Modulus" />
+          <ScalarProperty Name="RSAStrength" ColumnName="RSAStrength" />
+          <ScalarProperty Name="TrippleDESKey" ColumnName="TrippleDESKey" />
+          <ScalarProperty Name="Current" ColumnName="Current" />
+          <ScalarProperty Name="PrivateKey" ColumnName="PrivateKey" />
+          <ScalarProperty Name="PublicKey" ColumnName="PublicKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EpsilonUsers">
+      <EntityTypeMapping TypeName="omegaxModel.EpsilonUser">
+        <MappingFragment StoreEntitySet="EpsilonUsers">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="RoleFlag" ColumnName="RoleFlag" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumReviews">
+      <EntityTypeMapping TypeName="omegaxModel.ForumReview">
+        <MappingFragment StoreEntitySet="ForumReviews">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="timePosted" ColumnName="timePosted" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="review_flag" ColumnName="review_flag" />
+          <ScalarProperty Name="forum_flag" ColumnName="forum_flag" />
+          <ScalarProperty Name="reviews" ColumnName="reviews" />
+          <ScalarProperty Name="forum" ColumnName="forum" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemOrders">
+      <EntityTypeMapping TypeName="omegaxModel.ItemOrder">
+        <MappingFragment StoreEntitySet="ItemOrder">
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+          <ScalarProperty Name="numberOrdered" ColumnName="numberOrdered" />
+          <ScalarProperty Name="order_id_fk" ColumnName="order_id_fk" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="omegaxModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="validDate" ColumnName="validDate" />
+          <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="omegaxModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="paid_for" ColumnName="paid_for" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="order_gross" ColumnName="order_gross" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Properties">
+      <EntityTypeMapping TypeName="omegaxModel.Property">
+        <MappingFragment StoreEntitySet="Properties">
+          <ScalarProperty Name="SecondMomArea" ColumnName="SecondMomArea" />
+          <ScalarProperty Name="YoungsMod" ColumnName="YoungsMod" />
+          <ScalarProperty Name="PlasticMod" ColumnName="PlasticMod" />
+          <ScalarProperty Name="YieldStress" ColumnName="YieldStress" />
+          <ScalarProperty Name="CrossArea" ColumnName="CrossArea" />
+          <ScalarProperty Name="PropertyNumber" ColumnName="PropertyNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RSSChannels">
+      <EntityTypeMapping TypeName="omegaxModel.RSSChannel">
+        <MappingFragment StoreEntitySet="RSSChannel">
+          <ScalarProperty Name="LastBuildDate" ColumnName="LastBuildDate" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RSSItems">
+      <EntityTypeMapping TypeName="omegaxModel.RSSItem">
+        <MappingFragment StoreEntitySet="RSSItem">
+          <ScalarProperty Name="Channel_id_fk" ColumnName="Channel_id_fk" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PubDate" ColumnName="PubDate" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="RSSItemId" ColumnName="RSSItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SHOP_PRODS">
+      <EntityTypeMapping TypeName="omegaxModel.SHOP_PRODS">
+        <MappingFragment StoreEntitySet="SHOP_PRODS">
+          <ScalarProperty Name="numberOfVoters" ColumnName="numberOfVoters" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="prodDesc" ColumnName="prodDesc" />
+          <ScalarProperty Name="prodPrice" ColumnName="prodPrice" />
+          <ScalarProperty Name="prodName" ColumnName="prodName" />
+          <ScalarProperty Name="prodId" ColumnName="prodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="omegaxModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddUser" FunctionName="omegaxModel.Store.AddUser" />
+    <FunctionImportMapping FunctionImportName="CheckUser" FunctionName="omegaxModel.Store.CheckUser" />
+    <FunctionImportMapping FunctionImportName="GetRevenueByMonthOverLastYear" FunctionName="omegaxModel.Store.GetRevenueByMonthOverLastYear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="omegaxModel.GetRevenueByMonthOverLastYear_Result">
+          <ScalarProperty Name="orderGross" ColumnName="orderGross" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MartinLayooIncGetMostOrderedItems" FunctionName="omegaxModel.Store.MartinLayooIncGetMostOrderedItems">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="omegaxModel.MartinLayooIncGetMostOrderedItems_Result">
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="numberedOrdered" ColumnName="numberedOrdered" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NumberOfProductsBoughtLastYearByMonth" FunctionName="omegaxModel.Store.NumberOfProductsBoughtLastYearByMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="omegaxModel.NumberOfProductsBoughtLastYearByMonth_Result">
+          <ScalarProperty Name="NumberOrdered" ColumnName="NumberOrdered" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ShrinkMe" FunctionName="omegaxModel.Store.ShrinkMe" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="omegaxModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_AutoSearchNegate" FunctionName="omegaxModel.Store.sp_AutoSearchNegate" />
+    <FunctionImportMapping FunctionImportName="sp_ChangeEncryptUserPassword" FunctionName="omegaxModel.Store.sp_ChangeEncryptUserPassword" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="omegaxModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="omegaxModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_EncryptPassword" FunctionName="omegaxModel.Store.sp_EncryptPassword" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="omegaxModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="omegaxModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="omegaxModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="omegaxModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="omegaxModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="omegaxModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="omegaxModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="omegaxModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="omegaxModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="omegaxModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntertainmentAddresses">
+      <EntityTypeMapping TypeName="omegaxModel.EntertainmentAddress">
+        <MappingFragment StoreEntitySet="EntertainmentAddress">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TicketMasterUsers">
       <EntityTypeMapping TypeName="omegaxModel.TicketMasterUser">
         <MappingFragment StoreEntitySet="TicketMasterUsers">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="ASPNetUserId" ColumnName="ASPNetUserId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="omegaxModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
-      </EndProperty>
-      <EndProperty Name="AspNetUsers">
+      <EndProperty Name="AspNetUser">
         <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

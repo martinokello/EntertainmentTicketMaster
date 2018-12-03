@@ -12,16 +12,16 @@ namespace TicketMasterDataAccess.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class ADDRESS
     {
-        public int AddressId { get; set; }
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string Town { get; set; }
-        public string PostCode { get; set; }
-        public string Country { get; set; }
-        public Nullable<int> UserId { get; set; }
-    
-        public virtual TicketMasterUser TicketMasterUser { get; set; }
+        public int id { get; set; }
+        public string address1 { get; set; }
+        public string address2 { get; set; }
+        public string address3 { get; set; }
+        public string city { get; set; }
+        public string postcode { get; set; }
+        public Nullable<int> country_id_fk { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }
