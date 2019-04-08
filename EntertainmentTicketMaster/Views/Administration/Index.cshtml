@@ -19,7 +19,7 @@
             var stDate = $('#StartDate').val();
             var enDate = $('#EndDate').val();
             $.ajax({
-                url: 'https//www.martinlayooinc.co.uk/EntertainmentTicketMaster/Administration/GetStats?startDate=' + stDate + '&endDate=' + enDate,
+                url: '@Url.Content("~/")Administration/GetStats?startDate=' + stDate + '&endDate=' + enDate,
                 method: 'GET',
                 contentType:'application/json',
                 success: function (data, statuscode, jq_XHR) {
